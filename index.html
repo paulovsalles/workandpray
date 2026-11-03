@@ -307,6 +307,39 @@
     @media(max-width:890px){.social-grid{grid-template-columns:1fr}}
     @media(max-width:760px){.social-hero{align-items:flex-start;flex-direction:column;margin-bottom:17px}.social-hero .btn{width:100%}.social-card{padding:16px}.social-login{margin:0;max-width:none}.social-form-row{flex-direction:column;align-items:stretch}.social-form-row>.btn{width:100%}.social-split{grid-template-columns:1fr 1fr}.social-group{padding:16px}.social-tabs button{padding:9px 11px}}
 
+    /* Conta Pulso: acesso presente em todas as telas, inclusive no celular */
+    .account-slot{min-width:0}
+    .account-trigger{border:1px solid var(--border);background:var(--surface);color:var(--ink);display:flex;gap:10px;align-items:center;border-radius:15px;min-height:46px;padding:5px 10px 5px 5px;text-align:left;max-width:225px;width:100%}
+    .account-trigger:hover{background:var(--surface-2);border-color:var(--green)}
+    .account-avatar{width:36px;height:36px;min-width:36px;border-radius:12px;background:var(--green-soft);color:var(--green-strong);position:relative;overflow:hidden;display:grid;place-items:center;font-size:15px;font-weight:850;letter-spacing:0;flex-shrink:0}
+    .account-avatar .icon{width:19px;height:19px}
+    .account-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--green-soft)}
+    .account-info{min-width:0;display:flex;flex-direction:column;line-height:1.26;flex:1}
+    .account-info strong{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:820;max-width:128px}
+    .account-info small{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:128px;margin-top:3px}
+    .account-chevron{width:14px;height:14px;color:var(--muted)}
+    .account-aside{margin-bottom:12px}
+    .account-aside .account-trigger{max-width:none;border-radius:15px;padding:8px;min-height:58px;background:var(--surface-2)}
+    .account-aside .account-info strong{font-size:12px}
+    .account-aside .account-avatar{width:38px;height:38px;min-width:38px;border-radius:13px}
+    .account-menu{position:fixed;z-index:135;width:min(320px,calc(100vw - 24px));padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:0 18px 60px rgba(11,39,24,.17);color:var(--ink)}
+    .account-menu-head{display:flex;gap:11px;align-items:center;padding:13px 11px 14px;border-bottom:1px solid var(--border);margin-bottom:6px}
+    .account-menu-head .account-avatar{width:43px;height:43px;min-width:43px;border-radius:15px}
+    .account-menu-head .account-info strong{font-size:14px;max-width:210px}
+    .account-menu-head .account-info small{font-size:11px;max-width:210px}
+    .account-menu button{width:100%;display:flex;align-items:center;gap:11px;border:0;background:transparent;color:var(--ink);text-align:left;border-radius:11px;padding:12px 11px;font-size:12px;font-weight:720;min-height:42px}
+    .account-menu button:hover{background:var(--surface-2)}
+    .account-menu button .icon{width:16px;height:16px;color:var(--muted)}
+    .account-menu .account-danger{color:var(--red)}
+    .account-menu .account-menu-foot{padding:9px 12px 8px;color:var(--muted);font-size:10px;border-top:1px solid var(--border);line-height:1.5}
+    .google-login{min-height:46px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--border);border-radius:13px;background:var(--surface);color:var(--ink);font-size:13px;font-weight:760;padding:10px 13px}
+    .google-login:hover{border-color:var(--green);background:var(--surface-2)}
+    .google-logo{width:19px;height:19px;flex:none}
+    .auth-divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:11px;margin:17px 0}
+    .auth-divider::before,.auth-divider::after{content:'';height:1px;background:var(--border);flex:1}
+    .sidebar{overflow-y:auto}
+    @media(max-width:1050px){.topbar .account-trigger{max-width:177px}.topbar .account-info strong,.topbar .account-info small{max-width:90px}}
+    @media(max-width:760px){.topbar .account-trigger{width:42px;min-height:42px;max-width:42px;border-radius:50%;background:transparent;padding:3px;border:0}.topbar .account-avatar{width:36px;height:36px;min-width:36px;border-radius:50%}.topbar .account-info,.topbar .account-chevron{display:none}.account-menu{border-radius:17px}.account-menu button{min-height:45px}.social-login{padding:20px!important}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
@@ -463,11 +496,12 @@
   function render(){
     document.getElementById('app').innerHTML=`<div class="shell">
       <aside class="sidebar"><div class="brand"><span class="brand-mark">${icon('pulse')}</span><span class="brand-word">pulso<span style="color:var(--green)">.</span></span></div><div class="side-caption">SEU TREINO</div><nav class="side-nav" aria-label="Navegação principal">${tabs.map(t=>navButton(t)).join('')}</nav>
-      <div class="side-bottom"><div class="side-note"><div class="top">${icon('zap','icon-sm')} Um dia de cada vez.</div><p>Planeje, registre e acompanhe. O resto é consistência.</p></div><div class="side-settings"><button class="btn" data-action="settings" style="width:100%">${icon('settings','icon-sm')} Backup e dados</button></div></div></aside>
-      <div class="main-wrap"><header class="topbar"><div class="mobile-brand desktop-hide"><span class="brand-mark">${icon('pulse')}</span>pulso<span style="color:var(--green)">.</span></div><div class="topbar-sub">Planeje menos. Treine mais.</div><div class="top-actions"><button class="btn icon-only" data-action="theme" aria-label="Alternar para tema ${state.theme==='light'?'escuro':'claro'}" title="Alternar tema">${icon(state.theme==='light'?'moon':'sun')}</button><button class="btn icon-only desktop-hide" data-action="settings" aria-label="Backup e ajustes">${icon('settings')}</button><button class="btn primary desktop-only" data-action="open-free" data-date="${today}" >${icon('zap','icon-sm')} Treino livre</button></div></header>
+      <div class="side-bottom"><div class="account-slot account-aside" id="pulso-sidebar-account"></div><div class="side-note"><div class="top">${icon('zap','icon-sm')} Um dia de cada vez.</div><p>Planeje, registre e acompanhe. O resto é consistência.</p></div><div class="side-settings"><button class="btn" data-action="settings" style="width:100%">${icon('settings','icon-sm')} Backup e dados</button></div></div></aside>
+      <div class="main-wrap"><header class="topbar"><div class="mobile-brand desktop-hide"><span class="brand-mark">${icon('pulse')}</span>pulso<span style="color:var(--green)">.</span></div><div class="topbar-sub">Planeje menos. Treine mais.</div><div class="top-actions"><div class="account-slot" id="pulso-header-account"></div><button class="btn icon-only" data-action="theme" aria-label="Alternar para tema ${state.theme==='light'?'escuro':'claro'}" title="Alternar tema">${icon(state.theme==='light'?'moon':'sun')}</button><button class="btn icon-only desktop-hide" data-action="settings" aria-label="Backup e ajustes">${icon('settings')}</button><button class="btn primary desktop-only" data-action="open-free" data-date="${today}" >${icon('zap','icon-sm')} Treino livre</button></div></header>
       <main class="content">${state.tab==='today'?renderToday():state.tab==='month'?renderMonth():state.tab==='plans'?renderPlans():state.tab==='social'?'<div id="social-root"></div>':renderType(state.tab)}</main></div>
       <nav class="bottom-nav" aria-label="Navegação principal">${tabs.map(t=>navButton(t,true)).join('')}</nav>
     </div>`;
+    window.PulsoSocial?.renderAccountUi?.();
     if(state.tab==='social')window.PulsoSocial?.mount?.();
   }
   function renderToday(){
@@ -803,6 +837,7 @@
     switchAccount(uid){STORE=uid?'pulso_treinos_v1_user_'+uid:'pulso_treinos_v1';PLAN_STORE=uid?'pulso_planos_v2_user_'+uid:'pulso_planos_v2';state.workouts=readStore();state.templates=readTemplates();state.tab=uid?'today':state.tab;render();},
     setAccount(data){state.workouts=(data.workouts||[]).map(safeWork).filter(Boolean);state.templates=(data.templates||[]).map(safeTemplate).filter(Boolean);persist();persistTemplates();render();},
     refresh(){render();},
+    navigate(tab){if(tabs.some(t=>t[0]===tab))setTab(tab);},
     notify:toast
   };
   render();
@@ -823,7 +858,7 @@ const FIREBASE_CONFIG = {
 };
 const configured = FIREBASE_CONFIG.apiKey !== 'COLE_SUA_API_KEY' &&
   FIREBASE_CONFIG.projectId !== 'SEU_PROJETO' && FIREBASE_CONFIG.appId !== 'COLE_SEU_APP_ID';
-const ui = {user:null, profile:null, friends:[], groups:[], group:null, feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login'};
+const ui = {user:null, profile:null, friends:[], groups:[], group:null, feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login', accountOpen:false, accountPlace:'header'};
 const socialRoot = () => document.getElementById('social-root');
 const sx = v => String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sn = v => Number.isFinite(Number(v)) ? Number(v) : 0;
@@ -842,6 +877,12 @@ function errorMessage(e){
   'auth/weak-password':'Use uma senha com pelo menos 6 caracteres.',
   'auth/invalid-email':'Digite um e-mail válido.',
   'auth/network-request-failed':'Erro de conexão. Confira a internet.',
+  'auth/operation-not-allowed':'Ative o provedor Google em Firebase → Authentication → Método de login.',
+  'auth/unauthorized-domain':'Autorize paulovsalles.github.io em Firebase → Authentication → Configurações → Domínios autorizados.',
+  'auth/popup-blocked':'O navegador bloqueou a janela do Google. Permita pop-ups neste site.',
+  'auth/popup-closed-by-user':'Login Google cancelado. Você pode tentar novamente.',
+  'auth/cancelled-popup-request':'Outra janela de login já estava aberta. Tente novamente.',
+  'auth/account-exists-with-different-credential':'Já existe uma conta com este e-mail e outro método. Entre pelo método anterior e vincule a conta.',
   'auth/too-many-requests':'Muitas tentativas. Tente novamente mais tarde.',
   'permission-denied':'Permissão negada. Verifique se publicou as regras do Firestore.',
   'failed-precondition':'O Firestore ainda não está configurado ou falta um índice.'
@@ -849,6 +890,50 @@ function errorMessage(e){
  return dict[code]||e?.message||'Não foi possível concluir esta operação.';
 }
 function notifyError(e){console.error('Pulso Social:',e);ui.lastError=errorMessage(e);showToast(ui.lastError);mount();}
+// SVG local, sem imagens externas nem bibliotecas adicionais.
+function googleIcon(){return `<svg class="google-logo" aria-hidden="true" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.28 5.48-4.8 7.18l7.73 6C44.38 38.03 46.98 31.93 46.98 24.55Z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.6.27-3.14.76-4.59l-7.98-6.2C.92 16.46 0 20.13 0 24s.92 7.54 2.56 10.78l7.97-6.19Z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.87-5.8l-7.73-6c-2.15 1.45-4.92 2.3-8.14 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.97 6.19C6.51 42.62 14.62 48 24 48Z"/></svg>`;}
+function photoUrl(){const url=String(ui.user?.photoURL||'');try{const u=new URL(url);return u.protocol==='https:'?sx(url):'';}catch{return '';}}
+function currentName(){return String(ui.profile?.name||ui.user?.displayName||ui.user?.email?.split('@')[0]||'Atleta').trim();}
+function accountAvatar(){const n=ui.user?currentName():'';const src=photoUrl();return `<span class="account-avatar">${ui.user?sx(initials(n)):`${i('users')}`}${src?`<img src="${src}" alt="" referrerpolicy="no-referrer" />`:''}</span>`;}
+function accountButton(place){const signed=!!ui.user;const name=signed?currentName():'Entrar no Pulso';const sub=signed?(ui.user.email||'Conta conectada'):'Login ou cadastro';return `<button class="account-trigger" type="button" data-account="toggle" data-place="${place}" aria-label="${signed?'Abrir menu da conta de '+sx(name):'Entrar ou criar conta'}" aria-haspopup="menu" aria-expanded="${ui.accountOpen&&ui.accountPlace===place?'true':'false'}">${accountAvatar()}<span class="account-info"><strong>${sx(name)}</strong><small>${sx(sub)}</small></span><svg class="icon icon-sm account-chevron" aria-hidden="true"><use href="#i-chevronright"></use></svg></button>`;}
+function accountMenuHtml(){return `<div class="account-menu-head">${accountAvatar()}<div class="account-info"><strong>${sx(ui.user?currentName():'Bem-vindo ao Pulso')}</strong><small>${sx(ui.user?.email||'Sua conta em um toque')}</small></div></div>${ui.user?`
+  <button type="button" data-account="profile">${i('users')} Meu perfil</button>
+  <button type="button" data-account="community">${i('pulse')} Ver comunidade</button>
+  <button type="button" data-account="switch">${i('edit')} Trocar de conta</button>
+  <button type="button" class="account-danger" data-account="logout">${i('x')} Sair da conta</button>
+  <div class="account-menu-foot">Treinos pessoais privados. Você escolhe o que compartilhar.</div>`:`
+  <button type="button" data-account="google">${googleIcon()} Continuar com Google</button>
+  <button type="button" data-account="email">${i('users')} Entrar com e-mail</button>
+  <button type="button" data-account="register">${i('plus')} Criar uma conta</button>
+  <div class="account-menu-foot">Sua rotina continua disponível mesmo sem login.</div>`}`;}
+function accountMenuRoot(){let r=document.getElementById('pulso-account-menu');if(!r){r=document.createElement('div');r.id='pulso-account-menu';r.className='account-menu';r.setAttribute('role','menu');r.hidden=true;document.body.appendChild(r);}return r;}
+function closeAccountMenu(){ui.accountOpen=false;const r=document.getElementById('pulso-account-menu');if(r)r.hidden=true;document.querySelectorAll('[data-account="toggle"]').forEach(b=>b.setAttribute('aria-expanded','false'));}
+function renderAccountUi(){for(const place of ['header','sidebar']){const slot=document.getElementById(`pulso-${place}-account`);if(slot)slot.innerHTML=accountButton(place);}
+ const menu=ui.accountOpen?accountMenuRoot():document.getElementById('pulso-account-menu');if(ui.accountOpen && menu){menu.innerHTML=accountMenuHtml();placeAccountMenu();}}
+function placeAccountMenu(){const menu=accountMenuRoot();const anchor=document.querySelector(`[data-account="toggle"][data-place="${ui.accountPlace}"]`);if(!anchor)return;
+ menu.hidden=false;menu.style.visibility='hidden';const rect=anchor.getBoundingClientRect();const width=menu.offsetWidth,height=menu.offsetHeight;
+ const left=ui.accountPlace==='sidebar'?rect.right+12:rect.right-width;
+ menu.style.left=Math.min(Math.max(12,left),innerWidth-width-12)+'px';
+ menu.style.top=Math.max(12,Math.min(rect.bottom+10,innerHeight-height-12))+'px';menu.style.visibility='visible';}
+async function doGoogleLogin(){closeAccountMenu();if(!configured||!fire||!auth){showToast('O login ainda está carregando. Tente novamente.');return;}
+ if(ui.busy)return;ui.busy=true;try{const provider=new fire.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});
+ await fire.signInWithPopup(auth,provider);showToast('Conta Google conectada com sucesso.');
+ }catch(e){notifyError(e);}finally{ui.busy=false;mount();}}
+async function accountClick(button){const action=button.dataset.account;
+ if(action==='toggle'){if(ui.accountOpen&&ui.accountPlace===button.dataset.place){closeAccountMenu();return;}ui.accountOpen=true;ui.accountPlace=button.dataset.place;renderAccountUi();return;}
+ closeAccountMenu();
+ if(action==='google'){doGoogleLogin();return;}
+ if(action==='email'||action==='register'){ui.authMode=action==='register'?'register':'login';window.PulsoLocal?.navigate?.('social');mount();return;}
+ if(action==='community'||action==='profile'){ui.page=action==='profile'?'profile':'feed';ui.group=null;window.PulsoLocal?.navigate?.('social');mount();return;}
+ if(action==='switch'||action==='logout'){
+  if(action==='logout'&&!confirm('Sair da sua conta do Pulso? Os treinos deste login continuam salvos.'))return;
+  if(!auth||!fire)return;
+  if(ui.ready)await syncLocal(true);
+  await fire.signOut(auth);
+  if(action==='switch'){ui.authMode='login';window.PulsoLocal?.navigate?.('social');}
+  showToast('Você saiu da conta.');
+ }
+}
 function authHtml(){
  if(!configured)return `<div class="social-hero"><div><div class="eyebrow">PULSO SOCIAL</div><h1 class="page-title">Treinar é melhor junto.</h1><p class="page-subtitle">Seu espaço para amigos, grupos e desafios.</p></div></div>
   <div class="card social-login"><div class="social-banner">${i('info')}<span><strong>Falta conectar o Firebase.</strong> O Pulso individual continua funcionando normalmente.</span></div>
@@ -856,6 +941,8 @@ function authHtml(){
  return `<div class="social-hero"><div><div class="eyebrow">PULSO SOCIAL</div><h1 class="page-title">Entre na comunidade.</h1><p class="page-subtitle">Treine com amigos, crie grupos e participe de desafios.</p></div></div>
  <div class="card social-login">${ui.lastError?`<div class="social-banner" style="background:var(--red-soft);color:var(--red)">${sx(ui.lastError)}</div>`:''}
   <div class="social-tabs"><button data-social="auth-view" data-mode="login" class="${ui.authMode==='login'?'active':''}">Entrar</button><button data-social="auth-view" data-mode="register" class="${ui.authMode==='register'?'active':''}">Criar conta</button></div>
+  <button class="google-login" type="button" data-social="google" ${ui.busy?'disabled':''}>${googleIcon()} Continuar com Google</button>
+  <div class="auth-divider">ou entre com e-mail</div>
   <form class="social-form" id="social-auth-form">
    ${ui.authMode==='register'?`<div><label>Seu nome</label><input name="name" required maxlength="44" placeholder="Como quer aparecer para amigos" autocomplete="name" /></div>`:''}
    <div><label>E-mail</label><input name="email" type="email" required autocomplete="email" placeholder="voce@exemplo.com" /></div>
@@ -906,7 +993,7 @@ function groupHtml(){const g=ui.group;if(!g)return groupsHtml();return `<div cla
  <div class="social-stack"><div class="card social-card"><h3>Novo desafio</h3><form class="social-form" id="social-create-challenge"><div><label>Título</label><input name="title" maxlength="60" required placeholder="Ex.: 50 km no mês" /></div><div><label>O que será contado?</label><select name="metric"><option value="sessions">Treinos concluídos</option><option value="distance">Quilômetros de corrida</option><option value="minutes">Minutos treinados</option></select></div><div><label>Meta por participante</label><input type="number" name="target" min="1" step="0.1" max="10000" value="10" required /></div><div class="social-split"><div><label>Início</label><input name="start" type="date" value="${futureDate(0)}" required /></div><div><label>Fim</label><input name="end" type="date" value="${futureDate(30)}" required /></div></div><button class="btn primary" type="submit">${i('plus')} Criar desafio</button></form></div>
  <div class="card social-card"><h3>Participantes</h3>${(g.memberIds||[]).map(id=>`<div class="social-leader">${avatar(nameOf(id))}<strong>${sx(nameOf(id))}</strong>${id===g.ownerId?'<span class="social-bubble">Criador</span>':''}</div>`).join('')}</div>${g.ownerId===ui.user.uid?'':`<button class="btn danger full" data-social="leave-group" data-id="${sx(g.id)}">Sair deste grupo</button>`}</div></div></div>`;}
 function futureDate(n){const d=new Date();d.setDate(d.getDate()+n);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
-function profileHtml(){return `<div class="social-grid"><div class="social-stack"><div class="card social-card"><div class="social-card-header">${avatar(ui.profile?.name)}<div class="social-card-title"><strong>${sx(ui.profile?.name||'Atleta')}</strong><small>${sx(ui.user?.email||'')}</small></div></div><form id="social-profile-form" class="social-form"><div><label>Nome exibido</label><input required name="name" maxlength="44" value="${sx(ui.profile?.name||'')}" /></div><button class="btn soft" type="submit">Salvar meu nome</button></form></div><div class="card social-card"><h3>Seu código de atleta</h3><p>Passe este código para alguém seguir suas atividades compartilhadas.</p><div class="social-code">${sx(ui.profile?.code||'—')}</div><button class="btn" data-social="copy-profile">${i('copy')} Copiar código</button></div></div>
+function profileHtml(){return `<div class="social-grid"><div class="social-stack"><div class="card social-card"><div class="social-card-header">${accountAvatar()}<div class="social-card-title"><strong>${sx(ui.profile?.name||'Atleta')}</strong><small>${sx(ui.user?.email||'')}</small></div></div><form id="social-profile-form" class="social-form"><div><label>Nome exibido</label><input required name="name" maxlength="44" value="${sx(ui.profile?.name||'')}" /></div><button class="btn soft" type="submit">Salvar meu nome</button></form></div><div class="card social-card"><h3>Seu código de atleta</h3><p>Passe este código para alguém seguir suas atividades compartilhadas.</p><div class="social-code">${sx(ui.profile?.code||'—')}</div><button class="btn" data-social="copy-profile">${i('copy')} Copiar código</button></div></div>
  <div class="social-stack"><div class="card social-card"><h3>Privacidade</h3><p>Planos, cargas, notas e treinos ficam privados. Quando você escolhe compartilhar, apenas os dados exibidos na confirmação são publicados para a audiência selecionada.</p><p>Na comunidade, qualquer pessoa com uma conta pode ver a publicação. Nos grupos, apenas integrantes podem ler os registros.</p></div>
  <div class="card social-card"><h3>Sincronização</h3><p>Ao entrar em sua conta, seus treinos pessoais são sincronizados na nuvem e entre aparelhos conectados com este mesmo login.</p><p class="social-footnote">${sx(ui.syncLabel||'Sincronização ativada.')}</p><div class="social-actions"><button class="btn" data-social="sync-now">${i('upload')} Sincronizar agora</button></div></div>
  <button class="btn danger full" data-social="logout">Sair da conta</button></div></div>`;}
@@ -914,12 +1001,12 @@ function shareHtml(){const all=window.PulsoLocal?.get?.().workouts||[];const don
  return `<div class="card social-card" style="margin-bottom:16px"><h3>Compartilhar um treino concluído</h3><p>Você escolhe o treino e o público. Nada é publicado automaticamente.</p>
  ${done.length?`<form class="social-form" id="social-share-form" style="margin-top:16px"><div><label>Treino realizado</label><select required name="workout">${done.map(w=>`<option value="${sx(w.id)}">${sx(day(w.date))} · ${sx(w.title)}</option>`).join('')}</select></div><div><label>Compartilhar com</label><select required name="audience"><option value="public">Comunidade (todos com login)</option>${ui.groups.map(g=>`<option value="group:${sx(g.id)}">Grupo: ${sx(g.title)}</option>`).join('')}</select></div><div><label>Duração real da sessão (min) · opcional</label><input type="number" name="minutes" min="0" max="1440" step="1" placeholder="Para pontuar em desafios por tempo" /></div><p class="social-footnote">Compartilha nome do treino, data, modalidade e resumo de exercícios/distância/tempo. Observações pessoais não são compartilhadas.</p><button class="btn primary" type="submit">${i('check')} Confirmar compartilhamento</button></form>`:emptyHtml('Sem treinos concluídos.','Marque um treino como realizado na aba Hoje antes de compartilhar.')}
  <div class="social-actions"><button class="btn" data-social="share-close">Cancelar</button></div></div>`;}
-function mount(){const root=socialRoot();if(!root)return;
+function mount(){renderAccountUi();const root=socialRoot();if(!root)return;
  if(!configured||!ui.user){root.innerHTML=authHtml();return;}
  if(!ui.ready){root.innerHTML=`<div class="card social-card"><h3>Preparando sua comunidade...</h3><p>Carregando seus dados de conta.</p></div>`;return;}
  root.innerHTML=topHtml()+(ui.page==='share'?shareHtml():ui.page==='following'?feedHtml(true):ui.page==='groups'?groupsHtml():ui.page==='group'?groupHtml():ui.page==='profile'?profileHtml():feedHtml(false));
 }
-window.PulsoSocial = {mount,scheduleSync(){if(!ui.user||!ui.ready||paused)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>syncLocal(false),700);}};
+window.PulsoSocial = {mount,renderAccountUi,scheduleSync(){if(!ui.user||!ui.ready||paused)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>syncLocal(false),700);}};
 async function profileEnsure(user){const ref=fire.doc(db,'profiles',user.uid),snap=await fire.getDoc(ref);if(snap.exists())return {id:user.uid,...snap.data()};
  const profile={name:String(user.displayName||registeringName||user.email?.split('@')[0]||'Atleta').slice(0,44),code:'P'+user.uid.slice(0,12),createdAt:Date.now()};
  await fire.setDoc(ref,profile);return {id:user.uid,...profile};}
@@ -944,7 +1031,7 @@ async function syncLocal(force=false){if(!ui.user||(!ui.ready&&!force)||paused)r
  }).catch(e=>{ui.syncLabel='Falha ao sincronizar: '+errorMessage(e);notifyError(e);});
  await saveChain;
 }
-async function initializeAccount(user){paused=true;ui.ready=false;ui.group=null;ui.page='feed';ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.lastError='';
+async function initializeAccount(user){paused=true;ui.ready=false;ui.group=null;ui.page='feed';ui.accountOpen=false;ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.lastError='';
  window.PulsoLocal?.switchAccount(user.uid);mount();
  try{
   const [prof,remote]=await Promise.all([profileEnsure(user),fire.getDoc(fire.doc(db,'accounts',user.uid,'data','main'))]);
@@ -1039,7 +1126,8 @@ async function createChallenge(form){if(!ui.group)throw Error('Abra um grupo pri
  if(!data.title||!['sessions','distance','minutes'].includes(data.metric)||data.target<=0||data.target>10000)throw Error('Confira os dados do desafio.');
  await fire.setDoc(ref,data);await loadGroup(ui.group.id);showToast('Desafio criado!');}
 async function onClick(b){const a=b.dataset.social;try{
- if(a==='auth-view'){ui.authMode=b.dataset.mode;mount();}
+ if(a==='google'){doGoogleLogin();}
+ else if(a==='auth-view'){ui.authMode=b.dataset.mode;mount();}
  else if(a==='forgot'){const email=prompt('Qual e-mail você usa no Pulso?');if(email){await fire.sendPasswordResetEmail(auth,email.trim());showToast('E-mail de redefinição enviado.');}}
  else if(a==='logout'){if(confirm('Sair desta conta? Seus dados salvos permanecerão na nuvem.'))await fire.signOut(auth);}
  else if(a==='nav'){ui.page=b.dataset.page;ui.group=null;mount();}
@@ -1061,11 +1149,16 @@ async function onClick(b){const a=b.dataset.social;try{
  else if(a==='leave-group'){if(confirm('Sair deste grupo?'))await leaveGroup(b.dataset.id);}
  }catch(e){notifyError(e);}}
 document.addEventListener('click',event=>{const b=event.target.closest('[data-social]');if(b){event.preventDefault();onClick(b);}});
+document.addEventListener('click',event=>{const b=event.target.closest('[data-account]');if(b){event.preventDefault();accountClick(b).catch(notifyError);}else if(ui.accountOpen&&!event.target.closest('#pulso-account-menu'))closeAccountMenu();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeAccountMenu();});
+window.addEventListener('resize',()=>{if(ui.accountOpen)placeAccountMenu();});
+window.addEventListener('scroll',()=>{if(ui.accountOpen)closeAccountMenu();},{passive:true});
+document.addEventListener('error',event=>{if(event.target.matches?.('.account-avatar img'))event.target.remove();},true);
 document.addEventListener('submit',async event=>{const form=event.target;if(!form.id?.startsWith('social-'))return;event.preventDefault();
  if(ui.busy)return;const method={
   'social-auth-form':doAuth,'social-follow-form':doFollow,'social-create-group':createGroup,'social-join-group':joinGroup,
   'social-share-form':shareWorkout,'social-create-challenge':createChallenge,
-  'social-profile-form':async f=>{const name=String(new FormData(f).get('name')||'').trim();if(name.length<2)throw Error('Digite um nome maior.');await fire.updateDoc(fire.doc(db,'profiles',ui.user.uid),{name});ui.profile.name=name;ui.people[ui.user.uid].name=name;mount();showToast('Perfil atualizado.');}
+  'social-profile-form':async f=>{const name=String(new FormData(f).get('name')||'').trim();if(name.length<2)throw Error('Digite um nome maior.');await fire.updateDoc(fire.doc(db,'profiles',ui.user.uid),{name});ui.profile.name=name;ui.people[ui.user.uid].name=name;await fire.updateProfile(ui.user,{displayName:name});mount();showToast('Perfil atualizado.');}
  }[form.id];if(!method)return;
  setBusy(true);try{await method(form);}catch(e){notifyError(e);}finally{setBusy(false);}
 });
@@ -1078,7 +1171,7 @@ if(configured){
   ]);
   fire={...authMod,...fsMod};const app=appMod.initializeApp(FIREBASE_CONFIG);auth=authMod.getAuth(app);db=fsMod.getFirestore(app);
   unsubAuth=authMod.onAuthStateChanged(auth,user=>{
-   if(user){initializeAccount(user);}else{paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;window.PulsoLocal?.switchAccount(null);mount();}
+   if(user){initializeAccount(user);}else{paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;ui.accountOpen=false;window.PulsoLocal?.switchAccount(null);mount();}
   },notifyError);
  }catch(e){notifyError(e);}
 }
