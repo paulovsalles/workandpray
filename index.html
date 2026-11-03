@@ -197,6 +197,26 @@
     .plan-step-label + .repeat-days{margin-top:0;margin-bottom:0}.free-intro{display:flex;align-items:center;gap:10px;background:var(--green-soft);color:var(--green-strong);border-radius:15px;padding:13px 14px;margin-bottom:17px}
     .free-intro strong{display:block;font-size:13px}.free-intro small{display:block;margin-top:4px;font-size:11px;line-height:1.45}
 
+
+    /* Pulso 4.2 — biblioteca de treinos e agenda opcional */
+    .schedule-choice{margin:4px 0 17px}.schedule-choice .repeat-label{display:flex;align-items:center;gap:10px;cursor:pointer}
+    .schedule-choice p{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    #plan-schedule-area{margin:6px 0 18px;padding:15px;border:1px solid var(--border);background:var(--surface-2);border-radius:15px}
+    #plan-schedule-area[hidden]{display:none!important}
+    #plan-schedule-area .field-grid{margin-bottom:0}
+    .plan-unscheduled{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--green-strong);margin:16px 0 12px}
+    .plan-actions{flex-wrap:wrap}.plan-actions .btn{flex:1 1 auto;white-space:nowrap}.plan-actions .btn.icon-only{flex:0 0 auto}
+    .plan-pick-list{display:grid;gap:9px}.plan-pick-item{display:flex;width:100%;min-width:0;align-items:center;text-align:left;gap:12px;padding:15px;border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--ink);cursor:pointer}
+    .plan-pick-item:hover,.plan-pick-item:focus-visible{border-color:var(--green);background:var(--green-soft)}
+    .plan-pick-main{min-width:0;flex:1}.plan-pick-main strong{display:block;font-weight:820;font-size:13px}.plan-pick-main small{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.35}
+    .plan-pick-icon{flex:none;width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:var(--green-soft);color:var(--green-strong)}
+    .plan-pick-icon.run{background:var(--orange-soft);color:var(--orange)}
+    .picker-label{font-size:10px;padding:5px 8px;border-radius:999px;white-space:nowrap;background:var(--surface-2);color:var(--muted)}
+    .picker-label.scheduled{background:var(--green-soft);color:var(--green-strong)}
+    .choose-plan-hint{font-size:12px;line-height:1.55;color:var(--muted);margin-bottom:14px}
+    .chooser-cta{margin-top:12px;display:flex;gap:9px;flex-wrap:wrap}.chooser-cta .btn{flex:1;min-width:125px}
+    @media(max-width:760px){.plan-pick-item{padding:12px;gap:9px}.plan-pick-main strong{font-size:12px}.picker-label{font-size:9px}.plan-actions .btn{font-size:11px}.choose-plan-hint{font-size:11px}}
+
     /* Criador de corrida: versão 3 */
     .run-builder{display:grid;gap:13px;margin:4px 0 18px}
     .run-kind-head{display:flex;gap:10px;align-items:center;margin-bottom:4px}
@@ -451,7 +471,7 @@
     if(k==='progressive')v.push(`${fmt(num(p.stage1)+num(p.stage2)+num(p.stage3))} ${p.progressMode==='min'?'min':'km'} de etapas`);
     if(k==='racepace'&&r.distance)v.push(`${fmt(r.distance)} km no ritmo de prova`);
     return v.join(' · ');}
-  state = { tab:'today', selectedDate:today, month:today.slice(0,7), filter:'all', workouts:readStore(), templates:readTemplates(), planDays:[], theme:readTheme(), modal:null, formType:'strength', repeatDays:[], scrollSave:false };
+  state = { tab:'today', selectedDate:today, month:today.slice(0,7), filter:'all', workouts:readStore(), templates:readTemplates(), planDays:[], theme:readTheme(), modal:null, formType:'strength', planSchedule:false, repeatDays:[], scrollSave:false };
   applyTheme();
   function safeWork(w){
     if (!w||typeof w!=='object'||typeof w.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(w.date)||!['strength','run'].includes(w.type)) return null;
@@ -459,7 +479,7 @@
       strength:Array.isArray(w.strength)?w.strength.slice(0,45).map(x=>({name:String(x.name||'').slice(0,80),sets:num(x.sets),reps:String(x.reps||'').slice(0,30),weight:num(x.weight)})):[],
       run:safeRun(w.run),
       result:w.result&&typeof w.result==='object'?{strength:Array.isArray(w.result.strength)?w.result.strength.slice(0,45).map(x=>({name:String(x.name||'').slice(0,80),sets:num(x.sets),reps:String(x.reps||'').slice(0,30),weight:num(x.weight)})):[],run:safeRun(w.result.run),note:String(w.result.note||'').slice(0,2000),completedAt:String(w.result.completedAt||'')}:null,
-      createdAt:Number(w.createdAt)||Date.now(),source:String(w.source||'oneoff'),templateId:w.templateId?String(w.templateId):null,replacesId:w.replacesId?String(w.replacesId):null};
+      createdAt:Number(w.createdAt)||Date.now(),source:String(w.source||'oneoff'),templateId:w.templateId?String(w.templateId):null,originTemplateId:w.originTemplateId?String(w.originTemplateId):null,replacesId:w.replacesId?String(w.replacesId):null};
   }
   function safeTemplate(p){
     if(!p||typeof p!=='object'||!['run','strength'].includes(p.type)||!/^\d{4}-\d{2}-\d{2}$/.test(p.start||'')||!/^\d{4}-\d{2}-\d{2}$/.test(p.end||'')||p.start>p.end)return null;
@@ -512,12 +532,12 @@
     const pending=workouts.filter(w=>w.status==='planned').length;
     const next=futureWorkouts(date);
     const isToday=date===today;
-    return `<div class="page-head"><div><div class="eyebrow">${isToday?'SEU DIA EM MOVIMENTO':'CONSULTA DE TREINO'}</div><h1 class="page-title">${isToday?'Pronto para hoje?':'Seu treino do dia.'}</h1><p class="page-subtitle">${esc(fullDate(date))}</p></div><div class="head-actions">${!isToday?`<button class="btn" data-action="go-today">Hoje</button>`:''}<button class="btn primary" data-action="open-free" data-date="${date}" title="Registrar treino livre">${icon('zap','icon-sm')}<span class="mobile-label"> Livre</span></button></div></div>
-      <section class="hero"><div><div class="hero-kicker">${icon('pulse','icon-sm')} CONSTÂNCIA EM PRIMEIRO LUGAR</div><h2>${workouts.length===0?'Seu ritmo começa aqui.':pending>0?`${pending} ${pending===1?'treino te espera':'treinos te esperam'}.`:workouts.some(w=>w.status==='done')?'Dia registrado. Muito bem!':'Seu dia, no seu ritmo.'}</h2><p>${workouts.length===0?'Organize sua musculação e suas corridas em poucos toques.':pending>0?'Abra o treino, confira o que foi planejado e marque quando terminar.':'Acompanhe cada dia no calendário e veja sua evolução.'}</p></div><button class="hero-btn" data-action="${workouts.length===0?'plans-tab':'open-free'}" data-date="${date}">${workouts.length===0?'Montar um plano':'Treino livre'} ${icon('chevronright','icon-sm')}</button></section>
+    return `<div class="page-head"><div><div class="eyebrow">${isToday?'SEU DIA EM MOVIMENTO':'CONSULTA DE TREINO'}</div><h1 class="page-title">${isToday?'Pronto para hoje?':'Seu treino do dia.'}</h1><p class="page-subtitle">${esc(fullDate(date))}</p></div><div class="head-actions">${!isToday?`<button class="btn" data-action="go-today">Hoje</button>`:''}<button class="btn primary" data-action="choose-plan" data-date="${date}" aria-label="Escolher qualquer plano cadastrado" title="Escolher plano">${icon('target','icon-sm')}<span class="mobile-label"> Escolher plano</span></button></div></div>
+      <section class="hero"><div><div class="hero-kicker">${icon('pulse','icon-sm')} CONSTÂNCIA EM PRIMEIRO LUGAR</div><h2>${workouts.length===0?'Seu ritmo começa aqui.':pending>0?`${pending} ${pending===1?'treino te espera':'treinos te esperam'}.`:workouts.some(w=>w.status==='done')?'Dia registrado. Muito bem!':'Seu dia, no seu ritmo.'}</h2><p>${workouts.length===0?'Organize sua musculação e suas corridas em poucos toques.':pending>0?'Abra o treino, confira o que foi planejado e marque quando terminar.':'Acompanhe cada dia no calendário e veja sua evolução.'}</p></div><button class="hero-btn" data-action="${state.templates.length?'choose-plan':'plans-tab'}" data-date="${date}">${state.templates.length?'Escolher meu treino':'Criar meu plano'} ${icon('chevronright','icon-sm')}</button></section>
       ${renderWeekStrip(date)}
       <div class="section-row"><h2 class="section-title">${isToday?'Treinos de hoje':'Treinos do dia'}</h2><span class="micro">${workouts.length} ${workouts.length===1?'treino':'treinos'}</span></div>
-      ${workouts.length?`<div class="workout-list">${workouts.map(renderWorkout).join('')}</div>`:emptyCard('Nenhum treino para este dia.','Monte uma rotina com dias fixos ou registre o que você fez livremente.',date)}
-      <div class="today-quick"><button class="btn soft" data-action="open-free" data-date="${date}">${icon('zap','icon-sm')} Registrar treino livre</button><button class="btn" data-action="plans-tab">${icon('target','icon-sm')} Meus planos</button></div>
+      ${workouts.length?`<div class="workout-list">${workouts.map(renderWorkout).join('')}</div>`:emptyCard('Nenhum treino previsto para hoje.','Escolha qualquer treino do seu acervo ou registre um treino livre.',date)}
+      <div class="today-quick"><button class="btn primary" data-action="choose-plan" data-date="${date}">${icon('target','icon-sm')} Escolher plano</button><button class="btn soft" data-action="open-free" data-date="${date}">${icon('zap','icon-sm')} Treino livre</button></div>
       <div class="stats-grid"><div class="card stat"><div class="stat-top">Concluídos <span class="stat-icon">${icon('checkcircle','icon-sm')}</span></div><div class="stat-value">${done.length}<small> / ${thisMonth.length}</small></div></div><div class="card stat"><div class="stat-top">Musculação <span class="stat-icon">${icon('dumbbell','icon-sm')}</span></div><div class="stat-value">${done.filter(w=>w.type==='strength').length}<small> treinos</small></div></div><div class="card stat"><div class="stat-top">Corrida <span class="stat-icon">${icon('run','icon-sm')}</span></div><div class="stat-value">${displayNum(km)}<small> km</small></div></div></div>
       <div class="section-row"><h2 class="section-title">Próximos treinos</h2><button class="subtle-link" data-action="month-tab">Ver calendário ${icon('chevronright','icon-sm')}</button></div>
       ${next.length?`<div class="workout-list">${next.map(renderWorkout).join('')}</div>`:`<div class="card" style="padding:21px;font-size:13px;color:var(--muted)">Tudo em dia por enquanto. Planeje as próximas sessões quando quiser.</div>`}
@@ -529,9 +549,9 @@
     const useRun=done&&w.result?w.result.run:w.run;
     const detail=w.type==='strength'?`${w.strength.length} ${w.strength.length===1?'exercício':'exercícios'}${w.strength.length?' · '+w.strength.slice(0,2).map(x=>x.name).filter(Boolean).join(', '):' · toque para detalhar'}`:
       (done&&w.result?`${runType(w.run).short} · ${[useRun.distance?displayNum(useRun.distance)+' km':'',useRun.duration?displayNum(useRun.duration,1)+' min':'',useRun.params?.achievedRepeats?displayNum(useRun.params.achievedRepeats,0)+' repetições':''].filter(Boolean).join(' · ')||runShort(w.run)}`:`${runType(w.run).short} · ${runShort(w.run)}`);
-    return `<article class="card workout ${w.type==='run'?'run':''}"><div class="workout-symbol">${icon(w.type==='run'?'run':'dumbbell')}</div><div class="workout-content"><div class="workout-head"><span class="workout-title">${esc(w.title)}</span>${done?'<span class="status done">Feito</span>':replaced?'<span class="status">Substituído</span>':skipped?'<span class="status skipped">Não feito</span>':w.source==='free'?'<span class="status free">Livre</span>':w.templateId?'<span class="status plan">Plano</span>':''}</div><div class="workout-info">${w.date===today?'Hoje':shortDate(w.date)} · ${esc(detail)}</div></div><div class="workout-actions"><button class="mini-action" data-action="details" data-id="${esc(w.id)}" aria-label="Abrir treino ${esc(w.title)}">${icon('chevronright','icon-sm')}</button>${replaced?'':`<button class="mini-action ${done?'checked':'finish'}" data-action="quick-done" data-id="${esc(w.id)}" title="${done?'Desmarcar treino':'Marcar como concluído'}" aria-label="${done?'Desmarcar':'Concluir'} ${esc(w.title)}">${icon('check','icon-sm')}<span class="mini-text">${done?'Feito':'Concluir'}</span></button>`}</div></article>`;
+    return `<article class="card workout ${w.type==='run'?'run':''}"><div class="workout-symbol">${icon(w.type==='run'?'run':'dumbbell')}</div><div class="workout-content"><div class="workout-head"><span class="workout-title">${esc(w.title)}</span>${done?'<span class="status done">Feito</span>':replaced?'<span class="status">Substituído</span>':skipped?'<span class="status skipped">Não feito</span>':w.source==='free'?'<span class="status free">Livre</span>':w.source==='manual-plan'?'<span class="status plan">Do acervo</span>':w.templateId?'<span class="status plan">Plano</span>':''}</div><div class="workout-info">${w.date===today?'Hoje':shortDate(w.date)} · ${esc(detail)}</div></div><div class="workout-actions"><button class="mini-action" data-action="details" data-id="${esc(w.id)}" aria-label="Abrir treino ${esc(w.title)}">${icon('chevronright','icon-sm')}</button>${replaced?'':`<button class="mini-action ${done?'checked':'finish'}" data-action="quick-done" data-id="${esc(w.id)}" title="${done?'Desmarcar treino':'Marcar como concluído'}" aria-label="${done?'Desmarcar':'Concluir'} ${esc(w.title)}">${icon('check','icon-sm')}<span class="mini-text">${done?'Feito':'Concluir'}</span></button>`}</div></article>`;
   }
-  function emptyCard(title,msg,date=null){return `<div class="empty"><div class="empty-visual">${icon('calendar','icon-lg')}</div><h3>${esc(title)}</h3><p>${esc(msg)}</p><div class="empty-acts"><button class="btn primary" data-action="open-free" ${date?`data-date="${date}"`:''}>${icon('zap','icon-sm')} Treino livre</button><button class="btn" data-action="plans-tab">Meus planos</button></div></div>`;}
+  function emptyCard(title,msg,date=null){return `<div class="empty"><div class="empty-visual">${icon('calendar','icon-lg')}</div><h3>${esc(title)}</h3><p>${esc(msg)}</p><div class="empty-acts"><button class="btn primary" data-action="choose-plan" ${date?`data-date="${date}"`:''}>${icon('target','icon-sm')} Escolher plano</button><button class="btn" data-action="open-free" ${date?`data-date="${date}"`:''}>${icon('zap','icon-sm')} Treino livre</button></div></div>`;}
   function renderType(type){
     const isStr=type==='strength',t=visibleStats(sessionsMonth(state.month)).filter(w=>w.type===type), done=t.filter(w=>w.status==='done'),scheduled=t.filter(w=>w.status==='planned'),km=done.reduce((s,w)=>s+num(w.result?.run?.distance??w.run.distance),0);
     const filtered=workSorted(t.filter(w=>state.filter==='all'||(state.filter==='planned'?w.status==='planned':w.status==='done')));
@@ -554,8 +574,9 @@
     return `<div class="page-head"><div><div class="eyebrow">VISÃO GERAL</div><h1 class="page-title">Seu planejamento.</h1><p class="page-subtitle">Organize o mês inteiro, sem complicação.</p></div><div class="head-actions"><button class="btn primary" data-action="plans-tab">${icon('target','icon-sm')}<span class="mobile-label"> Planos</span></button></div></div>
       <div class="card month-card"><div class="flex-header" style="margin-bottom:11px"><h2 class="section-title">Calendário</h2>${monthButtons()}</div><div class="calendar-week">${weekdays.map(d=>`<span class="weekday">${d}</span>`).join('')}</div><div class="calendar-grid">${cells.join('')}</div><div class="calendar-foot"><span class="legend"><i class="cal-pill"></i> Musculação</span><span class="legend"><i class="cal-pill run"></i> Corrida</span><span class="legend"><i class="cal-pill finished"></i> Concluído</span></div></div>
       <div class="card progress-card"><div class="progress-row"><strong>Progresso de ${esc(monthName(month))}</strong><span>${completed} / ${monthlyCount}</span></div><div class="progress-track"><div class="progress-fill" style="width:${monthlyCount?completed/monthlyCount*100:0}%"></div></div><div class="progress-hint">${ws.filter(w=>w.type==='strength'&&w.status!=='replaced').length} musculações · ${ws.filter(w=>w.type==='run'&&w.status!=='replaced').length} corridas registradas/planejadas</div></div>
-      <div class="section-row"><h2 class="section-title">${selected===today?'Hoje':esc(fullDate(selected))}</h2><button class="subtle-link" data-action="open-free" data-date="${selected}">${icon('zap','icon-sm')} Treino livre</button></div>
-      ${todays.length?`<div class="workout-list">${todays.map(renderWorkout).join('')}</div>`:emptyCard('Nenhum treino para esta data.','Selecione outro dia ou crie um treino para começar.',selected)}
+      <div class="section-row"><h2 class="section-title">${selected===today?'Hoje':esc(fullDate(selected))}</h2><button class="subtle-link" data-action="choose-plan" data-date="${selected}">${icon('target','icon-sm')} Escolher plano</button></div>
+      ${todays.length?`<div class="workout-list">${todays.map(renderWorkout).join('')}</div>`:emptyCard('Nenhum treino para esta data.','Escolha um modelo cadastrado ou registre um treino livre.',selected)}
+      ${todays.length?`<div class="chooser-cta"><button class="btn primary" data-action="choose-plan" data-date="${selected}">${icon('target','icon-sm')} Outro plano</button><button class="btn" data-action="open-free" data-date="${selected}">${icon('zap','icon-sm')} Treino livre</button></div>`:''}
       ${ws.length===0&&state.workouts.length===0&&state.templates.length===0?`<div style="text-align:center;margin-top:15px"><button class="subtle-link" data-action="demo">${icon('zap','icon-sm')} Inserir treinos de exemplo</button></div>`:''}`;
   }
   const readyPlans = [
@@ -565,43 +586,65 @@
     ...Object.entries(RUN_KINDS).map(([key,v])=>({key:'run-'+key,title:v.label,type:'run',days:[1,3],run:defaultRun(key),note:''}))
   ];
   function dateBR(s){return new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}).format(parseDate(s));}
-  function renderPlans(){const active=state.templates.filter(p=>p.enabled&&p.end>=today&&p.start<=today).length;
-    return `<div class="page-head"><div><div class="eyebrow">ROTINAS COM DATA CERTA</div><h1 class="page-title">Meus planos.</h1><p class="page-subtitle">Crie o treino uma vez. Ele aparece automaticamente nos dias escolhidos.</p></div><div class="head-actions"><button class="btn primary" data-action="new-plan">${icon('plus','icon-sm')}<span class="mobile-label"> Novo plano</span></button></div></div>
-      <div class="plan-summary"><div class="plan-summary-icon">${icon('target')}</div><div><strong>${active} ${active===1?'plano em andamento':'planos em andamento'}</strong><p>Período + dias da semana + exercícios. No dia, escolha entre fazer o planejado ou um treino livre.</p></div></div>
+  function renderPlans(){
+    const scheduled=state.templates.filter(p=>p.enabled&&p.days.length&&p.end>=today&&p.start<=today).length;
+    const library=state.templates.filter(p=>!p.days.length).length;
+    return `<div class="page-head"><div><div class="eyebrow">SEU ACERVO DE TREINOS</div><h1 class="page-title">Meus planos.</h1><p class="page-subtitle">Monte uma vez. Use em qualquer dia — com ou sem agenda fixa.</p></div><div class="head-actions"><button class="btn primary" data-action="new-plan">${icon('plus','icon-sm')}<span class="mobile-label"> Novo plano</span></button></div></div>
+      <div class="plan-summary"><div class="plan-summary-icon">${icon('target')}</div><div><strong>${state.templates.length} ${state.templates.length===1?'plano salvo':'planos salvos'} · ${scheduled} na agenda</strong><p>${library?`${library} sem dias fixos. `:''}Você pode selecionar qualquer plano na aba Hoje. Agendar por dia da semana é opcional.</p></div></div>
       <div class="section-row"><h2 class="section-title">Minhas rotinas</h2><span class="micro">${state.templates.length} ${state.templates.length===1?'plano':'planos'}</span></div>
       ${state.templates.length?`<div class="plans-list">${[...state.templates].sort((a,b)=>b.createdAt-a.createdAt).map(t=>{
-        const expired=t.end<today,upcoming=t.start>today,label=!t.enabled?'Pausado':expired?'Encerrado':upcoming?'Ainda não começou':'Em andamento';
-        return `<article class="card plan-card"><div class="plan-card-top"><div class="plan-type-icon ${t.type==='run'?'run':''}">${icon(t.type==='run'?'run':'dumbbell')}</div><div class="plan-card-intro"><div class="plan-card-name">${esc(t.title)}</div><div class="plan-card-sub">${t.type==='run'?'Corrida':'Musculação'} · ${t.type==='run'?esc(runType(t.run).short+' · '+runShort(t.run)):`${t.strength.length} exercícios`}</div></div><span class="status ${t.enabled&&!expired&&!upcoming?'done':''}">${label}</span></div>
-          <div class="plan-period">${icon('calendar','icon-sm')} ${dateBR(t.start)} a ${dateBR(t.end)}</div><div class="plan-days">${weekdays.map((d,i)=>`<span class="plan-weekday ${t.days.includes(i)?'active':''}">${d}</span>`).join('')}</div>
-          <div class="plan-actions"><button class="btn soft" data-action="edit-plan" data-id="${esc(t.id)}">${icon('edit','icon-sm')} Editar</button><button class="btn" data-action="toggle-plan" data-id="${esc(t.id)}">${icon(t.enabled?'clock':'check','icon-sm')} ${t.enabled?'Pausar':'Ativar'}</button><button class="btn icon-only danger" data-action="delete-plan-ask" data-id="${esc(t.id)}" aria-label="Excluir plano">${icon('trash','icon-sm')}</button></div></article>`;}).join('')}</div>`:
-      `<div class="empty"><div class="empty-visual">${icon('target','icon-lg')}</div><h3>Monte seu primeiro plano</h3><p>Defina período, dias fixos e exercícios. Seus treinos aparecerão automaticamente no calendário.</p><button class="btn primary" data-action="new-plan">${icon('plus','icon-sm')} Criar plano</button></div>`}
-      <div class="section-row"><h2 class="section-title">Comece com um modelo</h2></div><p class="micro" style="margin-top:-8px;margin-bottom:13px">Sugestões editáveis de musculação e corrida. Nenhum modelo é adicionado sem você escolher os dias e o período.</p>
+        const noDays=t.days.length===0,expired=t.end<today,upcoming=t.start>today,label=noDays?'No acervo':!t.enabled?'Pausado':expired?'Encerrado':upcoming?'Ainda não começou':'Em andamento';
+        return `<article class="card plan-card"><div class="plan-card-top"><div class="plan-type-icon ${t.type==='run'?'run':''}">${icon(t.type==='run'?'run':'dumbbell')}</div><div class="plan-card-intro"><div class="plan-card-name">${esc(t.title)}</div><div class="plan-card-sub">${t.type==='run'?'Corrida':'Musculação'} · ${t.type==='run'?esc(runType(t.run).short+' · '+runShort(t.run)):`${t.strength.length} exercícios`}</div></div><span class="status ${!noDays&&t.enabled&&!expired&&!upcoming?'done':noDays?'plan':''}">${label}</span></div>
+          ${noDays?`<div class="plan-unscheduled">${icon('target','icon-sm')} Disponível para usar em qualquer dia</div>`:`<div class="plan-period">${icon('calendar','icon-sm')} ${dateBR(t.start)} a ${dateBR(t.end)}</div><div class="plan-days">${weekdays.map((d,i)=>`<span class="plan-weekday ${t.days.includes(i)?'active':''}">${d}</span>`).join('')}</div>`}
+          <div class="plan-actions"><button class="btn primary" data-action="use-plan" data-id="${esc(t.id)}" data-date="${today}">${icon('check','icon-sm')} Fazer hoje</button><button class="btn soft" data-action="edit-plan" data-id="${esc(t.id)}">${icon('edit','icon-sm')} Editar</button>${noDays?'':`<button class="btn" data-action="toggle-plan" data-id="${esc(t.id)}">${icon(t.enabled?'clock':'check','icon-sm')} ${t.enabled?'Pausar':'Ativar'}</button>`}<button class="btn icon-only danger" data-action="delete-plan-ask" data-id="${esc(t.id)}" aria-label="Excluir plano">${icon('trash','icon-sm')}</button></div></article>`;}).join('')}</div>`:
+      `<div class="empty"><div class="empty-visual">${icon('target','icon-lg')}</div><h3>Monte seu primeiro treino</h3><p>Salve seu treino no acervo, mesmo sem escolher um dia da semana. Depois, use quando quiser.</p><button class="btn primary" data-action="new-plan">${icon('plus','icon-sm')} Criar plano</button></div>`}
+      <div class="section-row"><h2 class="section-title">Comece com um modelo</h2></div><p class="micro" style="margin-top:-8px;margin-bottom:13px">Sugestões editáveis de musculação e corrida. Salve sem agenda ou escolha dias para repetir automaticamente.</p>
       <div class="preset-list">${readyPlans.map(p=>`<button class="card preset-card" data-action="preset-plan" data-preset="${p.key}"><span class="preset-icon ${p.type==='run'?'run':''}">${icon(p.type==='run'?'run':'dumbbell')}</span><span class="preset-info"><strong>${esc(p.title)}</strong><small>${p.type==='run'?esc(runShort(p.run)):`${p.strength.length} exercícios`} · personalizável</small></span>${icon('plus','icon-sm')}</button>`).join('')}</div>`;
   }
   function planDaysHtml(){return `<div class="repeat-days" id="plan-days">${weekdays.map((d,i)=>`<button type="button" data-action="plan-day" data-day="${i}" class="weekday-toggle ${state.planDays.includes(i)?'active':''}" aria-pressed="${state.planDays.includes(i)}">${d}</button>`).join('')}</div>`;}
   function openPlanForm(id=null,options={}){
     const stored=state.templates.find(x=>x.id===id)||null,preset=options.preset?readyPlans.find(x=>x.key===options.preset):null,p=stored||preset||null;
-    const type=p?.type||options.type||'strength';state.formType=type;state.planDays=p?.days?[...p.days]:[dayIndex(today)];
+    const type=p?.type||options.type||'strength';state.formType=type;state.planSchedule=!!stored?.days?.length;
+    state.planDays=state.planSchedule?[...stored.days]:[];
     const start=p?.start||options.start||today,end=p?.end||addDays(today,27);
     state.modal={kind:'plan-form',id:stored?.id||null};
     const body=`<form id="plan-form"><div class="type-switch"><button type="button" class="${type==='strength'?'active':''}" data-action="plan-type" data-type="strength">${icon('dumbbell')} Musculação</button><button type="button" class="${type==='run'?'active':''}" data-action="plan-type" data-type="run">${icon('run')} Corrida</button></div>
       <div class="field"><label for="plan-title">Nome do plano</label><input id="plan-title" name="title" required maxlength="90" placeholder="Ex.: Treino A · Peito e tríceps" value="${esc(p?.title||'')}" /></div>
-      <div class="plan-step-label"><span class="step-num">1</span><strong>Em qual período?</strong></div>
-      <div class="field-grid"><div class="field"><label for="plan-start">Começa em</label><input id="plan-start" type="date" required name="start" value="${esc(start)}" /></div><div class="field"><label for="plan-end">Termina em</label><input id="plan-end" type="date" required name="end" value="${esc(end)}" /></div></div>
-      <div class="plan-step-label"><span class="step-num">2</span><strong>Em quais dias?</strong></div>${planDaysHtml()}<p class="hint" style="margin:8px 0 23px">Toque nos dias em que este treino deve aparecer automaticamente.</p>
-      <div class="plan-step-label"><span class="step-num">3</span><strong>O que será feito?</strong></div><div id="plan-type-fields">${workoutFields(type,p)}</div>
+      <div class="plan-step-label"><span class="step-num">1</span><strong>Quando usar este plano?</strong></div>
+      <div class="repeat-box schedule-choice"><label class="repeat-label"><input id="plan-schedule" type="checkbox" ${state.planSchedule?'checked':''} /> Repetir automaticamente em dias fixos</label><p>${state.planSchedule?'O plano aparecerá na agenda conforme os dias selecionados.':'Desmarcado: salve no seu acervo e escolha quando quiser fazer. Nenhum dia é obrigatório.'}</p></div>
+      <div id="plan-schedule-area" ${state.planSchedule?'':'hidden'}><div class="field-grid"><div class="field"><label for="plan-start">De</label><input id="plan-start" type="date" ${state.planSchedule?'required':''} name="start" value="${esc(start)}" /></div><div class="field"><label for="plan-end">Até</label><input id="plan-end" type="date" ${state.planSchedule?'required':''} name="end" value="${esc(end)}" /></div></div><div class="plan-step-label"><strong>Quais dias da semana?</strong></div>${planDaysHtml()}<p class="hint" style="margin:8px 0 0">Selecione pelo menos um dia apenas se quiser agendamento automático.</p></div>
+      <div class="plan-step-label"><span class="step-num">2</span><strong>O que será feito?</strong></div><div id="plan-type-fields">${workoutFields(type,p)}</div>
       <div class="field"><label for="plan-note">Observações (opcional)</label><textarea name="note" id="plan-note" rows="2" placeholder="Ex.: aquecimento, ordem dos exercícios...">${esc(p?.note||'')}</textarea></div>
       </form>`;
-    modalBase(stored?'Editar plano':'Criar plano de treino',stored?'Altere as próximas sessões. Treinos já registrados ficam preservados.':'Escolha período, dias e conteúdo. O calendário se organiza sozinho.',body,`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="save-plan">${icon('check','icon-sm')} ${stored?'Salvar plano':'Criar plano'}</button>`);
+    modalBase(stored?'Editar plano':'Criar plano de treino',stored?'Você pode mudar a agenda sem apagar os treinos já realizados.':'Guarde no acervo, com ou sem dias fixos.',body,`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="save-plan">${icon('check','icon-sm')} ${stored?'Salvar plano':'Criar plano'}</button>`);
   }
   function savePlan(){const form=document.getElementById('plan-form');if(!form||!form.reportValidity())return;
-    const start=form.elements.start.value,end=form.elements.end.value,title=form.elements.title.value.trim();if(start>end){toast('A data final deve ser igual ou posterior à inicial.');return;}
-    if(!state.planDays.length){toast('Selecione pelo menos um dia da semana.');return;}
+    const start=form.elements.start.value||today,end=form.elements.end.value||addDays(today,27),title=form.elements.title.value.trim();
+    if(state.planSchedule){if(!state.planDays.length){toast('Escolha ao menos um dia ou desative o agendamento.');return;}
+      if(start>end){toast('A data final deve ser igual ou posterior à inicial.');return;}}
     if(!title){toast('Dê um nome ao plano.');return;}
     const old=state.templates.find(x=>x.id===state.modal?.id);
-    const data={title,type:state.formType,start,end,days:[...state.planDays].sort(),strength:state.formType==='strength'?collectExercises(form):[],run:state.formType==='run'?getRun(form):{distance:0,duration:0},note:form.elements.note.value.trim()};
+    const data={title,type:state.formType,start,end,days:state.planSchedule?[...state.planDays].sort():[],strength:state.formType==='strength'?collectExercises(form):[],run:state.formType==='run'?getRun(form):{distance:0,duration:0},note:form.elements.note.value.trim()};
     if(old)Object.assign(old,data);else state.templates.push({...data,id:'t_'+uid(),enabled:true,createdAt:Date.now()});
-    persistTemplates();closeModal();state.tab='plans';state.month=start.slice(0,7);state.selectedDate=start;render();toast(old?'Plano atualizado.':'Plano criado! Os dias já aparecem no calendário.');
+    persistTemplates();closeModal();state.tab='plans';render();toast(state.planSchedule?'Plano salvo e agendado.':'Plano salvo no acervo, sem dias fixos.');
+  }
+  function openPlanPicker(date=state.selectedDate||today){
+    if(!state.templates.length){toast('Crie primeiro um plano em Meus planos.');setTab('plans');openPlanForm();return;}
+    state.modal={kind:'plan-picker',date};
+    const planned=sessionsOn(date),templates=[...state.templates].sort((a,b)=>{
+      const aToday=planned.some(w=>w.templateId===a.id&&w.status==='planned'),bToday=planned.some(w=>w.templateId===b.id&&w.status==='planned');
+      return Number(bToday)-Number(aToday)||a.title.localeCompare(b.title,'pt-BR');});
+    const body=`<p class="choose-plan-hint">O treino previsto aparece primeiro, mas você pode escolher <strong>qualquer plano salvo</strong>. Nenhuma mudança será feita nos próximos dias.</p>
+      <div class="plan-pick-list">${templates.map(t=>{
+        const isPlanned=planned.some(w=>w.templateId===t.id&&w.status==='planned');
+        return `<button type="button" class="plan-pick-item" data-action="use-plan" data-id="${esc(t.id)}" data-date="${esc(date)}"><span class="plan-pick-icon ${t.type==='run'?'run':''}">${icon(t.type==='run'?'run':'dumbbell')}</span><span class="plan-pick-main"><strong>${esc(t.title)}</strong><small>${t.type==='run'?esc(runShort(t.run)):`${t.strength.length} exercícios`} · ${t.type==='run'?'Corrida':'Musculação'}</small></span><span class="picker-label ${isPlanned?'scheduled':''}">${isPlanned?'Previsto':'Disponível'}</span>${icon('chevronright','icon-sm')}</button>`;}).join('')}</div>`;
+    modalBase('Escolher um treino',esc(fullDate(date)),body,`<button class="btn" data-action="close">Cancelar</button><button class="btn soft" data-action="open-free" data-date="${esc(date)}">${icon('zap','icon-sm')} Criar treino livre</button>`);
+  }
+  function usePlan(id,date=state.selectedDate||today){
+    const t=state.templates.find(x=>x.id===id);if(!t){toast('Plano não encontrado.');return;}
+    const scheduled=sessionsOn(date).find(w=>w.templateId===t.id&&w.status==='planned');
+    if(scheduled){openResult(scheduled.id);return;}
+    openFreeForm({date,templateId:t.id});
   }
   function openPlanDelete(id){const t=state.templates.find(x=>x.id===id);if(!t)return;state.modal={kind:'delete-plan',id};modalBase('Excluir este plano?','Confirme antes de apagar',`<p class="confirm-text">O plano <strong>${esc(t.title)}</strong> deixará de gerar treinos no calendário. Treinos já registrados permanecerão no seu histórico.</p>`,`<button class="btn" data-action="plans-tab">Cancelar</button><button class="btn danger" data-action="delete-plan" data-id="${esc(id)}">Excluir plano</button>`);}
 
@@ -651,27 +694,32 @@
   }
   function openFreeForm(options={}){
     const date=options.date||state.selectedDate||today,origin=options.replaceId?getWorkout(options.replaceId):null;
-    const type=options.type||origin?.type||'strength';state.formType=type;state.modal={kind:'free-form',date,replaceId:options.replaceId||''};
-    const planned=sessionsOn(date).filter(w=>w.status==='planned');
-    const body=`<form id="free-form"><div class="free-intro">${icon('zap')}<span><strong>Você escolhe o treino.</strong><small>Registre o que realmente fez, mesmo que não estivesse no plano.</small></span></div>
-      <div class="type-switch"><button type="button" class="${type==='strength'?'active':''}" data-action="free-type" data-type="strength">${icon('dumbbell')} Musculação</button><button type="button" class="${type==='run'?'active':''}" data-action="free-type" data-type="run">${icon('run')} Corrida</button></div>
-      <div class="field-grid"><div class="field"><label for="free-date">Dia realizado</label><input type="date" name="date" id="free-date" required value="${esc(date)}" /></div><div class="field"><label for="free-title">Nome do treino</label><input name="title" id="free-title" maxlength="90" required value="${esc(options.title||'Treino livre')}" /></div></div>
-      <div id="free-type-fields">${workoutFields(type,null)}</div>
-      <div class="field"><label for="free-note">Observações (opcional)</label><textarea id="free-note" name="note" placeholder="Ex.: exercício diferente, carga realizada, como me senti..." rows="2"></textarea></div>
-      <div class="field"><label for="free-replaces">Esse treino substituiu algum planejado?</label><select name="replaces" id="free-replaces"><option value="">Não, é um treino extra / independente</option>${planned.map(w=>`<option value="${esc(w.id)}" ${w.id===options.replaceId?'selected':''}>Sim, substituiu: ${esc(w.title)}</option>`).join('')}</select><span class="hint">Se substituir, o treino programado ficará marcado como “Substituído”, sem alterar os outros dias.</span></div>
+    const template=options.templateId?state.templates.find(t=>t.id===options.templateId):null;
+    const type=template?.type||options.type||origin?.type||'strength';state.formType=type;
+    state.modal={kind:'free-form',date,replaceId:options.replaceId||'',templateId:template?.id||null};
+    const planned=sessionsOn(date).filter(w=>w.status==='planned'&&w.templateId!==template?.id);
+    const defaultReplace=options.replaceId||(template&&planned.length===1?planned[0].id:'');
+    const body=`<form id="free-form"><div class="free-intro">${icon(template?'target':'zap')}<span><strong>${template?'Treino escolhido: '+esc(template.title):'Você escolhe o treino.'}</strong><small>${template?'Exercícios e metas já preenchidos. Edite o que realizou sem modificar o modelo salvo.':'Registre o que realmente fez, mesmo que não estivesse no plano.'}</small></span></div>
+      ${template?'':`<div class="type-switch"><button type="button" class="${type==='strength'?'active':''}" data-action="free-type" data-type="strength">${icon('dumbbell')} Musculação</button><button type="button" class="${type==='run'?'active':''}" data-action="free-type" data-type="run">${icon('run')} Corrida</button></div>`}
+      <div class="field-grid"><div class="field"><label for="free-date">Dia realizado</label><input type="date" name="date" id="free-date" required value="${esc(date)}" /></div><div class="field"><label for="free-title">Nome do treino</label><input name="title" id="free-title" maxlength="90" required value="${esc(template?.title||options.title||'Treino livre')}" /></div></div>
+      <div id="free-type-fields">${workoutFields(type,template)}</div>
+      <div class="field"><label for="free-note">Observações (opcional)</label><textarea id="free-note" name="note" placeholder="Ex.: aumentei carga, mudei exercício, como me senti..." rows="2">${esc(template?.note||'')}</textarea></div>
+      <div class="field"><label for="free-replaces">${template?'Substituir um treino previsto neste dia?':'Esse treino substituiu algum planejado?'}</label><select name="replaces" id="free-replaces"><option value="">Não, será uma sessão extra / independente</option>${planned.map(w=>`<option value="${esc(w.id)}" ${w.id===defaultReplace?'selected':''}>Sim, substituir: ${esc(w.title)}</option>`).join('')}</select><span class="hint">Se substituir, apenas o treino previsto <strong>deste dia</strong> será marcado como “Substituído”. Os próximos dias continuam iguais.</span></div>
       </form>`;
-    modalBase('Registrar treino livre','Sem precisar vincular a um plano.',body,`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="save-free">${icon('check','icon-sm')} Registrar feito</button>`);
+    modalBase(template?'Registrar plano escolhido':'Registrar treino livre',template?'Você pode usar esse plano em qualquer dia, mesmo fora da agenda.':'Sem precisar vincular a um plano.',body,`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="save-free">${icon('check','icon-sm')} Registrar feito</button>`);
   }
-  function updateFreeOptions(date){const select=document.getElementById('free-replaces');if(!select)return;select.innerHTML=`<option value="">Não, é um treino extra / independente</option>${sessionsOn(date).filter(w=>w.status==='planned').map(w=>`<option value="${esc(w.id)}">Sim, substituiu: ${esc(w.title)}</option>`).join('')}`;}
+  function updateFreeOptions(date){const select=document.getElementById('free-replaces');if(!select)return;
+    const manualId=state.modal?.templateId;select.innerHTML=`<option value="">Não, será uma sessão extra / independente</option>${sessionsOn(date).filter(w=>w.status==='planned'&&w.templateId!==manualId).map(w=>`<option value="${esc(w.id)}">Sim, substituir: ${esc(w.title)}</option>`).join('')}`;}
   function saveFree(){const form=document.getElementById('free-form');if(!form||!form.reportValidity())return;
     const date=form.elements.date.value,type=state.formType,title=form.elements.title.value.trim(),replacementId=form.elements.replaces.value;
     if(!title)return toast('Informe um nome para o treino.');
     const original=replacementId?getWorkout(replacementId):null;
     if(replacementId&&(!original||original.date!==date||original.status!=='planned'))return toast('O treino que você deseja substituir não está disponível.');
     const strength=type==='strength'?collectExercises(form):[],run=type==='run'?getRun(form):{distance:0,duration:0},note=form.elements.note.value.trim();
-    const id=uid(),real={id,date,type,title,note,status:'done',strength:strength.map(x=>({...x})),run:{...run},result:{strength:strength.map(x=>({...x})),run:{...run},note,completedAt:new Date().toISOString()},source:'free',createdAt:Date.now(),replacesId:original?.id||null};
+    const originTemplateId=state.modal?.templateId||null;
+    const id=uid(),real={id,date,type,title,note,status:'done',strength:strength.map(x=>({...x})),run:{...run},result:{strength:strength.map(x=>({...x})),run:{...run},note,completedAt:new Date().toISOString()},source:originTemplateId?'manual-plan':'free',originTemplateId,templateId:null,createdAt:Date.now(),replacesId:original?.id||null};
     if(original){const saved=ensureWorkout(original);saved.status='replaced';saved.result=null;real.replacesId=saved.id;}
-    state.workouts.push(real);persist();closeModal();state.tab='today';state.selectedDate=date;state.month=date.slice(0,7);render();toast(original?'Treino livre registrado. O previsto foi substituído.':'Treino livre registrado!');
+    state.workouts.push(real);persist();closeModal();state.tab='today';state.selectedDate=date;state.month=date.slice(0,7);render();toast(originTemplateId?(original?'Plano realizado; previsto substituído só neste dia.':'Plano realizado e registrado!'):(original?'Treino livre registrado. O previsto foi substituído.':'Treino livre registrado!'));
   }
 
   function collectExercises(root){return [...root.querySelectorAll('.exercise-row')].map(row=>({name:row.querySelector('[name="ex_name"]').value.trim(),sets:num(row.querySelector('[name="ex_sets"]').value),reps:row.querySelector('[name="ex_reps"]').value.trim(),weight:num(row.querySelector('[name="ex_weight"]').value)})).filter(x=>x.name);}
@@ -723,11 +771,11 @@
   }
   function openDetails(id){const w=getWorkout(id);if(!w)return;state.modal={kind:'details',id};
     const done=w.status==='done',replaced=w.status==='replaced',subtitle=`${esc(fullDate(w.date))} · ${w.type==='run'?'Corrida':'Musculação'}`;
-    const body=`${replaced?`<div class="detail-callout">${icon('checkcircle')}<div><strong>Substituído por um treino livre</strong><small>Este dia foi alterado, sem modificar o restante do plano.</small></div></div>`:''}${done?`<div class="detail-callout">${icon('checkcircle')}<div><strong>Treino concluído</strong><small>Você pode editar os resultados ou desmarcar a conclusão.</small></div></div>`:''}
-      ${w.source==='free'?`<section class="detail-section"><h3>O que você fez</h3>${detailList(w,true)}${w.result?.note?`<div class="note-box" style="margin-top:10px">${esc(w.result.note)}</div>`:''}<button class="subtle-link" data-action="result" data-id="${esc(w.id)}" style="margin-top:12px">${icon('edit','icon-sm')} Editar realizado</button></section>`:
+    const body=`${replaced?`<div class="detail-callout">${icon('checkcircle')}<div><strong>Treino previsto substituído</strong><small>Este dia foi alterado, sem modificar o restante do plano.</small></div></div>`:''}${done?`<div class="detail-callout">${icon('checkcircle')}<div><strong>Treino concluído</strong><small>Você pode editar os resultados ou desmarcar a conclusão.</small></div></div>`:''}
+      ${['free','manual-plan'].includes(w.source)?`<section class="detail-section"><h3>O que você fez</h3>${detailList(w,true)}${w.result?.note?`<div class="note-box" style="margin-top:10px">${esc(w.result.note)}</div>`:''}<button class="subtle-link" data-action="result" data-id="${esc(w.id)}" style="margin-top:12px">${icon('edit','icon-sm')} Editar realizado</button></section>`:
       `<section class="detail-section"><h3>O que foi planejado</h3>${detailList(w)}${w.note?`<div class="note-box" style="margin-top:10px">${esc(w.note)}</div>`:''}</section>
       ${done?`<section class="detail-section"><h3>O que foi realizado</h3>${detailList(w,true)}${w.result?.note?`<div class="note-box" style="margin-top:10px">${esc(w.result.note)}</div>`:''}<button class="subtle-link" data-action="result" data-id="${esc(w.id)}" style="margin-top:12px">${icon('edit','icon-sm')} Editar resultado</button></section>`:''}`}
-      <div class="detail-secondary">${w.templateId?`<button class="btn soft" data-action="edit-plan" data-id="${esc(w.templateId)}">${icon('target','icon-sm')} Ver plano</button>`:''}<button class="btn" data-action="edit" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar treino</button><button class="btn" data-action="duplicate" data-id="${esc(w.id)}">${icon('copy','icon-sm')} Duplicar</button><button class="btn danger" data-action="delete-ask" data-id="${esc(w.id)}" aria-label="Excluir treino">${icon('trash','icon-sm')}</button></div>`;
+      <div class="detail-secondary">${w.templateId||w.originTemplateId?`<button class="btn soft" data-action="edit-plan" data-id="${esc(w.templateId||w.originTemplateId)}">${icon('target','icon-sm')} Ver plano</button>`:''}<button class="btn" data-action="edit" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar treino</button><button class="btn" data-action="duplicate" data-id="${esc(w.id)}">${icon('copy','icon-sm')} Duplicar</button><button class="btn danger" data-action="delete-ask" data-id="${esc(w.id)}" aria-label="Excluir treino">${icon('trash','icon-sm')}</button></div>`;
     const footer=replaced?`<button class="btn" data-action="restore-plan" data-id="${esc(w.id)}">Restaurar planejado</button><button class="btn primary" data-action="open-free" data-date="${w.date}">${icon('zap','icon-sm')} Outro treino livre</button>`:done?`<button class="btn" data-action="quick-done" data-id="${esc(w.id)}">Desmarcar feito</button><button class="btn primary" data-action="result" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar realizado</button>`:
       `<button class="btn" data-action="open-free" data-date="${w.date}" data-replace="${esc(w.id)}">${icon('zap','icon-sm')} Fazer livre</button><button class="btn primary" data-action="result" data-id="${esc(w.id)}">${icon('check','icon-sm')} Fazer previsto</button>`;
     modalBase(esc(w.title),subtitle,body,footer);
@@ -757,6 +805,8 @@
       case 'tab':setTab(btn.dataset.tab);break;
       case 'month-tab':setTab('month');break;
       case 'plans-tab':setTab('plans');break;
+      case 'choose-plan':openPlanPicker(btn.dataset.date||state.selectedDate||today);break;
+      case 'use-plan':usePlan(id,btn.dataset.date||state.selectedDate||today);break;
       case 'new-plan':openPlanForm(null,{type:btn.dataset.type|| (state.tab==='run'?'run':'strength')});break;
       case 'preset-plan':openPlanForm(null,{preset:btn.dataset.preset});break;
       case 'edit-plan':{const p=state.templates.find(x=>x.id===id);if(p)openPlanForm(id);else toast('Este plano não está mais disponível.');break;}
@@ -785,7 +835,7 @@
       case 'save-result':saveResult();break;
       case 'save-workout':saveWorkout();break;
       case 'delete-ask':openDelete(id);break;
-      case 'delete':{const w=getWorkout(id);if(w?.templateId){const a=ensureWorkout(w);a.status='skipped';a.result=null;toast('Sessão retirada deste dia. O plano continua.');}else{if(w?.source==='free'&&w.replacesId){const prev=state.workouts.find(x=>x.id===w.replacesId);if(prev&&prev.status==='replaced'){prev.status='planned';prev.result=null;}}state.workouts=state.workouts.filter(x=>x.id!==id);toast('Treino excluído.');}persist();closeModal();render();break;}
+      case 'delete':{const w=getWorkout(id);if(w?.templateId){const a=ensureWorkout(w);a.status='skipped';a.result=null;toast('Sessão retirada deste dia. O plano continua.');}else{if(['free','manual-plan'].includes(w?.source)&&w.replacesId){const prev=state.workouts.find(x=>x.id===w.replacesId);if(prev&&prev.status==='replaced'){prev.status='planned';prev.result=null;}}state.workouts=state.workouts.filter(x=>x.id!==id);toast('Treino excluído.');}persist();closeModal();render();break;}
       case 'duplicate':{const w=getWorkout(id);if(!w)break;const c=structuredClone(w);c.id=uid();c.source='oneoff';c.templateId=null;c.virtual=false;c.replacesId=null;c.date=addDays(w.date,7);c.status='planned';c.result=null;c.createdAt=Date.now();state.workouts.push(c);persist();closeModal();state.month=c.date.slice(0,7);state.selectedDate=c.date;render();toast('Treino duplicado para a próxima semana.');break;}
       case 'form-type':case 'free-type':case 'plan-type':{
         if(state.formType===btn.dataset.type)return;
@@ -808,6 +858,11 @@
   document.addEventListener('change',e=>{
     if(e.target.name==='run_kind'){refreshRunBuilder(true);return;}
     if(['run_workMode','run_recoveryMode','run_progressMode','run_hillMode'].includes(e.target.name)){refreshRunBuilder(false);return;}
+    if(e.target.id==='plan-schedule'&&state.modal?.kind==='plan-form'){
+      state.planSchedule=e.target.checked;
+      const area=document.getElementById('plan-schedule-area');if(area){area.hidden=!state.planSchedule;area.querySelectorAll('input[type="date"]').forEach(input=>{input.required=state.planSchedule;});}
+      const hint=e.target.closest('.schedule-choice')?.querySelector('p');if(hint)hint.textContent=state.planSchedule?'Escolha um período e os dias para incluir o treino na agenda.':'Plano no acervo, sem datas obrigatórias. Você poderá usá-lo quando quiser.';
+    }
     if(e.target.id==='free-date'&&state.modal?.kind==='free-form')updateFreeOptions(e.target.value);
     if(e.target.id==='repeat-check'){document.getElementById('repeat-area').hidden=!e.target.checked;}
     if(e.target.id==='workout-date'&&state.modal?.kind==='workout-form'){
