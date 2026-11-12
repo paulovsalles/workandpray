@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f5f7f3" />
-  <meta name="description" content="Pulso — planejamento simples de musculação e corrida, com calendário e registro de treinos." />
-  <title>Pulso — meu treino</title>
+  <meta name="description" content="Pulso — treinos, hábitos e metas diárias, com calendário e dashboard de consistência." />
+  <title>Pulso — treinos e hábitos</title>
   <style>
     :root {
       color-scheme: light;
@@ -361,6 +361,64 @@
     @media(max-width:1050px){.topbar .account-trigger{max-width:177px}.topbar .account-info strong,.topbar .account-info small{max-width:90px}}
     @media(max-width:760px){.topbar .account-trigger{width:42px;min-height:42px;max-width:42px;border-radius:50%;background:transparent;padding:3px;border:0}.topbar .account-avatar{width:36px;height:36px;min-width:36px;border-radius:50%}.topbar .account-info,.topbar .account-chevron{display:none}.account-menu{border-radius:17px}.account-menu button{min-height:45px}.social-login{padding:20px!important}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+  /* Habit Tracker • Pulso */
+  .habit-hero{position:relative;overflow:hidden;display:flex;gap:23px;align-items:center;justify-content:space-between;background:linear-gradient(122deg,#244735 0%,#1b3a2e 56%,#315c43 100%);color:#fff;padding:29px 31px;border-radius:25px;margin-bottom:20px;min-height:178px}
+  .habit-hero:before{content:"";position:absolute;width:260px;height:260px;border:46px solid #ffffff0b;border-radius:50%;right:-107px;top:-165px;pointer-events:none}
+  .habit-hero .eyebrow{color:#b6e1c7;margin-bottom:7px}
+  .habit-hero h2{font-size:clamp(23px,2.8vw,33px);letter-spacing:-.9px;line-height:1.2;margin:0 0 8px;max-width:570px}
+  .habit-hero p{color:#d2e5d7;font-size:12px;line-height:1.6;margin:0;max-width:500px}
+  .habit-hero-ring{width:113px;height:113px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(#c1f3cb calc(var(--pct)*1%),#ffffff27 0)}
+  .habit-hero-ring:before{content:"";position:absolute;inset:10px;background:#244b37;border-radius:50%}
+  .habit-ring-text{z-index:1;text-align:center;line-height:1.1}.habit-ring-text strong{display:block;font-size:28px;letter-spacing:-1px}.habit-ring-text small{font-size:10px;color:#c8dfcf}
+  .habit-date-tools{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 11px}
+  .habit-date-title{font-size:16px;font-weight:850;letter-spacing:-.4px}.habit-date-title small{display:block;font-size:11px;font-weight:650;color:var(--muted);margin-top:2px}
+  .habit-date-actions{display:flex;align-items:center;gap:6px}.habit-date-actions .btn{min-width:38px;min-height:37px;padding:6px 9px}
+  .habit-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin:10px 0 20px}
+  .habit-week-day{padding:10px 4px 9px;min-width:0;display:grid;justify-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);border-radius:15px;color:var(--ink);font-size:12px;font-weight:830;position:relative}
+  .habit-week-day span{font-size:10px;color:var(--muted);font-weight:700}.habit-week-day i{height:4px;width:19px;border-radius:5px;background:var(--border)}
+  .habit-week-day.selected{border-color:var(--green);background:var(--green-soft);color:var(--green-strong)}.habit-week-day.today:not(.selected):after{content:"";position:absolute;top:6px;right:7px;width:5px;height:5px;background:var(--green);border-radius:50%}
+  .habit-week-day.completed i{background:#43a878}.habit-week-day.partial i{background:#d8a467}.habit-week-day.future{opacity:.55}
+  .habit-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);align-items:start;gap:16px}
+  .habit-stack{display:grid;gap:11px;min-width:0}.habit-item{padding:17px 18px;min-width:0;display:grid;gap:11px}
+  .habit-item-head{display:flex;align-items:flex-start;gap:12px}.habit-glyph{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:var(--green-soft);font-size:22px;flex:none}
+  .habit-item-main{flex:1;min-width:0}.habit-item-main h3{margin:0;font-size:14px;line-height:1.3;letter-spacing:-.2px}.habit-item-main small{display:block;font-size:11px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere;line-height:1.5}
+  .habit-item button.mini-action{flex:none}.habit-item .habit-condition{font-size:11px;line-height:1.5;color:var(--muted);border-left:2px solid var(--border);padding-left:10px;margin:0}
+  .habit-progress-line{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);font-weight:700}.habit-progress-line b{color:var(--ink)}
+  .habit-progress{height:7px;border-radius:20px;background:var(--surface-2);overflow:hidden}.habit-progress i{height:100%;display:block;border-radius:20px;background:var(--green);transition:width .2s}
+  .habit-item.done{border-color:color-mix(in srgb,var(--green) 45%, var(--border))}.habit-item.done .habit-glyph{background:var(--green-soft)}
+  .habit-actions{display:flex;gap:7px;align-items:center;justify-content:space-between}.habit-quantity{color:var(--ink);font-size:13px;font-weight:850;white-space:nowrap}.habit-quantity small{font-weight:600;color:var(--muted);font-size:11px}
+  .habit-counter{display:flex;align-items:center;gap:6px}.habit-counter .mini-action{width:37px;height:36px;justify-content:center;padding:0;border-radius:11px;font-size:19px}.habit-counter .mini-action.more{background:var(--green-soft);color:var(--green-strong);border-color:transparent}
+  .habit-counter .habit-num{min-width:60px;border:1px solid var(--border);background:var(--surface-2);border-radius:11px;padding:7px 9px;font-weight:830;font-size:12px;color:var(--ink);min-height:36px}
+  .habit-check{display:flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--surface-2);border-radius:12px;padding:9px 13px;color:var(--ink);font-size:12px;font-weight:810;min-height:39px}
+  .habit-check .habit-check-circle{width:19px;height:19px;display:grid;place-items:center;border:2px solid var(--muted);border-radius:7px}.habit-check-circle .icon{width:13px;height:13px}
+  .habit-check.checked{background:var(--green-soft);border-color:transparent;color:var(--green-strong)}.habit-check.checked .habit-check-circle{background:var(--green);border-color:var(--green);color:#fff}
+  .habit-side-card{padding:20px}.habit-side-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:15px}.habit-side-heading h3{font-size:14px;letter-spacing:-.3px;margin:0}
+  .habit-dash-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.habit-dash-stat{background:var(--surface-2);border:1px solid var(--border);padding:13px;border-radius:15px;min-width:0}
+  .habit-dash-stat strong{font-size:25px;line-height:1.25;display:block;font-weight:850;letter-spacing:-1px}.habit-dash-stat small{font-size:10px;color:var(--muted);display:block;line-height:1.5;margin-top:4px}
+  .habit-period-switch{display:flex;gap:5px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px;padding:3px}.habit-period-switch button{border:0;background:transparent;color:var(--muted);padding:6px 9px;border-radius:8px;font-size:10px;font-weight:760}.habit-period-switch button.active{background:var(--surface);color:var(--green-strong);box-shadow:0 1px 5px #0001}
+  .habit-bar-chart{height:120px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;padding-top:10px;margin-bottom:8px}
+  .habit-bar-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;min-width:0}.habit-bar-track{flex:1;width:min(100%,25px);min-height:68px;border-radius:7px;background:var(--surface-2);display:flex;align-items:flex-end;overflow:hidden}.habit-bar-fill{width:100%;background:#7cb995;border-radius:6px;min-height:0;transition:height .2s}
+  .habit-bar-col strong{font-size:10px;color:var(--muted);font-weight:750}.habit-bar-col.today strong{color:var(--green)}
+  .habit-monthly{padding:19px 19px 15px;margin-top:15px}.habit-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+  .habit-cal-dow{text-align:center;padding:3px 0 9px;font-size:10px;color:var(--muted);font-weight:750}.habit-cal-cell{min-width:0;aspect-ratio:1;max-height:44px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);display:grid;place-items:center;font-weight:760;font-size:11px}
+  .habit-cal-cell.blank{border:0;background:transparent;pointer-events:none}.habit-cal-cell.planned{background:#e8efe9;color:#37674e;border-color:transparent}.habit-cal-cell.partial{background:#c2ddc7;color:#244c35;border-color:transparent}.habit-cal-cell.complete{background:#4c9268;color:#fff;border-color:transparent}.habit-cal-cell.selected{outline:2px solid var(--green);outline-offset:2px}.habit-cal-cell.future{opacity:.5}.habit-cal-cell.today{font-weight:900;text-decoration:underline;text-underline-offset:3px}
+  :root[data-theme="dark"] .habit-cal-cell.planned{background:#2b3c30;color:#aecdb6}:root[data-theme="dark"] .habit-cal-cell.partial{background:#395c47;color:#e5f4e6}:root[data-theme="dark"] .habit-cal-cell.complete{background:#68a47c;color:#142a1b}
+  .habit-calendar-legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:13px;color:var(--muted);font-size:10px}.habit-calendar-legend i{height:10px;width:10px;border-radius:3px;display:inline-block;vertical-align:middle;margin-right:3px}
+  .habit-stat-progress{display:grid;gap:13px}.habit-stat-progress-item{display:grid;gap:6px}.habit-stat-progress-label{display:flex;gap:7px;align-items:center;justify-content:space-between;font-size:11px}.habit-stat-progress-label span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.habit-stat-progress-label strong{font-size:11px;flex:none}.habit-stat-progress .habit-progress{height:6px}
+  .habit-kit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.habit-kit-card{text-align:left;border:1px solid var(--border);padding:15px;border-radius:16px;background:var(--surface);color:var(--ink);min-width:0}.habit-kit-card:hover{border-color:var(--green);background:var(--surface-2)}.habit-kit-card .habit-glyph{width:38px;height:38px;font-size:18px;margin-bottom:9px}.habit-kit-card strong{display:block;font-size:12px}.habit-kit-card small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+  .habit-manage-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}.habit-manage-row:last-child{border-bottom:0}.habit-manage-row>span{flex:none;font-size:20px}.habit-manage-row>div{flex:1;min-width:0}.habit-manage-row strong{display:block;font-size:12px}.habit-manage-row small{font-size:10px;color:var(--muted)}
+  .habit-color-options{display:flex;flex-wrap:wrap;gap:8px}.habit-tone-option{height:30px;width:30px;border:2px solid transparent;border-radius:10px;cursor:pointer}.habit-tone-option.selected{outline:2px solid var(--ink);outline-offset:2px}
+  .habit-form-note{padding:11px 13px;border-radius:12px;background:var(--green-soft);font-size:11px;color:var(--green-strong);line-height:1.6;margin-bottom:15px}
+  .habit-numeric-fields[hidden]{display:none}.habit-form-toggle{display:flex;gap:8px;flex-wrap:wrap}.habit-form-toggle .filter-btn{flex:1}
+  .habit-glyph.tone-orange{background:var(--orange-soft)}.habit-glyph.tone-blue{background:#e4effb}.habit-glyph.tone-purple{background:#f0e8fb}.habit-glyph.tone-rose{background:#fce8ed}
+  :root[data-theme="dark"] .habit-glyph.tone-blue{background:#2a3d4e}:root[data-theme="dark"] .habit-glyph.tone-purple{background:#40334f}:root[data-theme="dark"] .habit-glyph.tone-rose{background:#49313a}
+  .habit-empty-inline{padding:26px 20px;border-radius:18px;text-align:center;border:1px dashed var(--border);background:var(--surface)}.habit-empty-inline p{color:var(--muted);font-size:12px;margin:6px 0 15px}
+  @media(max-width:950px){.habit-layout{grid-template-columns:1fr}.habit-side-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.habit-side-stack>.card{margin:0}}
+  @media(max-width:760px){.bottom-nav{display:flex;gap:3px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;justify-content:flex-start;scroll-snap-type:x proximity;padding:8px 9px calc(8px + env(safe-area-inset-bottom))}.bottom-nav::-webkit-scrollbar{display:none}.bottom-nav button{flex:0 0 66px;min-width:66px;scroll-snap-align:center;font-size:9px;white-space:nowrap}.bottom-nav button .icon{width:20px;height:20px}
+    .habit-hero{padding:23px 19px;min-height:154px;gap:9px;border-radius:21px}.habit-hero h2{font-size:23px}.habit-hero-ring{width:83px;height:83px}.habit-hero-ring:before{inset:8px}.habit-ring-text strong{font-size:22px}.habit-ring-text small{font-size:9px}
+    .habit-weekdays{gap:5px}.habit-week-day{border-radius:12px;padding:9px 2px 8px}.habit-week-day span{font-size:9px}.habit-item{padding:15px 14px}.habit-side-stack{grid-template-columns:1fr}.habit-monthly{padding:15px 13px}.habit-cal-cell{border-radius:8px}.habit-kit{gap:8px}.habit-date-title{font-size:14px}}
+  @media(max-width:370px){.habit-kit{grid-template-columns:1fr}.habit-hero-ring{width:73px;height:73px}.habit-hero h2{font-size:20px}}
   </style>
 </head>
 <body>
@@ -389,6 +447,7 @@
  <symbol id="i-ellipsis" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 20v-2a7 7 0 0 1 14 0v2M17 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5"/></symbol>
+ <symbol id="i-habit" viewBox="0 0 24 24"><path d="M12 21v-9m0 4c-5 0-8-3-8-8 5 0 8 2 8 8Zm0-4c0-5 3-8 8-8 0 5-3 8-8 8Z"/></symbol>
  <symbol id="i-zap" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7z"/></symbol>
 </svg>
 <div id="app"></div>
@@ -400,9 +459,11 @@
   'use strict';
   let STORE = 'pulso_treinos_v1';
   let PLAN_STORE = 'pulso_planos_v2';
+  let HABIT_STORE = 'pulso_habitos_v1';
+  let HABIT_LOG_STORE = 'pulso_habitos_registros_v1';
   const THEME_KEY = 'pulso_tema_v1';
   const weekdays = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
-  const tabs = [ ['today','Hoje','house'], ['strength','Musculação','dumbbell'], ['run','Corrida','run'], ['plans','Planos','target'], ['month','Meu mês','calendar'], ['social','Comunidade','users'] ];
+  const tabs = [ ['today','Hoje','house'], ['habits','Hábitos','habit'], ['strength','Musculação','dumbbell'], ['run','Corrida','run'], ['plans','Planos','target'], ['month','Meu mês','calendar'], ['social','Comunidade','users'] ];
   const today = localDate(new Date());
   let state;
   let toastTimer;
@@ -471,7 +532,7 @@
     if(k==='progressive')v.push(`${fmt(num(p.stage1)+num(p.stage2)+num(p.stage3))} ${p.progressMode==='min'?'min':'km'} de etapas`);
     if(k==='racepace'&&r.distance)v.push(`${fmt(r.distance)} km no ritmo de prova`);
     return v.join(' · ');}
-  state = { tab:'today', selectedDate:today, month:today.slice(0,7), filter:'all', workouts:readStore(), templates:readTemplates(), planDays:[], theme:readTheme(), modal:null, formType:'strength', planSchedule:false, repeatDays:[], scrollSave:false };
+  state = { tab:'today', habitDate:today, habitMonth:today.slice(0,7), habitScope:'week', habits:readHabits(), habitLogs:readHabitLogs(), habitDays:[0,1,2,3,4,5,6], habitsManage:false, selectedDate:today, month:today.slice(0,7), filter:'all', workouts:readStore(), templates:readTemplates(), planDays:[], theme:readTheme(), modal:null, formType:'strength', planSchedule:false, repeatDays:[], scrollSave:false };
   applyTheme();
   function safeWork(w){
     if (!w||typeof w!=='object'||typeof w.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(w.date)||!['strength','run'].includes(w.type)) return null;
@@ -507,6 +568,121 @@
   function visibleStats(ws){return ws.filter(w=>w.status!=='replaced');}
   function readStore(){try{const a=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(a)?a.map(safeWork).filter(Boolean):[];}catch{return [];}}
   function persist(){try{localStorage.setItem(STORE,JSON.stringify(state.workouts));window.PulsoSocial?.scheduleSync?.();}catch{toast('Não foi possível salvar neste navegador. Faça um backup.');}}
+  // Habit Tracker — catálogo e histórico isolados por conta, integrados ao backup.
+  const HABIT_ICONS=['💧','🥗','🏃','📖','🙏','💪','🧘','😴','🧠','📚','🌿','☀️','✍️','🎯','🚶','🦷','🎵','🍎','⏳','⭐'];
+  const HABIT_TONES=['green','orange','blue','purple','rose'];
+  const HABIT_PRESETS=[
+    {title:'Beber água',emoji:'💧',category:'Saúde',mode:'count',target:8,step:1,unit:'copos',criteria:'Beber 8 copos de água ao longo do dia.',tone:'blue'},
+    {title:'Alimentação equilibrada',emoji:'🥗',category:'Saúde',mode:'check',criteria:'Fazer refeições equilibradas conforme a minha meta.',tone:'green'},
+    {title:'Atividade física',emoji:'🏃',category:'Movimento',mode:'check',criteria:'Realizar minha atividade física planejada para o dia.',tone:'orange'},
+    {title:'Devocional',emoji:'🙏',category:'Espiritualidade',mode:'check',criteria:'Separar um tempo para leitura bíblica e oração.',tone:'purple'},
+    {title:'Leitura',emoji:'📚',category:'Desenvolvimento',mode:'count',target:20,step:5,unit:'min',criteria:'Ler por pelo menos 20 minutos.',tone:'blue'},
+    {title:'Dormir bem',emoji:'😴',category:'Bem-estar',mode:'check',criteria:'Cumprir a rotina de sono que defini.',tone:'rose'}
+  ];
+  function habitValidDate(v){return typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&!Number.isNaN(parseDate(v).getTime())&&localDate(parseDate(v))===v;}
+  function safeHabit(raw){if(!raw||typeof raw!=='object')return null;
+    let title=String(raw.title||'').trim().slice(0,80);if(!title)return null;
+    let target=Number(raw.target),step=Number(raw.step);
+    const mode=raw.mode==='count'?'count':'check';
+    target=mode==='count'&&Number.isFinite(target)?Math.min(100000,Math.max(.01,target)):1;
+    step=mode==='count'&&Number.isFinite(step)?Math.min(10000,Math.max(.01,step)):1;
+    const emoji=HABIT_ICONS.includes(raw.emoji)?raw.emoji:'🎯';
+    const days=Array.isArray(raw.days)?[...new Set(raw.days.map(Number).filter(d=>Number.isInteger(d)&&d>=0&&d<=6))].sort():[0,1,2,3,4,5,6];
+    return {id:String(raw.id||'h_'+uid()).slice(0,90),title,emoji,category:String(raw.category||'Pessoal').trim().slice(0,40)||'Pessoal',mode,target,step,unit:String(raw.unit||'').trim().slice(0,16),criteria:String(raw.criteria||'').trim().slice(0,240),days:days.length?days:[0,1,2,3,4,5,6],start:habitValidDate(raw.start)?raw.start:today,archivedAt:habitValidDate(raw.archivedAt)?raw.archivedAt:null,tone:HABIT_TONES.includes(raw.tone)?raw.tone:'green',createdAt:Number(raw.createdAt)||Date.now()};
+  }
+  function safeHabitLogs(raw){const out={};if(!raw||typeof raw!=='object'||Array.isArray(raw))return out;
+    for(const [date,entries] of Object.entries(raw).slice(0,4500)){if(!habitValidDate(date)||!entries||typeof entries!=='object'||Array.isArray(entries))continue;
+      const day={};for(const [id,value] of Object.entries(entries).slice(0,300)){const n=Number(value);if(id.length<=90&&Number.isFinite(n)&&n>0)day[id]=Math.min(1000000,n);}
+      if(Object.keys(day).length)out[date]=day;}
+    return out;}
+  function readHabits(){try{const a=JSON.parse(localStorage.getItem(HABIT_STORE)||'[]');return Array.isArray(a)?a.slice(0,200).map(safeHabit).filter(Boolean):[];}catch{return [];}}
+  function readHabitLogs(){try{return safeHabitLogs(JSON.parse(localStorage.getItem(HABIT_LOG_STORE)||'{}'));}catch{return {};}}
+  function persistHabits(){try{localStorage.setItem(HABIT_STORE,JSON.stringify(state.habits));localStorage.setItem(HABIT_LOG_STORE,JSON.stringify(state.habitLogs));window.PulsoSocial?.scheduleSync?.();}catch{toast('Não foi possível salvar os hábitos. Exporte um backup.');}}
+  function habitActive(h,date){return date>=h.start&&(!h.archivedAt||date<=h.archivedAt)&&h.days.includes(dayIndex(date));}
+  function habitEntry(h,date){return Math.max(0,Number(state.habitLogs[date]?.[h.id])||0);}
+  function habitDone(h,date){return habitEntry(h,date)+1e-7>=h.target;}
+  function habitDateStats(date){let scheduled=0,done=0,partial=0;for(const h of state.habits){if(!habitActive(h,date))continue;scheduled++;const p=Math.min(1,habitEntry(h,date)/h.target);partial+=p;if(p>=1-1e-7)done++;}return {scheduled,done,partial,pct:scheduled?Math.round(100*partial/scheduled):0};}
+  function habitRangeStats(start,end){let scheduled=0,done=0;for(let d=start;d<=end&&d<=today;d=addDays(d,1)){const m=habitDateStats(d);scheduled+=m.scheduled;done+=m.done;}
+    return {scheduled,done,pct:scheduled?Math.round(done*100/scheduled):0};}
+  function habitStreak(){let streak=0,started=false;for(let i=0;i<400;i++){const d=addDays(today,-i),m=habitDateStats(d);if(!m.scheduled)continue;
+    if(!started&&d===today&&m.done!==m.scheduled)continue;
+    started=true;if(m.done!==m.scheduled)break;streak++;}return streak;}
+  function habitDaysFrom(date){return addDays(date,-dayIndex(date));}
+  function habitRangeForScope(){if(state.habitScope==='month'){const start=state.habitMonth+'-01';return [start,`${state.habitMonth}-${String(monthEnd(state.habitMonth)).padStart(2,'0')}`];}
+    const start=habitDaysFrom(state.habitDate);return [start,addDays(start,6)];}
+  function habitFmt(v){return Number(v).toLocaleString('pt-BR',{maximumFractionDigits:2});}
+  function habitRedraw(){if(state.tab==='habits'){const main=document.querySelector('main.content');if(main)main.innerHTML=renderHabits();}}
+  function habitProgressItem(h,date){const value=habitEntry(h,date),done=habitDone(h,date),pct=Math.min(100,Math.round(value/h.target*100)),editable=date<=today;
+    const status=done?'Concluído':value>0?'Em andamento':'Pendente';
+    return `<article class="card habit-item ${done?'done':''}"><div class="habit-item-head"><span class="habit-glyph tone-${h.tone}">${esc(h.emoji)}</span><div class="habit-item-main"><h3>${esc(h.title)}</h3><small>${esc(h.category)} · ${esc(status)}</small></div><button class="mini-action" data-action="habit-edit" data-id="${esc(h.id)}" aria-label="Editar ${esc(h.title)}" title="Editar meta">${icon('edit','icon-sm')}</button></div>
+      ${h.criteria?`<p class="habit-condition">${esc(h.criteria)}</p>`:''}
+      ${h.mode==='count'?`<div class="habit-progress-line"><span>Seu progresso</span><b>${habitFmt(value)} / ${habitFmt(h.target)} ${esc(h.unit)}</b></div><div class="habit-progress"><i style="width:${pct}%"></i></div><div class="habit-actions"><span class="habit-quantity">${pct}% <small>da meta</small></span><div class="habit-counter"><button class="mini-action" ${editable?'':'disabled'} data-action="habit-minus" data-id="${esc(h.id)}" aria-label="Diminuir ${esc(h.title)}">−</button><button class="habit-num" ${editable?'':'disabled'} data-action="habit-value" data-id="${esc(h.id)}" title="Definir valor exato">${habitFmt(value)} ${esc(h.unit)}</button><button class="mini-action more" ${editable?'':'disabled'} data-action="habit-plus" data-id="${esc(h.id)}" aria-label="Somar ${habitFmt(h.step)} ${esc(h.unit)} em ${esc(h.title)}">+</button></div></div>`:
+      `<div class="habit-actions"><span class="micro">${done?'Meta alcançada ✓':'Um pequeno passo já conta.'}</span><button class="habit-check ${done?'checked':''}" ${editable?'':'disabled'} data-action="habit-toggle" data-id="${esc(h.id)}" aria-pressed="${done}"><span class="habit-check-circle">${done?icon('check','icon-sm'):''}</span>${done?'Feito':'Marcar como feito'}</button></div>`}
+    </article>`;
+  }
+  function habitCalendar(){const month=state.habitMonth,first=month+'-01',offset=dayIndex(first),max=monthEnd(month),cells=[];
+    for(let i=0;i<offset;i++)cells.push('<div class="habit-cal-cell blank"></div>');
+    for(let n=1;n<=max;n++){const d=`${month}-${String(n).padStart(2,'0')}`,s=habitDateStats(d),done=s.scheduled&&s.done===s.scheduled;
+      const css=d>today?'future':!s.scheduled?'':done?'complete':s.done||s.partial?'partial':'planned';
+      cells.push(`<button class="habit-cal-cell ${css} ${d===state.habitDate?'selected':''} ${d===today?'today':''}" data-action="habit-date" data-date="${d}" aria-label="${esc(fullDate(d))}: ${s.done} de ${s.scheduled} metas concluídas" ${d>today?'disabled':''}>${n}</button>`);}
+    return `<div class="card habit-monthly"><div class="habit-side-heading"><h3>Calendário de consistência</h3><div class="month-controls"><button class="btn icon-only" data-action="habit-month-prev" aria-label="Mês anterior">${icon('chevronleft','icon-sm')}</button><strong style="font-size:12px;min-width:105px;text-align:center">${esc(monthName(month))}</strong><button class="btn icon-only" data-action="habit-month-next" aria-label="Mês seguinte">${icon('chevronright','icon-sm')}</button></div></div><div class="habit-calendar">${weekdays.map(w=>`<div class="habit-cal-dow">${w}</div>`).join('')}${cells.join('')}</div><div class="habit-calendar-legend"><span><i style="background:var(--surface-2);border:1px solid var(--border)"></i>Sem meta</span><span><i style="background:#e8efe9"></i>Por fazer</span><span><i style="background:#c2ddc7"></i>Parcial</span><span><i style="background:#4c9268"></i>Concluído</span></div></div>`;
+  }
+  function habitDashboard(){const [start,end]=habitRangeForScope(),stats=habitRangeStats(start,end),week=habitDaysFrom(state.habitDate),monthStart=state.habitMonth+'-01',monthEndDate=`${state.habitMonth}-${String(monthEnd(state.habitMonth)).padStart(2,'0')}`;
+    const monthStats=habitRangeStats(monthStart,monthEndDate),weekStats=habitRangeStats(week,addDays(week,6));
+    const dailyBars=Array.from({length:7},(_,i)=>{const d=addDays(week,i),v=habitDateStats(d);return `<div class="habit-bar-col ${d===today?'today':''}" title="${esc(shortDate(d))}: ${v.done}/${v.scheduled}"><div class="habit-bar-track"><div class="habit-bar-fill" style="height:${d>today?0:v.pct}%"></div></div><strong>${weekdays[i]}</strong></div>`;}).join('');
+    const ranking=state.habits.filter(h=>{for(let d=start;d<=end&&d<=today;d=addDays(d,1))if(habitActive(h,d))return true;return false;}).map(h=>{let valid=0,done=0;for(let d=start;d<=end&&d<=today;d=addDays(d,1)){if(habitActive(h,d)){valid++;if(habitDone(h,d))done++;}}return {h,valid,done,pct:valid?Math.round(done*100/valid):0};}).sort((a,b)=>a.pct-b.pct).slice(0,7);
+    return `<div class="habit-side-stack habit-stack"><section class="card habit-side-card"><div class="habit-side-heading"><h3>Seu desempenho</h3><div class="habit-period-switch"><button data-action="habit-scope" data-scope="week" class="${state.habitScope==='week'?'active':''}">Semana</button><button data-action="habit-scope" data-scope="month" class="${state.habitScope==='month'?'active':''}">Mês</button></div></div><div class="habit-dash-stats"><div class="habit-dash-stat"><strong>${stats.pct}%</strong><small>Consistência ${state.habitScope==='week'?'na semana':'no mês'}</small></div><div class="habit-dash-stat"><strong>${habitStreak()} <span style="font-size:12px">dias</span></strong><small>Sequência atual*</small></div><div class="habit-dash-stat"><strong>${weekStats.pct}%</strong><small>Semana selecionada</small></div><div class="habit-dash-stat"><strong>${monthStats.done}<span style="font-size:12px;color:var(--muted)">/${monthStats.scheduled}</span></strong><small>Metas concluídas no mês</small></div></div><p class="micro" style="margin:14px 0 0;line-height:1.55">*Dias planejados completos; folgas não interrompem a sequência. O futuro não entra no cálculo.</p></section>
+    <section class="card habit-side-card"><div class="habit-side-heading"><h3>Ritmo da semana</h3><span class="micro">${esc(shortDate(week))} — ${esc(shortDate(addDays(week,6)))}</span></div><div class="habit-bar-chart">${dailyBars}</div><p class="micro" style="margin:8px 0 0">As barras mostram o progresso diário da meta, mesmo que ainda esteja parcial.</p></section>
+    <section class="card habit-side-card"><div class="habit-side-heading"><h3>Por hábito</h3><span class="micro">${state.habitScope==='week'?'Semana':'Mês'}</span></div>${ranking.length?`<div class="habit-stat-progress">${ranking.map(({h,done,valid,pct})=>`<div class="habit-stat-progress-item"><div class="habit-stat-progress-label"><span>${esc(h.emoji)} ${esc(h.title)}</span><strong>${done}/${valid} · ${pct}%</strong></div><div class="habit-progress"><i style="width:${pct}%"></i></div></div>`).join('')}</div>`:`<p class="micro">Cadastre hábitos para acompanhar quais metas estão mais constantes.</p>`}</section></div>`;
+  }
+  function renderHabits(){const d=state.habitDate,s=habitDateStats(d),planned=state.habits.filter(h=>habitActive(h,d)),current=state.habits.filter(h=>!h.archivedAt),start=habitDaysFrom(d),count=s.done,percent=s.pct;
+    const week=Array.from({length:7},(_,i)=>{const day=addDays(start,i),m=habitDateStats(day),css=day>today?'future':m.scheduled&&m.done===m.scheduled?'completed':m.done||m.partial?'partial':'';return `<button class="habit-week-day ${css} ${day===d?'selected':''} ${day===today?'today':''}" data-action="habit-date" data-date="${day}" ${day>today?'disabled':''}><span>${weekdays[i]}</span>${parseDate(day).getDate()}<i></i></button>`;}).join('');
+    const kit=!state.habits.length?`<div class="habit-empty-inline" style="margin-bottom:16px"><div class="empty-visual">${icon('habit','icon-lg')}</div><h3 style="margin:0;font-size:15px">Comece com hábitos que fazem sentido para você</h3><p>Escolha algumas sugestões ou crie uma meta do zero. Você decide como medir e em quais dias.</p><button class="btn primary" data-action="habit-starter">${icon('plus','icon-sm')} Adicionar 4 hábitos iniciais</button></div><div class="habit-kit">${HABIT_PRESETS.map((p,i)=>`<button class="habit-kit-card" data-action="habit-preset" data-preset="${i}"><span class="habit-glyph tone-${p.tone}">${p.emoji}</span><strong>${esc(p.title)}</strong><small>${p.mode==='count'?habitFmt(p.target)+' '+esc(p.unit):'Marcar como feito'}</small></button>`).join('')}</div>`:'';
+    const noToday=!planned.length?`<div class="habit-empty-inline"><h3 style="margin:0;font-size:14px">Nenhuma meta para este dia</h3><p>${current.length?'Você não tem hábitos programados para esta data. Ajuste os dias no cadastro ou escolha outro dia.':'Cadastre seu primeiro hábito para começar a acompanhar sua rotina.'}</p><button class="btn soft" data-action="habit-new">${icon('plus','icon-sm')} Criar hábito</button></div>`:'';
+    return `<div class="page-head"><div><div class="eyebrow">SUA ROTINA, SEU RITMO</div><h1 class="page-title">Meus hábitos.</h1><p class="page-subtitle">Pequenas ações, consistência de verdade.</p></div><div class="head-actions"><button class="btn primary" data-action="habit-new" aria-label="Criar novo hábito" title="Criar novo hábito">${icon('plus','icon-sm')} <span class="mobile-label">Novo hábito</span></button></div></div>
+    <div class="habit-hero"><div><div class="eyebrow">ACOMPANHAMENTO DO DIA</div><h2>${s.scheduled?(s.done===s.scheduled?'Você cumpriu todas as metas!':s.done?'Você está construindo consistência.':'Um passo de cada vez.'): 'Sua rotina começa com uma meta.'}</h2><p>${s.scheduled?`${count} de ${s.scheduled} hábitos concluídos em ${esc(fullDate(d))}. Continue no seu ritmo.`:'Personalize suas metas e acompanhe seus resultados por dia, semana e mês.'}</p></div><div class="habit-hero-ring" style="--pct:${percent}"><div class="habit-ring-text"><strong>${percent}%</strong><small>progresso</small></div></div></div>
+    <div class="habit-date-tools"><div class="habit-date-title">${d===today?'Hoje':esc(fullDate(d))}<small>${s.done} de ${s.scheduled} metas finalizadas</small></div><div class="habit-date-actions"><button class="btn icon-only" data-action="habit-prev-day" aria-label="Dia anterior">${icon('chevronleft','icon-sm')}</button><button class="btn" data-action="habit-today" ${d===today?'disabled':''}>Hoje</button><button class="btn icon-only" data-action="habit-next-day" aria-label="Próximo dia" ${d>=today?'disabled':''}>${icon('chevronright','icon-sm')}</button></div></div><div class="habit-weekdays">${week}</div>
+    <div class="habit-layout"><div><div class="section-row" style="margin-top:0"><h2 class="section-title">Metas do dia</h2><button class="subtle-link" data-action="habit-manage">${icon('settings','icon-sm')} ${state.habitsManage?'Ocultar':'Gerenciar'}</button></div>
+    <div class="habit-stack">${kit}${planned.map(h=>habitProgressItem(h,d)).join('')}${planned.length?'':noToday}</div>
+    ${state.habitsManage?`<section class="card habit-side-card" style="margin-top:15px"><div class="habit-side-heading"><h3>Gerenciar meus hábitos</h3><button class="btn soft" data-action="habit-new">${icon('plus','icon-sm')} Adicionar</button></div>${state.habits.length?state.habits.map(h=>`<div class="habit-manage-row"><span>${h.emoji}</span><div><strong>${esc(h.title)}</strong><small>${h.archivedAt?'Arquivado':'Ativo'} · ${esc(h.days.map(i=>weekdays[i]).join(', '))}</small></div><button class="mini-action" data-action="habit-edit" data-id="${esc(h.id)}">${icon('edit','icon-sm')}</button></div>`).join(''):'<p class="micro">Nenhum hábito cadastrado.</p>'}</section>`:''}
+    ${habitCalendar()}</div>${habitDashboard()}</div>`;
+  }
+  function habitDaysHtml(){return `<div class="repeat-days" id="habit-form-days">${weekdays.map((day,i)=>`<button type="button" class="weekday-toggle ${state.habitDays.includes(i)?'active':''}" data-action="habit-form-day" data-day="${i}" aria-pressed="${state.habitDays.includes(i)}">${day}</button>`).join('')}</div>`;}
+  function openHabitForm(id=null,presetIndex=null){const old=state.habits.find(x=>x.id===id),preset=presetIndex===null?null:HABIT_PRESETS[presetIndex];const h=old||preset||{};state.habitDays=Array.isArray(h.days)?[...h.days]:[0,1,2,3,4,5,6];state.modal={kind:'habit-form',id:old?.id||null};
+    const ico=HABIT_ICONS.includes(h.emoji)?h.emoji:'🎯',tone=h.tone||'green',mode=h.mode||'check';
+    const body=`<form id="habit-form"><div class="field"><label for="habit-title">Nome do hábito</label><input id="habit-title" name="title" required maxlength="80" placeholder="Ex.: Beber água" value="${esc(h.title||'')}"></div>
+      <div class="field-grid"><div class="field"><label for="habit-emoji">Ícone</label><select name="emoji" id="habit-emoji">${HABIT_ICONS.map(i=>`<option value="${esc(i)}" ${i===ico?'selected':''}>${i} ${i===ico?'Selecionado':''}</option>`).join('')}</select></div><div class="field"><label for="habit-category">Categoria</label><input name="category" id="habit-category" list="habit-categories" maxlength="40" value="${esc(h.category||'Pessoal')}"><datalist id="habit-categories">${['Saúde','Movimento','Espiritualidade','Bem-estar','Desenvolvimento','Produtividade','Pessoal'].map(x=>`<option value="${x}">`).join('')}</datalist></div></div>
+      <div class="field"><label for="habit-criteria">O que preciso fazer para concluir?</label><textarea id="habit-criteria" name="criteria" maxlength="240" rows="2" placeholder="Ex.: Ler a Bíblia por 15 min ou beber 8 copos">${esc(h.criteria||'')}</textarea></div>
+      <div class="field"><span class="field-label">Como medir o hábito?</span><div class="habit-form-toggle"><button type="button" data-action="habit-form-mode" data-mode="check" class="filter-btn ${mode==='check'?'active':''}">✓ Feito / não feito</button><button type="button" data-action="habit-form-mode" data-mode="count" class="filter-btn ${mode==='count'?'active':''}">+ Contador</button></div><input type="hidden" name="mode" id="habit-form-mode" value="${mode}"></div>
+      <div class="habit-numeric-fields" id="habit-numeric-fields" ${mode==='count'?'':'hidden'}><div class="field-grid"><div class="field"><label for="habit-target">Meta diária</label><input id="habit-target" type="number" name="target" min="0.01" max="100000" step="any" value="${h.target||8}"></div><div class="field"><label for="habit-unit">Unidade</label><input id="habit-unit" name="unit" maxlength="16" placeholder="copos, min, páginas" value="${esc(h.unit||'')}"></div></div><div class="field"><label for="habit-step">Quanto vale cada toque no botão +?</label><input id="habit-step" type="number" name="step" min="0.01" max="10000" step="any" value="${h.step||1}"></div></div>
+      <div class="field"><span class="field-label">Quais dias da semana?</span>${habitDaysHtml()}</div><div class="field"><label for="habit-start">Começar em</label><input type="date" id="habit-start" name="start" required value="${esc(h.start||today)}"></div>
+      <div class="habit-form-note">${icon('info','icon-sm')} Você pode registrar dias anteriores pelo calendário. Seus resultados continuam salvos quando editar a meta.</div></form>`;
+    const footer=old?`<button class="btn danger" data-action="habit-delete-ask" data-id="${esc(old.id)}">Excluir</button><button class="btn" data-action="habit-archive" data-id="${esc(old.id)}">${old.archivedAt?'Reativar':'Arquivar'}</button><button class="btn primary" data-action="habit-save">Salvar</button>`:`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="habit-save">${icon('check','icon-sm')} Criar hábito</button>`;
+    modalBase(old?'Editar hábito':'Novo hábito',old?'Personalize sua meta sem apagar seus registros.':'Faça do seu jeito: marque como feito ou acompanhe por quantidade.',body,footer);
+  }
+  function saveHabit(){const f=document.getElementById('habit-form');if(!f||!f.reportValidity())return;const t=f.elements.title.value.trim(),mode=f.elements.mode.value;
+    if(!t){toast('Informe o nome do hábito.');return;}if(!state.habitDays.length){toast('Selecione ao menos um dia da semana.');return;}
+    const target=Number(f.elements.target.value),step=Number(f.elements.step.value);
+    if(mode==='count'&&(!Number.isFinite(target)||target<=0||target>100000||!Number.isFinite(step)||step<=0||step>10000)){toast('Confira o valor da meta e o incremento.');return;}
+    const existing=state.habits.find(h=>h.id===state.modal?.id),data={title:t,emoji:f.elements.emoji.value,category:f.elements.category.value,criteria:f.elements.criteria.value,mode,target:mode==='count'?target:1,step:mode==='count'?step:1,unit:mode==='count'?f.elements.unit.value:'',days:state.habitDays,start:f.elements.start.value,tone:existing?.tone||'green'};
+    const clean=safeHabit({...existing,...data,id:existing?.id||'h_'+uid(),archivedAt:existing?.archivedAt||null,createdAt:existing?.createdAt||Date.now()});if(!clean){toast('Confira os dados do hábito.');return;}
+    if(existing)Object.assign(existing,clean);else state.habits.push(clean);
+    persistHabits();closeModal();state.tab='habits';habitRedraw();toast(existing?'Hábito atualizado.':'Hábito criado!');
+  }
+  function habitChange(id,delta,kind='add'){const h=state.habits.find(x=>x.id===id),d=state.habitDate;if(!h||!habitActive(h,d)||d>today)return;
+    const old=habitEntry(h,d),value=kind==='toggle'?(habitDone(h,d)?0:1):Math.max(0,Math.round((old+delta)*10000)/10000);
+    if(value>0){state.habitLogs[d]??={};state.habitLogs[d][id]=Math.min(1000000,value);}else if(state.habitLogs[d]){delete state.habitLogs[d][id];if(!Object.keys(state.habitLogs[d]).length)delete state.habitLogs[d];}
+    persistHabits();habitRedraw();if(value>=h.target&&old<h.target)toast('Mais uma meta concluída!');
+  }
+  function habitValueForm(id){const h=state.habits.find(x=>x.id===id);if(!h||state.habitDate>today)return;state.modal={kind:'habit-value',id};modalBase('Atualizar '+h.title,esc(fullDate(state.habitDate)),`<form id="habit-value-form"><div class="field"><label for="habit-value-input">Quantidade (${esc(h.unit||'unidades')})</label><input id="habit-value-input" type="number" name="value" min="0" max="1000000" step="any" value="${habitEntry(h,state.habitDate)}" required></div><p class="micro">Meta do dia: ${habitFmt(h.target)} ${esc(h.unit)}.</p></form>`,`<button class="btn" data-action="close">Cancelar</button><button class="btn primary" data-action="habit-value-save">Salvar</button>`);}
+  function saveHabitValue(){const f=document.getElementById('habit-value-form'),h=state.habits.find(x=>x.id===state.modal?.id);if(!f||!h||!f.reportValidity())return;const n=Number(f.elements.value.value);if(!Number.isFinite(n)||n<0||n>1000000)return;
+    const d=state.habitDate;if(n===0){if(state.habitLogs[d]){delete state.habitLogs[d][h.id];if(!Object.keys(state.habitLogs[d]).length)delete state.habitLogs[d];}}else{state.habitLogs[d]??={};state.habitLogs[d][h.id]=n;}persistHabits();closeModal();habitRedraw();toast('Progresso atualizado.');}
+  function habitArchive(id){const h=state.habits.find(x=>x.id===id);if(!h)return;h.archivedAt=h.archivedAt?null:addDays(today,-1);persistHabits();closeModal();habitRedraw();toast(h.archivedAt?'Hábito arquivado, histórico preservado.':'Hábito reativado.');}
+  function habitDeleteAsk(id){const h=state.habits.find(x=>x.id===id);if(!h)return;state.modal={kind:'habit-delete',id};modalBase('Excluir definitivamente?',esc(h.title),`<p class="confirm-text">Você vai excluir o hábito e seus registros históricos. Para manter o histórico, use <strong>Arquivar</strong> no formulário de edição.</p>`,`<button class="btn" data-action="habit-edit" data-id="${esc(id)}">Voltar</button><button class="btn danger" data-action="habit-delete" data-id="${esc(id)}">Excluir definitivamente</button>`);}
+  function habitDelete(id){state.habits=state.habits.filter(x=>x.id!==id);for(const date of Object.keys(state.habitLogs)){delete state.habitLogs[date][id];if(!Object.keys(state.habitLogs[date]).length)delete state.habitLogs[date];}persistHabits();closeModal();habitRedraw();toast('Hábito excluído.');}
+  function habitPreset(index){const p=HABIT_PRESETS[index];if(!p)return;openHabitForm(null,index);}
+  function habitStarter(){if(state.habits.length){toast('Adicione outros hábitos pelo botão Novo hábito.');return;}for(const i of [0,1,2,3])state.habits.push(safeHabit({...HABIT_PRESETS[i],id:'h_'+uid(),start:today}));persistHabits();habitRedraw();toast('4 hábitos iniciais adicionados. Você pode personalizar cada um.');}
+
   function readTheme(){try{return localStorage.getItem(THEME_KEY)==='dark'?'dark':'light';}catch{return 'light';}}
   function applyTheme(){document.documentElement.dataset.theme=state.theme;document.querySelector('meta[name="theme-color"]').content=state.theme==='dark'?'#121a16':'#f5f7f3';}
   function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),2500);}
@@ -515,14 +691,15 @@
   function monthButtons(){return `<div class="month-controls"><button class="btn icon-only" data-action="month-prev" aria-label="Mês anterior">${icon('chevronleft')}</button><span class="month-label">${esc(monthName(state.month))}</span><button class="btn icon-only" data-action="month-next" aria-label="Mês seguinte">${icon('chevronright')}</button></div>`;}
   function render(){
     document.getElementById('app').innerHTML=`<div class="shell">
-      <aside class="sidebar"><div class="brand"><span class="brand-mark">${icon('pulse')}</span><span class="brand-word">pulso<span style="color:var(--green)">.</span></span></div><div class="side-caption">SEU TREINO</div><nav class="side-nav" aria-label="Navegação principal">${tabs.map(t=>navButton(t)).join('')}</nav>
+      <aside class="sidebar"><div class="brand"><span class="brand-mark">${icon('pulse')}</span><span class="brand-word">pulso<span style="color:var(--green)">.</span></span></div><div class="side-caption">SUA ROTINA</div><nav class="side-nav" aria-label="Navegação principal">${tabs.map(t=>navButton(t)).join('')}</nav>
       <div class="side-bottom"><div class="account-slot account-aside" id="pulso-sidebar-account"></div><div class="side-note"><div class="top">${icon('zap','icon-sm')} Um dia de cada vez.</div><p>Planeje, registre e acompanhe. O resto é consistência.</p></div><div class="side-settings"><button class="btn" data-action="settings" style="width:100%">${icon('settings','icon-sm')} Backup e dados</button></div></div></aside>
-      <div class="main-wrap"><header class="topbar"><div class="mobile-brand desktop-hide"><span class="brand-mark">${icon('pulse')}</span>pulso<span style="color:var(--green)">.</span></div><div class="topbar-sub">Planeje menos. Treine mais.</div><div class="top-actions"><div class="account-slot" id="pulso-header-account"></div><button class="btn icon-only" data-action="theme" aria-label="Alternar para tema ${state.theme==='light'?'escuro':'claro'}" title="Alternar tema">${icon(state.theme==='light'?'moon':'sun')}</button><button class="btn icon-only desktop-hide" data-action="settings" aria-label="Backup e ajustes">${icon('settings')}</button><button class="btn primary desktop-only" data-action="open-free" data-date="${today}" >${icon('zap','icon-sm')} Treino livre</button></div></header>
-      <main class="content">${state.tab==='today'?renderToday():state.tab==='month'?renderMonth():state.tab==='plans'?renderPlans():state.tab==='social'?'<div id="social-root"></div>':renderType(state.tab)}</main></div>
+      <div class="main-wrap"><header class="topbar"><div class="mobile-brand desktop-hide"><span class="brand-mark">${icon('pulse')}</span>pulso<span style="color:var(--green)">.</span></div><div class="topbar-sub">Consistência em cada dia.</div><div class="top-actions"><div class="account-slot" id="pulso-header-account"></div><button class="btn icon-only" data-action="theme" aria-label="Alternar para tema ${state.theme==='light'?'escuro':'claro'}" title="Alternar tema">${icon(state.theme==='light'?'moon':'sun')}</button><button class="btn icon-only desktop-hide" data-action="settings" aria-label="Backup e ajustes">${icon('settings')}</button><button class="btn primary desktop-only" data-action="open-free" data-date="${today}" >${icon('zap','icon-sm')} Treino livre</button></div></header>
+      <main class="content">${state.tab==='today'?renderToday():state.tab==='habits'?renderHabits():state.tab==='month'?renderMonth():state.tab==='plans'?renderPlans():state.tab==='social'?'<div id="social-root"></div>':renderType(state.tab)}</main></div>
       <nav class="bottom-nav" aria-label="Navegação principal">${tabs.map(t=>navButton(t,true)).join('')}</nav>
     </div>`;
     window.PulsoSocial?.renderAccountUi?.();
     if(state.tab==='social')window.PulsoSocial?.mount?.();
+    const bottom=document.querySelector('.bottom-nav');const active=bottom?.querySelector('.active');if(active&&bottom?.scrollWidth>bottom?.clientWidth)bottom.scrollLeft=Math.max(0,active.offsetLeft+active.offsetWidth/2-bottom.clientWidth/2);
   }
   function renderToday(){
     const date=state.selectedDate, workouts=sessionsOn(date);
@@ -789,9 +966,9 @@
   function saveResult(){const original=getWorkout(state.modal?.id),form=document.getElementById('result-form');if(!original||!form)return;const w=ensureWorkout(original);
     if(!form.reportValidity())return;w.result={strength:w.type==='strength'?collectExercises(form):[],run:w.type==='run'?getRunResult(form,w.run):{distance:0,duration:0},note:form.elements.note.value.trim(),completedAt:new Date().toISOString()};w.status='done';persist();render();openDetails(w.id);toast('Resultado registrado!');}
   function openDelete(id){const w=getWorkout(id);if(!w)return;state.modal={kind:'delete',id};modalBase(w.templateId?'Retirar este dia do plano?':'Excluir treino?','Esta ação não pode ser desfeita.',`<p class="confirm-text">${w.templateId?'Apenas esta sessão será marcada como não realizada, sem afetar os demais dias.':'Deseja excluir'} <strong>${esc(w.title)}</strong> de ${esc(shortDate(w.date))}?</p>`,`<button class="btn" data-action="details" data-id="${esc(id)}">Cancelar</button><button class="btn danger" data-action="delete" data-id="${esc(id)}">Excluir treino</button>`);}
-  function openSettings(){state.modal={kind:'settings'};modalBase('Seus dados','Controle local e backup',`<div class="detail-callout">${icon('info')}<div><strong>Seus treinos ficam neste navegador.</strong><small>O GitHub hospeda o site, mas não sincroniza os registros entre celulares e computadores.</small></div></div><div class="tool-grid"><button class="tool-card" data-action="export">${icon('download')}<strong>Exportar backup</strong><p>Salve seus treinos em um arquivo JSON.</p></button><button class="tool-card" data-action="import">${icon('upload')}<strong>Importar backup</strong><p>Restaure os dados em outro aparelho.</p></button></div><div class="tool-grid" style="margin-top:0"><button class="tool-card" data-action="theme">${icon(state.theme==='light'?'moon':'sun')}<strong>${state.theme==='light'?'Ativar modo escuro':'Ativar modo claro'}</strong><p>Alterne o visual quando quiser.</p></button><button class="tool-card" data-action="reset-ask">${icon('trash')}<strong>Apagar tudo</strong><p>Exclua planos e registros deste navegador.</p></button></div><p class="guide-note">Dica: faça um backup periodicamente, especialmente antes de limpar o navegador ou trocar de celular.</p>`, `<button class="btn primary" data-action="close">Entendi</button>`);}
-  function exportBackup(){const data={app:'pulso',version:3,exportedAt:new Date().toISOString(),workouts:state.workouts,templates:state.templates};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`pulso-backup-${today}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Backup exportado.');}
-  function openReset(){state.modal={kind:'reset'};modalBase('Apagar planos e treinos?','Confirmação necessária',`<p class="confirm-text">Todos os planos, treinos e resultados salvos neste navegador serão excluídos. Exporte um backup antes, se quiser guardá-los.</p>`,`<button class="btn" data-action="settings">Cancelar</button><button class="btn danger" data-action="reset">Apagar tudo</button>`);}
+  function openSettings(){state.modal={kind:'settings'};modalBase('Seus dados','Controle local e backup',`<div class="detail-callout">${icon('info')}<div><strong>Treinos e hábitos protegidos por conta.</strong><small>Como visitante, os dados ficam neste navegador. Ao entrar com sua conta, os registros são sincronizados pelo Firebase quando a conexão estiver disponível.</small></div></div><div class="tool-grid"><button class="tool-card" data-action="export">${icon('download')}<strong>Exportar backup</strong><p>Salve seus treinos em um arquivo JSON.</p></button><button class="tool-card" data-action="import">${icon('upload')}<strong>Importar backup</strong><p>Restaure os dados em outro aparelho.</p></button></div><div class="tool-grid" style="margin-top:0"><button class="tool-card" data-action="theme">${icon(state.theme==='light'?'moon':'sun')}<strong>${state.theme==='light'?'Ativar modo escuro':'Ativar modo claro'}</strong><p>Alterne o visual quando quiser.</p></button><button class="tool-card" data-action="reset-ask">${icon('trash')}<strong>Apagar tudo</strong><p>Exclua treinos, hábitos e históricos desta conta neste navegador.</p></button></div><p class="guide-note">Dica: faça um backup periodicamente, especialmente antes de limpar o navegador ou trocar de celular.</p>`, `<button class="btn primary" data-action="close">Entendi</button>`);}
+  function exportBackup(){const data={app:'pulso',version:5,exportedAt:new Date().toISOString(),workouts:state.workouts,templates:state.templates,habits:state.habits,habitLogs:state.habitLogs};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`pulso-backup-${today}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Backup exportado.');}
+  function openReset(){state.modal={kind:'reset'};modalBase('Apagar treinos e hábitos?','Confirmação necessária',`<p class="confirm-text">Todos os planos, treinos, hábitos e resultados salvos para esta conta neste navegador serão excluídos. Se você estiver logado, a exclusão também poderá ser sincronizada com o Firebase. Exporte um backup antes, se quiser guardá-los.</p>`,`<button class="btn" data-action="settings">Cancelar</button><button class="btn danger" data-action="reset">Apagar tudo</button>`);}
   function seedDemo(){if(state.workouts.length){toast('Use “Novo treino” para acrescentar sessões.');return;}
     const first=addDays(today,0),next=addDays(today,1),third=addDays(today,2),fourth=addDays(today,4);
     state.workouts=[
@@ -803,6 +980,28 @@
   function doAction(btn){const a=btn.dataset.action,id=btn.dataset.id;
     switch(a){
       case 'tab':setTab(btn.dataset.tab);break;
+      case 'habit-new':openHabitForm();break;
+      case 'habit-preset':habitPreset(Number(btn.dataset.preset));break;
+      case 'habit-starter':habitStarter();break;
+      case 'habit-edit':openHabitForm(id);break;
+      case 'habit-save':saveHabit();break;
+      case 'habit-form-day':{const day=Number(btn.dataset.day);state.habitDays=state.habitDays.includes(day)?state.habitDays.filter(d=>d!==day):[...state.habitDays,day].sort();btn.classList.toggle('active',state.habitDays.includes(day));btn.setAttribute('aria-pressed',String(state.habitDays.includes(day)));break;}
+      case 'habit-form-mode':{const mode=btn.dataset.mode;const input=document.getElementById('habit-form-mode');if(input)input.value=mode;document.querySelectorAll('[data-action="habit-form-mode"]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));document.getElementById('habit-numeric-fields').hidden=mode!=='count';break;}
+      case 'habit-toggle':habitChange(id,0,'toggle');break;
+      case 'habit-plus':{const h=state.habits.find(x=>x.id===id);if(h)habitChange(id,h.step);break;}
+      case 'habit-minus':{const h=state.habits.find(x=>x.id===id);if(h)habitChange(id,-h.step);break;}
+      case 'habit-value':habitValueForm(id);break;
+      case 'habit-value-save':saveHabitValue();break;
+      case 'habit-delete-ask':habitDeleteAsk(id);break;
+      case 'habit-delete':habitDelete(id);break;
+      case 'habit-archive':habitArchive(id);break;
+      case 'habit-manage':state.habitsManage=!state.habitsManage;habitRedraw();break;
+      case 'habit-date':if(btn.dataset.date<=today){state.habitDate=btn.dataset.date;state.habitMonth=state.habitDate.slice(0,7);habitRedraw();}break;
+      case 'habit-today':state.habitDate=today;state.habitMonth=today.slice(0,7);habitRedraw();break;
+      case 'habit-prev-day':state.habitDate=addDays(state.habitDate,-1);state.habitMonth=state.habitDate.slice(0,7);habitRedraw();break;
+      case 'habit-next-day':if(state.habitDate<today){state.habitDate=addDays(state.habitDate,1);state.habitMonth=state.habitDate.slice(0,7);habitRedraw();}break;
+      case 'habit-month-prev':case 'habit-month-next':state.habitMonth=modMonth(state.habitMonth,a==='habit-month-next'?1:-1);habitRedraw();break;
+      case 'habit-scope':state.habitScope=btn.dataset.scope;habitRedraw();break;
       case 'month-tab':setTab('month');break;
       case 'plans-tab':setTab('plans');break;
       case 'choose-plan':openPlanPicker(btn.dataset.date||state.selectedDate||today);break;
@@ -851,7 +1050,7 @@
       case 'export':exportBackup();break;
       case 'import':document.getElementById('backup-file').click();break;
       case 'reset-ask':openReset();break;
-      case 'reset':state.workouts=[];state.templates=[];persist();persistTemplates();closeModal();render();toast('Planos e treinos apagados deste navegador.');break;
+      case 'reset':state.workouts=[];state.templates=[];state.habits=[];state.habitLogs={};persist();persistTemplates();persistHabits();closeModal();render();toast('Treinos e hábitos apagados desta conta.');break;
     }
   }
   document.addEventListener('click',e=>{const btn=e.target.closest('[data-action]');if(!btn)return;if(btn.dataset.action==='overlay'&&e.target!==btn)return;doAction(btn);});
@@ -878,19 +1077,21 @@
       if(arr.length>10000)throw Error('O arquivo contém treinos demais.');
       const cleaned=arr.map(safeWork);if(cleaned.some(w=>!w))throw Error('Arquivo com registros inválidos.');
       const rawPlans=Array.isArray(data)?[]:(data.templates||[]);if(!Array.isArray(rawPlans)||rawPlans.length>250)throw Error('Planos inválidos no backup.');const cleanedPlans=rawPlans.map(safeTemplate);if(cleanedPlans.some(p=>!p))throw Error('Backup contém planos inválidos.');
-      const replace=confirm(`Importar ${cleaned.length} treinos e ${cleanedPlans.length} planos?\n\nOK = substituir os dados atuais.\nCancelar = manter os dados sem importar.`);
+      const rawHabits=Array.isArray(data)?[]:(data.habits||[]);if(!Array.isArray(rawHabits)||rawHabits.length>200)throw Error('Hábitos inválidos no backup.');const cleanedHabits=rawHabits.map(safeHabit);if(cleanedHabits.some(h=>!h))throw Error('Backup contém hábitos inválidos.');
+      const cleanedLogs=safeHabitLogs(Array.isArray(data)?{}:(data.habitLogs||{}));
+      const replace=confirm(`Importar ${cleaned.length} treinos, ${cleanedPlans.length} planos e ${cleanedHabits.length} hábitos?\n\nOK = substituir os dados atuais.\nCancelar = manter os dados sem importar.`);
       if(!replace)return;
-      state.workouts=cleaned;state.templates=cleanedPlans;persist();persistTemplates();closeModal();render();toast('Backup restaurado: treinos e planos.');
+      state.workouts=cleaned;state.templates=cleanedPlans;state.habits=cleanedHabits;state.habitLogs=cleanedLogs;persist();persistTemplates();persistHabits();closeModal();render();toast('Backup restaurado: treinos, planos e hábitos.');
     }catch(err){toast(err.message||'Não foi possível importar este arquivo.');}
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.modal)closeModal();});
   // API local utilizada somente pela integração opcional com Firebase.
   // Todos os usuários têm armazenamento separado no mesmo navegador.
   window.PulsoLocal = {
-    get(){return {workouts:structuredClone(state.workouts),templates:structuredClone(state.templates)};},
-    getGuest(){try{return {workouts:JSON.parse(localStorage.getItem('pulso_treinos_v1')||'[]'),templates:JSON.parse(localStorage.getItem('pulso_planos_v2')||'[]')};}catch{return {workouts:[],templates:[]};}},
-    switchAccount(uid){STORE=uid?'pulso_treinos_v1_user_'+uid:'pulso_treinos_v1';PLAN_STORE=uid?'pulso_planos_v2_user_'+uid:'pulso_planos_v2';state.workouts=readStore();state.templates=readTemplates();state.tab=uid?'today':state.tab;render();},
-    setAccount(data){state.workouts=(data.workouts||[]).map(safeWork).filter(Boolean);state.templates=(data.templates||[]).map(safeTemplate).filter(Boolean);persist();persistTemplates();render();},
+    get(){return {workouts:structuredClone(state.workouts),templates:structuredClone(state.templates),habits:structuredClone(state.habits),habitLogs:structuredClone(state.habitLogs)};},
+    getGuest(){try{return {workouts:JSON.parse(localStorage.getItem('pulso_treinos_v1')||'[]'),templates:JSON.parse(localStorage.getItem('pulso_planos_v2')||'[]'),habits:JSON.parse(localStorage.getItem('pulso_habitos_v1')||'[]'),habitLogs:JSON.parse(localStorage.getItem('pulso_habitos_registros_v1')||'{}')};}catch{return {workouts:[],templates:[],habits:[],habitLogs:{}};}},
+    switchAccount(uid){STORE=uid?'pulso_treinos_v1_user_'+uid:'pulso_treinos_v1';PLAN_STORE=uid?'pulso_planos_v2_user_'+uid:'pulso_planos_v2';HABIT_STORE=uid?'pulso_habitos_v1_user_'+uid:'pulso_habitos_v1';HABIT_LOG_STORE=uid?'pulso_habitos_registros_v1_user_'+uid:'pulso_habitos_registros_v1';state.workouts=readStore();state.templates=readTemplates();state.habits=readHabits();state.habitLogs=readHabitLogs();state.tab=uid?'today':state.tab;render();},
+    setAccount(data){state.workouts=(data.workouts||[]).map(safeWork).filter(Boolean);state.templates=(data.templates||[]).map(safeTemplate).filter(Boolean);state.habits=(data.habits||[]).map(safeHabit).filter(Boolean);state.habitLogs=safeHabitLogs(data.habitLogs||{});persist();persistTemplates();persistHabits();render();},
     refresh(){render();},
     navigate(tab){if(tabs.some(t=>t[0]===tab))setTab(tab);},
     notify:toast
@@ -1050,7 +1251,7 @@ function groupHtml(){const g=ui.group;if(!g)return groupsHtml();return `<div cla
 function futureDate(n){const d=new Date();d.setDate(d.getDate()+n);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
 function profileHtml(){return `<div class="social-grid"><div class="social-stack"><div class="card social-card"><div class="social-card-header">${accountAvatar()}<div class="social-card-title"><strong>${sx(ui.profile?.name||'Atleta')}</strong><small>${sx(ui.user?.email||'')}</small></div></div><form id="social-profile-form" class="social-form"><div><label>Nome exibido</label><input required name="name" maxlength="44" value="${sx(ui.profile?.name||'')}" /></div><button class="btn soft" type="submit">Salvar meu nome</button></form></div><div class="card social-card"><h3>Seu código de atleta</h3><p>Passe este código para alguém seguir suas atividades compartilhadas.</p><div class="social-code">${sx(ui.profile?.code||'—')}</div><button class="btn" data-social="copy-profile">${i('copy')} Copiar código</button></div></div>
  <div class="social-stack"><div class="card social-card"><h3>Privacidade</h3><p>Planos, cargas, notas e treinos ficam privados. Quando você escolhe compartilhar, apenas os dados exibidos na confirmação são publicados para a audiência selecionada.</p><p>Na comunidade, qualquer pessoa com uma conta pode ver a publicação. Nos grupos, apenas integrantes podem ler os registros.</p></div>
- <div class="card social-card"><h3>Sincronização</h3><p>Ao entrar em sua conta, seus treinos pessoais são sincronizados na nuvem e entre aparelhos conectados com este mesmo login.</p><p class="social-footnote">${sx(ui.syncLabel||'Sincronização ativada.')}</p><div class="social-actions"><button class="btn" data-social="sync-now">${i('upload')} Sincronizar agora</button></div></div>
+ <div class="card social-card"><h3>Sincronização</h3><p>Ao entrar em sua conta, treinos e hábitos pessoais são sincronizados na nuvem e entre aparelhos conectados com este mesmo login.</p><p class="social-footnote">${sx(ui.syncLabel||'Sincronização ativada.')}</p><div class="social-actions"><button class="btn" data-social="sync-now">${i('upload')} Sincronizar agora</button></div></div>
  <button class="btn danger full" data-social="logout">Sair da conta</button></div></div>`;}
 function shareHtml(){const all=window.PulsoLocal?.get?.().workouts||[];const done=all.filter(w=>w.status==='done').sort((a,b)=>(b.result?.completedAt||b.date).localeCompare(a.result?.completedAt||a.date)).slice(0,75);
  return `<div class="card social-card" style="margin-bottom:16px"><h3>Compartilhar um treino concluído</h3><p>Você escolhe o treino e o público. Nada é publicado automaticamente.</p>
@@ -1094,18 +1295,20 @@ async function initializeAccount(user){paused=true;ui.ready=false;ui.group=null;
   ui.profile=prof;ui.people[user.uid]=prof;
   let local=window.PulsoLocal.get();const guest=window.PulsoLocal.getGuest();
   if(remote.exists()){
-    const cloud=remote.data();const merged={workouts:[...(cloud.workouts||[])],templates:[...(cloud.templates||[])]};
+    const cloud=remote.data();const merged={workouts:[...(cloud.workouts||[])],templates:[...(cloud.templates||[])],habits:Array.isArray(cloud.habits)?[...cloud.habits]:[...local.habits],habitLogs:cloud.habitLogs&&typeof cloud.habitLogs==='object'?structuredClone(cloud.habitLogs):structuredClone(local.habitLogs)};
     // Os dados deste mesmo login são os da nuvem. Não sobrescrever dados de outro aparelho.
-    const unlinked=local.workouts.length||local.templates.length;
+    const unlinked=local.workouts.length||local.templates.length||local.habits.length||Object.keys(local.habitLogs).length;
     if(unlinked && !localStorage.getItem('pulso_synced_'+user.uid)){
-      if(confirm('Este login já tem treinos salvos na nuvem.\n\nOK = importar também os treinos locais deste mesmo login (sem substituir os da nuvem).\nCancelar = usar somente os treinos da nuvem.')){
+      if(confirm('Este login já tem dados salvos na nuvem.\n\nOK = mesclar também os treinos e hábitos locais desta conta.\nCancelar = usar os dados da nuvem.')){
         const a=new Map(merged.workouts.map(w=>[w.id,w]));for(const w of local.workouts)a.set(w.id,w);merged.workouts=[...a.values()];
         const b=new Map(merged.templates.map(w=>[w.id,w]));for(const w of local.templates)b.set(w.id,w);merged.templates=[...b.values()];
+        const c=new Map(merged.habits.map(h=>[h.id,h]));for(const h of local.habits)c.set(h.id,h);merged.habits=[...c.values()];
+        for(const [d,entries] of Object.entries(local.habitLogs))merged.habitLogs[d]={...(merged.habitLogs[d]||{}),...entries};
       }
     }
     window.PulsoLocal.setAccount(merged);
   } else {
-    if(!local.workouts.length&&!local.templates.length&&(guest.workouts.length||guest.templates.length) && confirm('Encontrei treinos da versão antiga neste navegador.\n\nDeseja copiá-los para sua conta nova?\n\nEles continuarão preservados no navegador também.')){
+    if(!local.workouts.length&&!local.templates.length&&!local.habits.length&&(guest.workouts.length||guest.templates.length||guest.habits.length) && confirm('Encontrei treinos ou hábitos de visitante neste navegador.\n\nDeseja copiá-los para sua conta nova?\n\nEles continuarão preservados no navegador também.')){
       window.PulsoLocal.setAccount(guest);
     }
   }
