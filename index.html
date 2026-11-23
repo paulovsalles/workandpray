@@ -327,6 +327,24 @@
     @media(max-width:890px){.social-grid{grid-template-columns:1fr}}
     @media(max-width:760px){.social-hero{align-items:flex-start;flex-direction:column;margin-bottom:17px}.social-hero .btn{width:100%}.social-card{padding:16px}.social-login{margin:0;max-width:none}.social-form-row{flex-direction:column;align-items:stretch}.social-form-row>.btn{width:100%}.social-split{grid-template-columns:1fr 1fr}.social-group{padding:16px}.social-tabs button{padding:9px 11px}}
 
+    /* Comunidade: fotos compactadas e comentários por publicação */
+    .social-post-caption{margin:12px 0!important;color:var(--ink)!important;font-size:13px!important;white-space:pre-wrap;overflow-wrap:anywhere}
+    .social-post-photo{display:block;width:100%;max-height:460px;object-fit:contain;background:var(--surface-2);border:1px solid var(--border);border-radius:15px;margin:13px 0}
+    .social-photo-preview{display:none;max-width:100%;max-height:250px;object-fit:contain;border:1px solid var(--border);border-radius:13px;margin-top:10px}
+    .social-photo-preview.visible{display:block}
+    .social-comment-panel{border-top:1px solid var(--border);margin-top:14px;padding-top:12px}
+    .social-comment-list{display:grid;gap:10px;margin-bottom:12px}
+    .social-comment{display:flex;align-items:flex-start;gap:9px;min-width:0}
+    .social-comment .social-avatar{width:30px;height:30px;border-radius:11px;font-size:12px}
+    .social-comment-body{flex:1;min-width:0;background:var(--surface-2);border-radius:12px;padding:9px 11px;overflow-wrap:anywhere}
+    .social-comment-body strong{font-size:11px}.social-comment-body time{font-size:10px;color:var(--muted);margin-left:6px}
+    .social-comment-body p{font-size:12px;color:var(--ink);margin:4px 0 0;line-height:1.5;white-space:pre-wrap}
+    .social-comment-remove{background:none;border:0;color:var(--muted);font-size:10px;padding:7px 3px}
+    .social-comment-form{display:flex;gap:7px;align-items:stretch}
+    .social-comment-form input{flex:1;min-width:0;border:1px solid var(--border);border-radius:11px;background:var(--surface-2);color:var(--ink);min-height:40px;padding:8px 11px;font-size:12px}
+    .social-comment-form .btn{min-height:40px}
+    @media(max-width:450px){.social-comment-form{flex-wrap:wrap}.social-comment-form input{flex-basis:100%}.social-comment-form .btn{width:100%}}
+
     /* Conta Pulso: acesso presente em todas as telas, inclusive no celular */
     .account-slot{min-width:0}
     .account-trigger{border:1px solid var(--border);background:var(--surface);color:var(--ink);display:flex;gap:10px;align-items:center;border-radius:15px;min-height:46px;padding:5px 10px 5px 5px;text-align:left;max-width:225px;width:100%}
@@ -726,7 +744,7 @@
     const useRun=done&&w.result?w.result.run:w.run;
     const detail=w.type==='strength'?`${w.strength.length} ${w.strength.length===1?'exercício':'exercícios'}${w.strength.length?' · '+w.strength.slice(0,2).map(x=>x.name).filter(Boolean).join(', '):' · toque para detalhar'}`:
       (done&&w.result?`${runType(w.run).short} · ${[useRun.distance?displayNum(useRun.distance)+' km':'',useRun.duration?displayNum(useRun.duration,1)+' min':'',useRun.params?.achievedRepeats?displayNum(useRun.params.achievedRepeats,0)+' repetições':''].filter(Boolean).join(' · ')||runShort(w.run)}`:`${runType(w.run).short} · ${runShort(w.run)}`);
-    return `<article class="card workout ${w.type==='run'?'run':''}"><div class="workout-symbol">${icon(w.type==='run'?'run':'dumbbell')}</div><div class="workout-content"><div class="workout-head"><span class="workout-title">${esc(w.title)}</span>${done?'<span class="status done">Feito</span>':replaced?'<span class="status">Substituído</span>':skipped?'<span class="status skipped">Não feito</span>':w.source==='free'?'<span class="status free">Livre</span>':w.source==='manual-plan'?'<span class="status plan">Do acervo</span>':w.templateId?'<span class="status plan">Plano</span>':''}</div><div class="workout-info">${w.date===today?'Hoje':shortDate(w.date)} · ${esc(detail)}</div></div><div class="workout-actions"><button class="mini-action" data-action="details" data-id="${esc(w.id)}" aria-label="Abrir treino ${esc(w.title)}">${icon('chevronright','icon-sm')}</button>${replaced?'':`<button class="mini-action ${done?'checked':'finish'}" data-action="quick-done" data-id="${esc(w.id)}" title="${done?'Desmarcar treino':'Marcar como concluído'}" aria-label="${done?'Desmarcar':'Concluir'} ${esc(w.title)}">${icon('check','icon-sm')}<span class="mini-text">${done?'Feito':'Concluir'}</span></button>`}</div></article>`;
+    return `<article class="card workout ${w.type==='run'?'run':''}"><div class="workout-symbol">${icon(w.type==='run'?'run':'dumbbell')}</div><div class="workout-content"><div class="workout-head"><span class="workout-title">${esc(w.title)}</span>${done?'<span class="status done">Feito</span>':replaced?'<span class="status">Substituído</span>':skipped?'<span class="status skipped">Não feito</span>':w.source==='free'?'<span class="status free">Livre</span>':w.source==='manual-plan'?'<span class="status plan">Do acervo</span>':w.templateId?'<span class="status plan">Plano</span>':''}</div><div class="workout-info">${w.date===today?'Hoje':shortDate(w.date)} · ${esc(detail)}</div></div><div class="workout-actions">${done?`<button class="mini-action" data-action="share-workout" data-id="${esc(w.id)}" title="Compartilhar treino" aria-label="Compartilhar ${esc(w.title)}">${icon('upload','icon-sm')}</button>`:''}<button class="mini-action" data-action="details" data-id="${esc(w.id)}" aria-label="Abrir treino ${esc(w.title)}">${icon('chevronright','icon-sm')}</button>${replaced?'':`<button class="mini-action ${done?'checked':'finish'}" data-action="quick-done" data-id="${esc(w.id)}" title="${done?'Desmarcar treino':'Marcar como concluído'}" aria-label="${done?'Desmarcar':'Concluir'} ${esc(w.title)}">${icon('check','icon-sm')}<span class="mini-text">${done?'Feito':'Concluir'}</span></button>`}</div></article>`;
   }
   function emptyCard(title,msg,date=null){return `<div class="empty"><div class="empty-visual">${icon('calendar','icon-lg')}</div><h3>${esc(title)}</h3><p>${esc(msg)}</p><div class="empty-acts"><button class="btn primary" data-action="choose-plan" ${date?`data-date="${date}"`:''}>${icon('target','icon-sm')} Escolher plano</button><button class="btn" data-action="open-free" ${date?`data-date="${date}"`:''}>${icon('zap','icon-sm')} Treino livre</button></div></div>`;}
   function renderType(type){
@@ -952,7 +970,7 @@
       ${['free','manual-plan'].includes(w.source)?`<section class="detail-section"><h3>O que você fez</h3>${detailList(w,true)}${w.result?.note?`<div class="note-box" style="margin-top:10px">${esc(w.result.note)}</div>`:''}<button class="subtle-link" data-action="result" data-id="${esc(w.id)}" style="margin-top:12px">${icon('edit','icon-sm')} Editar realizado</button></section>`:
       `<section class="detail-section"><h3>O que foi planejado</h3>${detailList(w)}${w.note?`<div class="note-box" style="margin-top:10px">${esc(w.note)}</div>`:''}</section>
       ${done?`<section class="detail-section"><h3>O que foi realizado</h3>${detailList(w,true)}${w.result?.note?`<div class="note-box" style="margin-top:10px">${esc(w.result.note)}</div>`:''}<button class="subtle-link" data-action="result" data-id="${esc(w.id)}" style="margin-top:12px">${icon('edit','icon-sm')} Editar resultado</button></section>`:''}`}
-      <div class="detail-secondary">${w.templateId||w.originTemplateId?`<button class="btn soft" data-action="edit-plan" data-id="${esc(w.templateId||w.originTemplateId)}">${icon('target','icon-sm')} Ver plano</button>`:''}<button class="btn" data-action="edit" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar treino</button><button class="btn" data-action="duplicate" data-id="${esc(w.id)}">${icon('copy','icon-sm')} Duplicar</button><button class="btn danger" data-action="delete-ask" data-id="${esc(w.id)}" aria-label="Excluir treino">${icon('trash','icon-sm')}</button></div>`;
+      <div class="detail-secondary">${done?`<button class="btn soft" data-action="share-workout" data-id="${esc(w.id)}">${icon('upload','icon-sm')} Compartilhar treino</button>`:''}${w.templateId||w.originTemplateId?`<button class="btn soft" data-action="edit-plan" data-id="${esc(w.templateId||w.originTemplateId)}">${icon('target','icon-sm')} Ver plano</button>`:''}<button class="btn" data-action="edit" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar treino</button><button class="btn" data-action="duplicate" data-id="${esc(w.id)}">${icon('copy','icon-sm')} Duplicar</button><button class="btn danger" data-action="delete-ask" data-id="${esc(w.id)}" aria-label="Excluir treino">${icon('trash','icon-sm')}</button></div>`;
     const footer=replaced?`<button class="btn" data-action="restore-plan" data-id="${esc(w.id)}">Restaurar planejado</button><button class="btn primary" data-action="open-free" data-date="${w.date}">${icon('zap','icon-sm')} Outro treino livre</button>`:done?`<button class="btn" data-action="quick-done" data-id="${esc(w.id)}">Desmarcar feito</button><button class="btn primary" data-action="result" data-id="${esc(w.id)}">${icon('edit','icon-sm')} Editar realizado</button>`:
       `<button class="btn" data-action="open-free" data-date="${w.date}" data-replace="${esc(w.id)}">${icon('zap','icon-sm')} Fazer livre</button><button class="btn primary" data-action="result" data-id="${esc(w.id)}">${icon('check','icon-sm')} Fazer previsto</button>`;
     modalBase(esc(w.title),subtitle,body,footer);
@@ -1028,6 +1046,7 @@
       case 'overlay':closeModal();break;
       case 'details':openDetails(id);break;
       case 'quick-done':quickDone(id);break;
+      case 'share-workout':closeModal();window.PulsoSocial?.showShare?.(id);break;
       case 'restore-plan':{const w=getWorkout(id);if(w&&!w.virtual){w.status='planned';w.result=null;persist();render();openDetails(w.id);toast('Treino planejado restaurado.');}break;}
       case 'edit':openWorkoutForm(id);break;
       case 'result':openResult(id);break;
@@ -1114,7 +1133,7 @@ const FIREBASE_CONFIG = {
 };
 const configured = FIREBASE_CONFIG.apiKey !== 'COLE_SUA_API_KEY' &&
   FIREBASE_CONFIG.projectId !== 'SEU_PROJETO' && FIREBASE_CONFIG.appId !== 'COLE_SEU_APP_ID';
-const ui = {user:null, profile:null, friends:[], groups:[], group:null, feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login', accountOpen:false, accountPlace:'header'};
+const ui = {user:null, profile:null, friends:[], groups:[], group:null, feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login', accountOpen:false, accountPlace:'header',shareSelected:'',commentOpen:new Set(),comments:{},commentUnsubs:{}};
 const socialRoot = () => document.getElementById('social-root');
 const sx = v => String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sn = v => Number.isFinite(Number(v)) ? Number(v) : 0;
@@ -1123,7 +1142,50 @@ const day = date => /^\d{4}-\d{2}-\d{2}$/.test(String(date)) ? date.split('-').r
 const nameOf = id => ui.people[id]?.name || (id===ui.user?.uid?ui.profile?.name:'') || 'Atleta';
 const initials = str => String(str||'?').trim().slice(0,1).toUpperCase();
 const showToast = msg => window.PulsoLocal?.notify?.(msg);
-let auth, db, fire, unsubAuth, saveTimer, saveChain=Promise.resolve(), paused=true, registeringName=null;
+let auth, db, fire, unsubAuth, unsubFeed=null, unsubGroup=null, saveTimer, saveChain=Promise.resolve(), paused=true, registeringName=null;
+function closeSocialSubscriptions(){if(unsubFeed){unsubFeed();unsubFeed=null;}if(unsubGroup){unsubGroup();unsubGroup=null;}Object.values(ui.commentUnsubs).forEach(unsub=>{try{unsub();}catch{}});ui.commentUnsubs={};ui.commentOpen=new Set();ui.comments={};}
+function threadKey(id,gid=''){return gid?'g:'+gid+':'+id:'p:'+id;}
+function commentCollection(id,gid=''){return gid?fire.collection(db,'groups',gid,'activities',id,'comments'):fire.collection(db,'activities',id,'comments');}
+function commentText(c){return `<div class="social-comment">${avatar(nameOf(c.authorId))}<div class="social-comment-body"><strong>${sx(nameOf(c.authorId))}</strong><time>${new Date(sn(c.createdAt)).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</time><p>${sx(c.text)}</p></div>${(c.authorId===ui.user?.uid||c.postOwnerId===ui.user?.uid)?`<button type="button" class="social-comment-remove" data-social="delete-comment" data-id="${sx(c.postId)}" data-group="${sx(c.groupId||'')}" data-comment="${sx(c.id)}" aria-label="Apagar comentário">Apagar</button>`:''}</div>`;}
+function commentsHtml(key){const rows=ui.comments[key];return rows?rows.length?rows.map(commentText).join(''):'<p class="micro">Seja o primeiro a comentar! 👏</p>':'<p class="micro">Carregando comentários...</p>';}
+function renderCommentLists(key){document.querySelectorAll('.social-comment-list[data-thread]').forEach(el=>{if(el.dataset.thread===key)el.innerHTML=commentsHtml(key);});}
+async function toggleComments(id,gid=''){
+ const key=threadKey(id,gid);if(ui.commentOpen.has(key)){ui.commentOpen.delete(key);ui.commentUnsubs[key]?.();delete ui.commentUnsubs[key];mount();return;}
+ ui.commentOpen.add(key);mount();const owner=(gid?ui.groupFeed:ui.feed).find(a=>a.id===id)?.ownerId||'';
+ ui.commentUnsubs[key]=fire.onSnapshot(fire.query(commentCollection(id,gid),fire.orderBy('createdAt','asc'),fire.limit(100)),async snap=>{
+   if(!ui.user||!ui.commentOpen.has(key))return;
+   ui.comments[key]=snap.docs.map(d=>({id:d.id,postId:id,groupId:gid,postOwnerId:owner,...d.data()}));
+   renderCommentLists(key);await loadPeople(ui.comments[key].map(c=>c.authorId));renderCommentLists(key);
+ },err=>{console.error('Comentários:',err);ui.comments[key]=[];renderCommentLists(key);showToast('Não foi possível ler os comentários: '+errorMessage(err));});
+}
+async function postComment(form){if(!ui.user)throw Error('Entre na sua conta para comentar.');const id=form.dataset.post,gid=form.dataset.group||'',field=form.elements.text;
+ const text=String(field?.value||'').trim();if(!text||text.length>500)throw Error('Escreva um comentário de até 500 caracteres.');
+ const ref=fire.doc(commentCollection(id,gid));await fire.setDoc(ref,{authorId:ui.user.uid,text,createdAt:Date.now()});field.value='';showToast('Comentário publicado!');
+}
+async function deleteComment(postId,gid,commentId){await fire.deleteDoc(fire.doc(commentCollection(postId,gid),commentId));showToast('Comentário apagado.');}
+async function deleteActivityAndComments(postId,gid=''){
+ // Evita deixar comentários órfãos após apagar uma publicação.
+ const ref=gid?fire.doc(db,'groups',gid,'activities',postId):fire.doc(db,'activities',postId);
+ while(true){const snap=await fire.getDocs(fire.query(commentCollection(postId,gid),fire.limit(200)));
+  if(snap.empty)break;const batch=fire.writeBatch(db);snap.docs.forEach(d=>batch.delete(d.ref));await batch.commit();}
+ await fire.deleteDoc(ref);const key=threadKey(postId,gid);ui.commentUnsubs[key]?.();delete ui.commentUnsubs[key];ui.commentOpen.delete(key);delete ui.comments[key];
+}
+async function compressTrainingPhoto(file){
+ if(!file||!file.size)return '';
+ if(!file.type.startsWith('image/'))throw Error('Escolha uma imagem de treino (JPG, PNG ou WebP).');
+ if(file.size>15*1024*1024)throw Error('Essa foto é muito grande. Escolha uma de até 15 MB.');
+ const url=URL.createObjectURL(file);let pic=new Image();
+ try{pic.src=url;await pic.decode();}catch{URL.revokeObjectURL(url);throw Error('Não foi possível abrir a foto. Experimente JPG ou PNG.');}
+ finally{URL.revokeObjectURL(url);}
+ let max=900;for(let attempt=0;attempt<12;attempt++){
+  const factor=Math.min(1,max/Math.max(pic.naturalWidth,pic.naturalHeight));const canvas=document.createElement('canvas');
+  canvas.width=Math.max(1,Math.round(pic.naturalWidth*factor));canvas.height=Math.max(1,Math.round(pic.naturalHeight*factor));
+  canvas.getContext('2d',{alpha:false}).drawImage(pic,0,0,canvas.width,canvas.height);
+  for(const q of [0.72,0.60,0.48,0.38]){const data=canvas.toDataURL('image/jpeg',q);if(data.length<=120000)return data;}
+  max=Math.round(max*.77);
+ }
+ throw Error('Não consegui compactar a foto. Tente uma imagem mais simples.');
+}
 const setBusy = value => {ui.busy=value; mount();};
 function errorMessage(e){
  const code=e?.code||'';
@@ -1211,18 +1273,24 @@ function authHtml(){
 }
 function i(name){return `<svg class="icon icon-sm" aria-hidden="true"><use href="#i-${name}"></use></svg>`;}
 function topHtml(){
- return `<div class="social-hero"><div><div class="eyebrow">COMUNIDADE PULSO</div><h1 class="page-title">Treine junto.</h1><p class="page-subtitle">Sua rotina é sua. Compartilhe só o que quiser.</p></div><button class="btn primary" data-social="share-open">${i('plus')} Compartilhar treino</button></div>
+ return `${ui.lastError?`<div class="social-banner" style="background:var(--red-soft);color:var(--red)">${sx(ui.lastError)}</div>`:''}<div class="social-hero"><div><div class="eyebrow">COMUNIDADE PULSO</div><h1 class="page-title">Treine junto.</h1><p class="page-subtitle">Sua rotina é sua. Compartilhe só o que quiser.</p></div><button class="btn primary" data-social="share-open">${i('plus')} Compartilhar treino</button></div>
  <div class="social-tabs">${[['feed','Mural'],['following','Seguindo'],['groups','Grupos'],['profile','Meu perfil']].map(([k,v])=>`<button data-social="nav" data-page="${k}" class="${ui.page===k?'active':''}">${v}</button>`).join('')}</div>`;
 }
 function avatar(n){return `<span class="social-avatar">${sx(initials(n))}</span>`;}
 function emptyHtml(title,desc,action=''){return `<div class="social-blank"><strong>${sx(title)}</strong><p>${sx(desc)}</p>${action}</div>`;}
 function activityCard(a,groupId=''){
- const you=a.ownerId===ui.user?.uid;
+ const you=a.ownerId===ui.user?.uid,key=threadKey(a.id,groupId),isOpen=ui.commentOpen.has(key);
+ const safePhoto=typeof a.photoData==='string'&&/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(a.photoData)&&a.photoData.length<=150000?a.photoData:'';
  return `<article class="card social-card"><div class="social-card-header">${avatar(nameOf(a.ownerId))}<div class="social-card-title"><strong>${sx(nameOf(a.ownerId))}${you?' · você':''}</strong><small>${sx(day(a.date))} · ${a.type==='run'?'Corrida':'Musculação'}</small></div><span class="social-bubble">${a.type==='run'?'Corrida':'Força'}</span></div>
  <h3>${sx(a.title)}</h3>
  <div class="social-details">${a.distance?`<span class="social-detail">${fmt(a.distance)} km</span>`:''}${a.duration?`<span class="social-detail">${fmt(a.duration,0)} min</span>`:''}${a.type==='run'&&a.distance&&a.duration?`<span class="social-detail">${fmt(a.duration/a.distance)} min/km</span>`:''}${a.type==='strength'?`<span class="social-detail">${(a.details||[]).length} exercícios</span>`:''}</div>
  ${(a.details||[]).length?`<ul class="social-activity">${a.details.slice(0,12).map(s=>`<li>${sx(s)}</li>`).join('')}</ul>`:''}
- ${you?`<div class="social-actions"><button class="btn danger" data-social="remove-activity" data-id="${sx(a.id)}" data-group="${sx(groupId)}">${i('trash')} Remover publicação</button></div>`:''}</article>`;
+ ${a.caption?`<p class="social-post-caption">${sx(a.caption)}</p>`:''}
+ ${safePhoto?`<img class="social-post-photo" src="${safePhoto}" alt="Foto compartilhada por ${sx(nameOf(a.ownerId))}" loading="lazy" />`:''}
+ <div class="social-actions"><button class="btn soft" data-social="toggle-comments" data-id="${sx(a.id)}" data-group="${sx(groupId)}" aria-expanded="${isOpen}">${i('users')} ${isOpen?'Ocultar comentários':'Ver e comentar'}</button>
+ ${you?`<button class="btn danger" data-social="remove-activity" data-id="${sx(a.id)}" data-group="${sx(groupId)}">${i('trash')} Remover publicação</button>`:''}</div>
+ ${isOpen?`<section class="social-comment-panel"><div class="social-comment-list" data-thread="${sx(key)}">${commentsHtml(key)}</div><form class="social-comment-form" data-comment-form="1" data-post="${sx(a.id)}" data-group="${sx(groupId)}"><input type="text" name="text" maxlength="500" required placeholder="Escreva um comentário..." aria-label="Seu comentário" /><button type="submit" class="btn primary">Enviar</button></form></section>`:''}
+ </article>`;
 }
 function feedHtml(followingOnly=false){
  const visible=followingOnly?ui.feed.filter(a=>ui.friends.some(f=>f.id===a.ownerId)):ui.feed;
@@ -1254,15 +1322,15 @@ function profileHtml(){return `<div class="social-grid"><div class="social-stack
  <div class="card social-card"><h3>Sincronização</h3><p>Ao entrar em sua conta, treinos e hábitos pessoais são sincronizados na nuvem e entre aparelhos conectados com este mesmo login.</p><p class="social-footnote">${sx(ui.syncLabel||'Sincronização ativada.')}</p><div class="social-actions"><button class="btn" data-social="sync-now">${i('upload')} Sincronizar agora</button></div></div>
  <button class="btn danger full" data-social="logout">Sair da conta</button></div></div>`;}
 function shareHtml(){const all=window.PulsoLocal?.get?.().workouts||[];const done=all.filter(w=>w.status==='done').sort((a,b)=>(b.result?.completedAt||b.date).localeCompare(a.result?.completedAt||a.date)).slice(0,75);
- return `<div class="card social-card" style="margin-bottom:16px"><h3>Compartilhar um treino concluído</h3><p>Você escolhe o treino e o público. Nada é publicado automaticamente.</p>
- ${done.length?`<form class="social-form" id="social-share-form" style="margin-top:16px"><div><label>Treino realizado</label><select required name="workout">${done.map(w=>`<option value="${sx(w.id)}">${sx(day(w.date))} · ${sx(w.title)}</option>`).join('')}</select></div><div><label>Compartilhar com</label><select required name="audience"><option value="public">Comunidade (todos com login)</option>${ui.groups.map(g=>`<option value="group:${sx(g.id)}">Grupo: ${sx(g.title)}</option>`).join('')}</select></div><div><label>Duração real da sessão (min) · opcional</label><input type="number" name="minutes" min="0" max="1440" step="1" placeholder="Para pontuar em desafios por tempo" /></div><p class="social-footnote">Compartilha nome do treino, data, modalidade e resumo de exercícios/distância/tempo. Observações pessoais não são compartilhadas.</p><button class="btn primary" type="submit">${i('check')} Confirmar compartilhamento</button></form>`:emptyHtml('Sem treinos concluídos.','Marque um treino como realizado na aba Hoje antes de compartilhar.')}
+ return `<div class="card social-card" style="margin-bottom:16px"><h3>Compartilhar um treino concluído</h3><p>Escolha o treino e, se quiser, adicione uma legenda e uma foto. Nada é publicado automaticamente.</p>
+ ${done.length?`<form class="social-form" id="social-share-form" style="margin-top:16px"><div><label>Treino realizado</label><select required name="workout">${done.map(w=>`<option value="${sx(w.id)}" ${ui.shareSelected===w.id?'selected':''}>${sx(day(w.date))} · ${sx(w.title)}</option>`).join('')}</select></div><div><label>Compartilhar com</label><select required name="audience"><option value="public">Comunidade (todos com login)</option>${ui.groups.map(g=>`<option value="group:${sx(g.id)}">Grupo: ${sx(g.title)}</option>`).join('')}</select></div><div><label>Legenda (opcional)</label><input name="caption" maxlength="280" placeholder="Ex.: Hoje o treino rendeu! 💪" /></div><div><label>Foto do treino (opcional)</label><input id="social-photo-file" name="photo" type="file" accept="image/*" /><img id="social-photo-preview" class="social-photo-preview" alt="Prévia da foto escolhida" /><p class="social-footnote">A foto será compactada automaticamente e salva junto à publicação. Não precisa ativar Firebase Storage.</p></div><div><label>Duração real da sessão (min) · opcional</label><input type="number" name="minutes" min="0" max="1440" step="1" placeholder="Para pontuar em desafios por tempo" /></div><p class="social-footnote">Compartilha o treino, o resumo, a legenda e a foto escolhida. Observações pessoais continuam privadas.</p><button class="btn primary" type="submit" ${ui.busy?'disabled':''}>${i('check')} Publicar treino</button></form>`:emptyHtml('Sem treinos concluídos.','Marque um treino como realizado na aba Hoje antes de compartilhar.')}
  <div class="social-actions"><button class="btn" data-social="share-close">Cancelar</button></div></div>`;}
 function mount(){renderAccountUi();const root=socialRoot();if(!root)return;
  if(!configured||!ui.user){root.innerHTML=authHtml();return;}
  if(!ui.ready){root.innerHTML=`<div class="card social-card"><h3>Preparando sua comunidade...</h3><p>Carregando seus dados de conta.</p></div>`;return;}
  root.innerHTML=topHtml()+(ui.page==='share'?shareHtml():ui.page==='following'?feedHtml(true):ui.page==='groups'?groupsHtml():ui.page==='group'?groupHtml():ui.page==='profile'?profileHtml():feedHtml(false));
 }
-window.PulsoSocial = {mount,renderAccountUi,scheduleSync(){if(!ui.user||!ui.ready||paused)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>syncLocal(false),700);}};
+window.PulsoSocial = {mount,renderAccountUi,showShare(id=''){ui.shareSelected=id;ui.page='share';window.PulsoLocal?.navigate?.('social');mount();},scheduleSync(){if(!ui.user||!ui.ready||paused)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>syncLocal(false),700);}};
 async function profileEnsure(user){const ref=fire.doc(db,'profiles',user.uid),snap=await fire.getDoc(ref);if(snap.exists())return {id:user.uid,...snap.data()};
  const profile={name:String(user.displayName||registeringName||user.email?.split('@')[0]||'Atleta').slice(0,44),code:'P'+user.uid.slice(0,12),createdAt:Date.now()};
  await fire.setDoc(ref,profile);return {id:user.uid,...profile};}
@@ -1272,12 +1340,21 @@ async function loadGroups(){const r=await fire.getDocs(fire.collection(db,'membe
  for(const d of r.docs){try{const g=await fire.getDoc(fire.doc(db,'groups',d.id));if(g.exists()&&g.data().memberIds?.includes(ui.user.uid))list.push({id:g.id,...g.data()});}catch(e){console.warn('Grupo indisponível:',e);}}
  ui.groups=list;await loadPeople(list.flatMap(g=>g.memberIds||[]));}
 async function loadFeed(){const q=fire.query(fire.collection(db,'activities'),fire.orderBy('createdAt','desc'),fire.limit(60));const r=await fire.getDocs(q);ui.feed=r.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.feed.map(a=>a.ownerId));}
+function startFeedStream(){if(unsubFeed)unsubFeed();const userId=ui.user?.uid;
+ unsubFeed=fire.onSnapshot(fire.query(fire.collection(db,'activities'),fire.orderBy('createdAt','desc'),fire.limit(60)),async snap=>{
+  if(!ui.user||ui.user.uid!==userId)return;ui.feed=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.feed.map(a=>a.ownerId));if(['feed','following'].includes(ui.page))mount();
+ },e=>{ui.lastError='Erro ao atualizar mural: '+errorMessage(e);console.error(e);mount();});}
 async function loadGroup(gid){const g=ui.groups.find(a=>a.id===gid);if(!g){showToast('Você não participa deste grupo.');return;}
  ui.group=g;ui.page='group';mount();const [a,c]=await Promise.all([
   fire.getDocs(fire.query(fire.collection(db,'groups',gid,'activities'),fire.orderBy('createdAt','desc'),fire.limit(400))),
   fire.getDocs(fire.query(fire.collection(db,'groups',gid,'challenges'),fire.orderBy('createdAt','desc'),fire.limit(40)))
  ]);
- ui.groupFeed=a.docs.map(d=>({id:d.id,...d.data()}));ui.challenges=c.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(t=>t.ownerId));mount();}
+ ui.groupFeed=a.docs.map(d=>({id:d.id,...d.data()}));ui.challenges=c.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(t=>t.ownerId));mount();
+ if(unsubGroup)unsubGroup();const userId=ui.user?.uid;
+ unsubGroup=fire.onSnapshot(fire.query(fire.collection(db,'groups',gid,'activities'),fire.orderBy('createdAt','desc'),fire.limit(400)),async snap=>{
+  if(!ui.user||ui.user.uid!==userId||ui.group?.id!==gid)return;
+  ui.groupFeed=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(t=>t.ownerId));if(ui.page==='group')mount();
+ },e=>{ui.lastError='Erro ao atualizar grupo: '+errorMessage(e);console.error(e);mount();});}
 async function syncLocal(force=false){if(!ui.user||(!ui.ready&&!force)||paused)return;
  const id=ui.user.uid,payload={...window.PulsoLocal.get(),updatedAt:Date.now(),version:4};
  ui.syncLabel='Sincronizando...';
@@ -1287,7 +1364,7 @@ async function syncLocal(force=false){if(!ui.user||(!ui.ready&&!force)||paused)r
  }).catch(e=>{ui.syncLabel='Falha ao sincronizar: '+errorMessage(e);notifyError(e);});
  await saveChain;
 }
-async function initializeAccount(user){paused=true;ui.ready=false;ui.group=null;ui.page='feed';ui.accountOpen=false;ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.lastError='';
+async function initializeAccount(user){closeSocialSubscriptions();paused=true;ui.ready=false;ui.group=null;ui.page='feed';ui.accountOpen=false;ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.lastError='';
  window.PulsoLocal?.switchAccount(user.uid);mount();
  try{
   const [prof,remote]=await Promise.all([profileEnsure(user),fire.getDoc(fire.doc(db,'accounts',user.uid,'data','main'))]);
@@ -1315,7 +1392,7 @@ async function initializeAccount(user){paused=true;ui.ready=false;ui.group=null;
   localStorage.setItem('pulso_synced_'+user.uid,'1');
   ui.ready=true;paused=false;
   await Promise.all([loadGroups(),loadFollows(),loadFeed()]);
-  mount();await syncLocal(true);
+  startFeedStream();mount();await syncLocal(true);
  }catch(e){ui.ready=true;paused=false;notifyError(e);}
 }
 async function doAuth(form){if(!configured)return;const fd=new FormData(form);setBusy(true);
@@ -1325,7 +1402,8 @@ async function doAuth(form){if(!configured)return;const fd=new FormData(form);se
    const name=String(fd.get('name')||'').trim();if(name.length<2)throw Error('Digite um nome com pelo menos 2 caracteres.');
    registeringName=name;const result=await fire.createUserWithEmailAndPassword(auth,email,password);
    await fire.updateProfile(result.user,{displayName:name});
-   await fire.setDoc(fire.doc(db,'profiles',result.user.uid),{name,code:'P'+result.user.uid.slice(0,12),createdAt:Date.now()});
+   // O onAuthStateChanged cria o perfil pela rotina profileEnsure.
+   // Não criar um segundo documento aqui evita colisões e permissões negadas no cadastro.
    ui.profile={name,code:'P'+result.user.uid.slice(0,12)};ui.people[result.user.uid]=ui.profile;registeringName=null;
    showToast('Conta criada! Bem-vindo ao Pulso.');
   }else {await fire.signInWithEmailAndPassword(auth,email,password);showToast('Você entrou no Pulso.');}
@@ -1372,11 +1450,13 @@ function runDescription(r){const p=r.params||{},out=[],k=r.kind||'easy';const la
 }
 async function shareWorkout(form){const d=new FormData(form),id=String(d.get('workout')||''),aud=String(d.get('audience')||'');const w=window.PulsoLocal.get().workouts.find(w=>w.id===id&&w.status==='done');if(!w)throw Error('Este treino precisa estar concluído.');
  const mins=sn(d.get('minutes'));if(mins<0||mins>1440)throw Error('Confira a duração informada.');
- const data=serializeWorkout(w,mins),docId=ui.user.uid+'_'+id.replace(/[^a-zA-Z0-9_-]/g,'_');
+ const file=d.get('photo');const photoData=file instanceof File&&file.size?await compressTrainingPhoto(file):'';
+ const caption=String(d.get('caption')||'').trim().slice(0,280);
+ const data={...serializeWorkout(w,mins),caption,...(photoData?{photoData}:{})},docId=ui.user.uid+'_'+id.replace(/[^a-zA-Z0-9_-]/g,'_');
  if(aud==='public'){await fire.setDoc(fire.doc(db,'activities',docId),data);await loadFeed();ui.page='feed';}
  else if(aud.startsWith('group:')){const gid=aud.slice(6);if(!ui.groups.some(g=>g.id===gid))throw Error('Você não participa deste grupo.');await fire.setDoc(fire.doc(db,'groups',gid,'activities',docId),data);await loadGroup(gid);}
  else throw Error('Escolha onde compartilhar.');
- showToast('Treino compartilhado com sucesso!');mount();}
+ ui.shareSelected='';showToast('Treino publicado! Seu amigo já pode ver e comentar.');mount();}
 async function createChallenge(form){if(!ui.group)throw Error('Abra um grupo primeiro.');const f=new FormData(form),start=String(f.get('start')),end=String(f.get('end'));
  if(!/^\d{4}-\d{2}-\d{2}$/.test(start)||!/^\d{4}-\d{2}-\d{2}$/.test(end)||start>end)throw Error('Confira as datas do desafio.');
  const ref=fire.doc(fire.collection(db,'groups',ui.group.id,'challenges'));
@@ -1389,9 +1469,11 @@ async function onClick(b){const a=b.dataset.social;try{
  else if(a==='forgot'){const email=prompt('Qual e-mail você usa no Pulso?');if(email){await fire.sendPasswordResetEmail(auth,email.trim());showToast('E-mail de redefinição enviado.');}}
  else if(a==='logout'){if(confirm('Sair desta conta? Seus dados salvos permanecerão na nuvem.'))await fire.signOut(auth);}
  else if(a==='nav'){ui.page=b.dataset.page;ui.group=null;mount();}
- else if(a==='share-open'){ui.page='share';mount();}
+ else if(a==='share-open'){ui.shareSelected='';ui.page='share';mount();}
  else if(a==='share-close'){ui.page='feed';mount();}
  else if(a==='refresh'){await Promise.all([loadFeed(),loadGroups(),loadFollows()]);if(ui.group)await loadGroup(ui.group.id);mount();showToast('Atualizado.');}
+ else if(a==='toggle-comments')await toggleComments(b.dataset.id,b.dataset.group||'');
+ else if(a==='delete-comment'){if(confirm('Apagar este comentário?'))await deleteComment(b.dataset.id,b.dataset.group||'',b.dataset.comment);}
  else if(a==='unfollow'){await fire.deleteDoc(fire.doc(db,'follows',ui.user.uid,'users',b.dataset.id));await loadFollows();mount();}
  else if(a==='open-group')await loadGroup(b.dataset.id);
  else if(a==='back-groups'){ui.group=null;ui.page='groups';mount();}
@@ -1401,7 +1483,8 @@ async function onClick(b){const a=b.dataset.social;try{
  else if(a==='remove-activity'){
   if(!confirm('Remover esta publicação? O treino pessoal continuará salvo.'))return;
   const id=b.dataset.id,gid=b.dataset.group;
-  if(gid){await fire.deleteDoc(fire.doc(db,'groups',gid,'activities',id));await loadGroup(gid);}else{await fire.deleteDoc(fire.doc(db,'activities',id));await loadFeed();mount();}
+  await deleteActivityAndComments(id,gid);
+  if(gid){await loadGroup(gid);}else{await loadFeed();mount();}
   showToast('Publicação removida.');
  }
  else if(a==='leave-group'){if(confirm('Sair deste grupo?'))await leaveGroup(b.dataset.id);}
@@ -1412,7 +1495,19 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')closeAccount
 window.addEventListener('resize',()=>{if(ui.accountOpen)placeAccountMenu();});
 window.addEventListener('scroll',()=>{if(ui.accountOpen)closeAccountMenu();},{passive:true});
 document.addEventListener('error',event=>{if(event.target.matches?.('.account-avatar img'))event.target.remove();},true);
-document.addEventListener('submit',async event=>{const form=event.target;if(!form.id?.startsWith('social-'))return;event.preventDefault();
+document.addEventListener('change',event=>{
+ const input=event.target;if(input?.id!=='social-photo-file')return;
+ const preview=document.getElementById('social-photo-preview');if(!preview)return;
+ if(preview.dataset.url){URL.revokeObjectURL(preview.dataset.url);delete preview.dataset.url;}
+ const f=input.files?.[0];if(!f){preview.classList.remove('visible');preview.removeAttribute('src');return;}
+ if(!f.type.startsWith('image/')||f.size>15*1024*1024){showToast('Escolha uma foto de até 15 MB.');input.value='';return;}
+ preview.dataset.url=URL.createObjectURL(f);preview.src=preview.dataset.url;preview.classList.add('visible');
+});
+document.addEventListener('submit',async event=>{const form=event.target;
+ if(form.matches('[data-comment-form]')){event.preventDefault();if(ui.busy)return;
+ const btn=form.querySelector('[type="submit"]');if(btn)btn.disabled=true;
+ try{await postComment(form);}catch(e){notifyError(e);}finally{if(btn)btn.disabled=false;}return;}
+ if(!form.id?.startsWith('social-'))return;event.preventDefault();
  if(ui.busy)return;const method={
   'social-auth-form':doAuth,'social-follow-form':doFollow,'social-create-group':createGroup,'social-join-group':joinGroup,
   'social-share-form':shareWorkout,'social-create-challenge':createChallenge,
@@ -1429,7 +1524,7 @@ if(configured){
   ]);
   fire={...authMod,...fsMod};const app=appMod.initializeApp(FIREBASE_CONFIG);auth=authMod.getAuth(app);db=fsMod.getFirestore(app);
   unsubAuth=authMod.onAuthStateChanged(auth,user=>{
-   if(user){initializeAccount(user);}else{paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;ui.accountOpen=false;window.PulsoLocal?.switchAccount(null);mount();}
+   if(user){initializeAccount(user);}else{closeSocialSubscriptions();paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;ui.accountOpen=false;window.PulsoLocal?.switchAccount(null);mount();}
   },notifyError);
  }catch(e){notifyError(e);}
 }
