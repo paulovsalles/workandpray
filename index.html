@@ -345,6 +345,22 @@
     .social-comment-form .btn{min-height:40px}
     @media(max-width:450px){.social-comment-form{flex-wrap:wrap}.social-comment-form input{flex-basis:100%}.social-comment-form .btn{width:100%}}
 
+    /* Pulso 5.0 · Arena dos amigos */
+    .arena-hero{background:linear-gradient(120deg,#194a36,#2f7150 60%,#4c9162);color:#fff;border-radius:24px;padding:25px;position:relative;overflow:hidden;margin-bottom:18px}
+    .arena-hero:after{content:'🏆';font-size:105px;opacity:.13;position:absolute;right:10px;bottom:-37px;transform:rotate(-13deg);pointer-events:none}
+    .arena-hero>*{position:relative;z-index:1}.arena-hero .eyebrow{color:#c2efcf}.arena-hero h2{font-size:27px;letter-spacing:-.9px;margin:0 0 8px;line-height:1.2}.arena-hero p{font-size:12px;max-width:475px;color:#dbf0df;margin:0;line-height:1.65}
+    .arena-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,1fr);gap:15px;align-items:start}.arena-stack{display:grid;gap:13px;align-content:start;min-width:0}
+    .arena-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:14px}.arena-stat{min-width:0;padding:15px;background:var(--surface-2);border:1px solid var(--border);border-radius:16px}.arena-stat b{display:block;font-size:22px;font-weight:850;letter-spacing:-.7px;line-height:1.3}.arena-stat small{display:block;color:var(--muted);font-size:10px;line-height:1.4;margin-top:5px}
+    .arena-podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:8px;margin:18px 0 20px}.arena-podium-item{text-align:center;min-width:0}.arena-podium-avatar{height:46px;width:46px;margin:0 auto 9px;border-radius:50%;display:grid;place-items:center;font-weight:860;font-size:19px;background:var(--green-soft);color:var(--green-strong)}.arena-podium-item.first .arena-podium-avatar{height:57px;width:57px;font-size:23px;background:#fff0c7;color:#8e6100;border:2px solid #e6c46a}.arena-podium-name{font-size:11px;font-weight:800;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.arena-podium-score{font-size:11px;color:var(--muted);display:block}.arena-podium-step{display:grid;place-items:center;margin-top:10px;border-radius:10px 10px 5px 5px;font-size:19px;background:var(--green-soft);color:var(--green-strong);height:36px}.arena-podium-item.first .arena-podium-step{height:66px;background:#f7e6b5;color:#855e02}.arena-podium-item.second .arena-podium-step{height:48px;background:#e6eae9;color:#6a7870}
+    .arena-leader{padding:12px 0;border-bottom:1px solid var(--border)}.arena-leader:last-child{border:0}.arena-leader-head{display:flex;align-items:center;gap:10px;min-width:0}.arena-leader-head .social-avatar{width:34px;height:34px;min-width:34px;border-radius:11px;font-size:13px}.arena-leader-name{flex:1;min-width:0}.arena-leader-name strong{display:block;font-size:12px}.arena-leader-name small{color:var(--muted);font-size:10px}.arena-leader-score{font-size:14px;font-weight:850;white-space:nowrap}.arena-leader-track{height:7px;background:var(--surface-2);overflow:hidden;border-radius:10px;margin:10px 0 0 44px}.arena-leader-fill{background:var(--green);height:100%;border-radius:10px;transition:width .4s ease}
+    .arena-activity{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}.arena-activity:last-child{border:0}.arena-activity-icon{width:36px;height:36px;flex:none;border-radius:11px;background:var(--green-soft);display:grid;place-items:center;font-size:17px}.arena-activity strong{display:block;font-size:12px}.arena-activity small{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.45}
+    .arena-challenge-card{cursor:pointer;text-align:left;width:100%;border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:18px 20px;border-radius:18px;box-shadow:var(--shadow)}.arena-challenge-card:hover{border-color:var(--green);background:var(--surface-2)}.arena-challenge-card h3{font-size:15px;margin:4px 0 7px}.arena-challenge-card p{font-size:11px;color:var(--muted);margin:0}.arena-challenge-card .social-statline{justify-content:space-between}
+    .arena-mini-ranking{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}.arena-mini-ranking span{padding:5px 9px;border-radius:9px;background:var(--green-soft);color:var(--green-strong);font-weight:760;font-size:10px}
+    .arena-invite{border:1px dashed var(--green);padding:14px;border-radius:14px;background:var(--green-soft);color:var(--green-strong)}.arena-invite strong{font-size:12px;display:block;margin-bottom:5px}.arena-invite p{font-size:11px;margin:0 0 10px;line-height:1.6;color:inherit}
+    .arena-check{display:flex;align-items:flex-start;gap:9px;line-height:1.5;font-size:11px;color:var(--muted);padding:10px 0}.arena-check input{accent-color:var(--green);width:17px;height:17px;flex:none;margin:0}.arena-legend{font-size:11px;line-height:1.6;color:var(--muted)}
+    @media(max-width:890px){.arena-grid{grid-template-columns:1fr}}
+    @media(max-width:480px){.arena-hero{padding:20px}.arena-hero h2{font-size:23px}.arena-stat{padding:11px}.arena-stat b{font-size:19px}.arena-podium{gap:4px}.arena-challenge-card{padding:15px}}
+
     /* Conta Pulso: acesso presente em todas as telas, inclusive no celular */
     .account-slot{min-width:0}
     .account-trigger{border:1px solid var(--border);background:var(--surface);color:var(--ink);display:flex;gap:10px;align-items:center;border-radius:15px;min-height:46px;padding:5px 10px 5px 5px;text-align:left;max-width:225px;width:100%}
@@ -1133,7 +1149,7 @@ const FIREBASE_CONFIG = {
 };
 const configured = FIREBASE_CONFIG.apiKey !== 'COLE_SUA_API_KEY' &&
   FIREBASE_CONFIG.projectId !== 'SEU_PROJETO' && FIREBASE_CONFIG.appId !== 'COLE_SEU_APP_ID';
-const ui = {user:null, profile:null, friends:[], groups:[], group:null, feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login', accountOpen:false, accountPlace:'header',shareSelected:'',commentOpen:new Set(),comments:{},commentUnsubs:{}};
+const ui = {user:null, profile:null, friends:[], groups:[], memberSettings:{}, group:null, groupSessions:[], challengeOverview:[], invitations:[], challengeFocusId:'', feed:[], groupFeed:[], challenges:[], people:{}, page:'feed', filter:'all', busy:false, ready:false, lastError:'', syncLabel:'', authMode:'login', accountOpen:false, accountPlace:'header',shareSelected:'',commentOpen:new Set(),comments:{},commentUnsubs:{},shareAudience:''};
 const socialRoot = () => document.getElementById('social-root');
 const sx = v => String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sn = v => Number.isFinite(Number(v)) ? Number(v) : 0;
@@ -1142,8 +1158,8 @@ const day = date => /^\d{4}-\d{2}-\d{2}$/.test(String(date)) ? date.split('-').r
 const nameOf = id => ui.people[id]?.name || (id===ui.user?.uid?ui.profile?.name:'') || 'Atleta';
 const initials = str => String(str||'?').trim().slice(0,1).toUpperCase();
 const showToast = msg => window.PulsoLocal?.notify?.(msg);
-let auth, db, fire, unsubAuth, unsubFeed=null, unsubGroup=null, saveTimer, saveChain=Promise.resolve(), paused=true, registeringName=null;
-function closeSocialSubscriptions(){if(unsubFeed){unsubFeed();unsubFeed=null;}if(unsubGroup){unsubGroup();unsubGroup=null;}Object.values(ui.commentUnsubs).forEach(unsub=>{try{unsub();}catch{}});ui.commentUnsubs={};ui.commentOpen=new Set();ui.comments={};}
+let auth, db, fire, unsubAuth, unsubFeed=null, unsubGroup=null, unsubGroupChallenges=null, unsubGroupSessions=null, unsubGroupMeta=null, unsubInvites=null, saveTimer, saveChain=Promise.resolve(), paused=true, registeringName=null, lastChallengeSignature="";
+function closeSocialSubscriptions(){if(unsubInvites){unsubInvites();unsubInvites=null;}if(unsubFeed){unsubFeed();unsubFeed=null;}if(unsubGroup){unsubGroup();unsubGroup=null;}for(const key of ["unsubGroupChallenges","unsubGroupSessions","unsubGroupMeta"]){if(key==="unsubGroupChallenges"&&unsubGroupChallenges){unsubGroupChallenges();unsubGroupChallenges=null;}if(key==="unsubGroupSessions"&&unsubGroupSessions){unsubGroupSessions();unsubGroupSessions=null;}if(key==="unsubGroupMeta"&&unsubGroupMeta){unsubGroupMeta();unsubGroupMeta=null;}}Object.values(ui.commentUnsubs).forEach(unsub=>{try{unsub();}catch{}});ui.commentUnsubs={};ui.commentOpen=new Set();ui.comments={};}
 function threadKey(id,gid=''){return gid?'g:'+gid+':'+id:'p:'+id;}
 function commentCollection(id,gid=''){return gid?fire.collection(db,'groups',gid,'activities',id,'comments'):fire.collection(db,'activities',id,'comments');}
 function commentText(c){return `<div class="social-comment">${avatar(nameOf(c.authorId))}<div class="social-comment-body"><strong>${sx(nameOf(c.authorId))}</strong><time>${new Date(sn(c.createdAt)).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</time><p>${sx(c.text)}</p></div>${(c.authorId===ui.user?.uid||c.postOwnerId===ui.user?.uid)?`<button type="button" class="social-comment-remove" data-social="delete-comment" data-id="${sx(c.postId)}" data-group="${sx(c.groupId||'')}" data-comment="${sx(c.id)}" aria-label="Apagar comentário">Apagar</button>`:''}</div>`;}
@@ -1274,7 +1290,7 @@ function authHtml(){
 function i(name){return `<svg class="icon icon-sm" aria-hidden="true"><use href="#i-${name}"></use></svg>`;}
 function topHtml(){
  return `${ui.lastError?`<div class="social-banner" style="background:var(--red-soft);color:var(--red)">${sx(ui.lastError)}</div>`:''}<div class="social-hero"><div><div class="eyebrow">COMUNIDADE PULSO</div><h1 class="page-title">Treine junto.</h1><p class="page-subtitle">Sua rotina é sua. Compartilhe só o que quiser.</p></div><button class="btn primary" data-social="share-open">${i('plus')} Compartilhar treino</button></div>
- <div class="social-tabs">${[['feed','Mural'],['following','Seguindo'],['groups','Grupos'],['profile','Meu perfil']].map(([k,v])=>`<button data-social="nav" data-page="${k}" class="${ui.page===k?'active':''}">${v}</button>`).join('')}</div>`;
+ <div class="social-tabs">${[['feed','Mural'],['following','Seguindo'],['challenges',`🏆 Desafios${ui.invitations.length?' ('+ui.invitations.length+')':''}`],['groups','Grupos'],['profile','Meu perfil']].map(([k,v])=>`<button data-social="nav" data-page="${k}" class="${ui.page===k?'active':''}">${v}</button>`).join('')}</div>`;
 }
 function avatar(n){return `<span class="social-avatar">${sx(initials(n))}</span>`;}
 function emptyHtml(title,desc,action=''){return `<div class="social-blank"><strong>${sx(title)}</strong><p>${sx(desc)}</p>${action}</div>`;}
@@ -1298,37 +1314,80 @@ function feedHtml(followingOnly=false){
  ${visible.length?visible.map(a=>activityCard(a)).join(''):emptyHtml('Nenhuma atividade por aqui.',followingOnly?'Siga alguém pelo código e acompanhe seus treinos publicados.':'Quando alguém compartilhar um treino, ele vai aparecer aqui.')}</div>
  <div class="social-stack"><div class="card social-card"><h3>${followingOnly?'Encontrar alguém':'O que você controla'}</h3><p>Atividades não são publicadas automaticamente. Você escolhe o treino e onde compartilhá-lo.</p><div class="social-actions"><button class="btn soft" data-social="share-open">${i('plus')} Compartilhar</button></div></div>
  ${followCard()}
- <div class="card social-card"><h3>Seus grupos</h3><p>${ui.groups.length} ${ui.groups.length===1?'grupo':'grupos'} que você participa.</p><div class="social-actions"><button class="btn" data-social="nav" data-page="groups">Ver grupos ${i('chevronright')}</button></div></div></div></div>`;
+ <div class="card social-card"><h3>Desafios entre amigos 🏆</h3><p>Crie uma competição, convide amigos e acompanhe o placar de treinos em tempo real.</p><div class="social-actions"><button class="btn primary" data-social="nav" data-page="challenges">Ver desafios</button></div></div><div class="card social-card"><h3>Seus grupos</h3><p>${ui.groups.length} ${ui.groups.length===1?'grupo':'grupos'} que você participa.</p><div class="social-actions"><button class="btn" data-social="nav" data-page="groups">Ver grupos ${i('chevronright')}</button></div></div></div></div>`;
 }
 function followCard(){return `<div class="card social-card"><h3>Seguir um atleta</h3><p>Use o código que a pessoa encontra em “Meu perfil”.</p><form id="social-follow-form" class="social-form" style="margin-top:12px"><div class="social-form-row"><div><label for="social-code">Código do atleta</label><input id="social-code" name="code" required maxlength="30" placeholder="Ex.: P9a8b7c6d5" /></div><button type="submit" class="btn primary">Buscar e seguir</button></div></form>
  ${ui.friends.length?`<div class="section-row" style="margin:17px 0 8px"><h3 class="section-title" style="font-size:13px">Seguindo (${ui.friends.length})</h3></div>${ui.friends.map(f=>`<div class="social-leader">${avatar(nameOf(f.id))}<strong style="flex:1">${sx(nameOf(f.id))}</strong><button class="btn" data-social="unfollow" data-id="${sx(f.id)}">Deixar</button></div>`).join('')}`:''}</div>`;}
 function groupsHtml(){return `<div class="social-grid"><div class="social-stack"><div class="section-row" style="margin-top:0"><h2 class="section-title">Meus grupos</h2><span class="micro">${ui.groups.length} grupos</span></div>
  ${ui.groups.length?`<div class="plans-list">${ui.groups.map(g=>`<article class="card social-group"><div class="social-card-header" style="margin:0">${avatar(g.title)}<div class="social-card-title"><strong>${sx(g.title)}</strong><small>${g.memberIds?.length||1} participantes</small></div></div><p class="micro">${sx(g.description||'Treinem juntos e acompanhem suas metas.')}</p><div class="social-actions"><button class="btn primary" data-social="open-group" data-id="${sx(g.id)}">Abrir grupo ${i('chevronright')}</button><button class="btn" data-social="copy-group" data-id="${sx(g.id)}">${i('copy')} Convite</button></div></article>`).join('')}</div>`:emptyHtml('Você ainda não está em um grupo.','Crie um grupo com amigos ou entre com um código de convite.')}
  </div><div class="social-stack"><div class="card social-card"><h3>Criar grupo</h3><form class="social-form" id="social-create-group"><div><label>Nome do grupo</label><input name="name" required maxlength="48" placeholder="Ex.: Equipe 5K" /></div><div><label>Descrição (opcional)</label><input name="description" maxlength="120" placeholder="Ex.: Desafio dos amigos" /></div><button class="btn primary" type="submit">${i('plus')} Criar grupo</button></form></div>
- <div class="card social-card"><h3>Entrar por convite</h3><p>Peça a um amigo o código do grupo.</p><form id="social-join-group" class="social-form" style="margin-top:11px"><div><label>Código de convite</label><input name="code" required maxlength="50" placeholder="Cole o código do grupo" /></div><button class="btn" type="submit">Entrar no grupo</button></form></div></div></div>`;}
+ <div class="card social-card"><h3>Entrar por convite</h3><p>Peça a um amigo o código do grupo.</p><form id="social-join-group" class="social-form" style="margin-top:11px"><div><label>Código de convite</label><input name="code" required maxlength="50" placeholder="Cole o código do grupo" /></div><label class="arena-check"><input name="autoScore" type="checkbox" /><span>Contabilizar automaticamente os novos treinos concluídos nos desafios deste grupo (opcional).</span></label><button class="btn" type="submit">Entrar no grupo</button></form></div></div></div>`;}
 function challengeValue(ch,a){if(a.date<ch.start||a.date>ch.end)return 0;return ch.metric==='distance'?(a.type==='run'?sn(a.distance):0):ch.metric==='minutes'?sn(a.duration):1;}
-function rankingHtml(ch){const values={};for(const a of ui.groupFeed){values[a.ownerId]=(values[a.ownerId]||0)+challengeValue(ch,a);}return Object.entries(values).sort((a,b)=>b[1]-a[1]).slice(0,20).map(([id,val],pos)=>`<div class="social-leader"><span class="social-rank">${pos+1}</span><strong style="flex:1">${sx(nameOf(id))}</strong><span>${fmt(val)} ${ch.metric==='distance'?'km':ch.metric==='minutes'?'min':'treinos'}</span></div>`).join('')||'<p class="micro">Ainda não há atividades compartilhadas neste período.</p>';}
-function challengeCard(ch){const mine=ui.groupFeed.reduce((sum,a)=>sum+(a.ownerId===ui.user?.uid?challengeValue(ch,a):0),0);
- return `<div class="card social-card"><div class="social-card-header"><span class="plan-type-icon">${i('target')}</span><div class="social-card-title"><strong>${sx(ch.title)}</strong><small>${day(ch.start)} até ${day(ch.end)}</small></div><span class="social-bubble">${ch.metric==='sessions'?'Frequência':ch.metric==='distance'?'Distância':'Tempo'}</span></div><p>Sua meta: <strong>${fmt(ch.target)} ${ch.metric==='distance'?'km':ch.metric==='minutes'?'minutos':'treinos'}</strong></p><div class="social-statline"><span>Seu progresso: <strong>${fmt(mine)}</strong> de ${fmt(ch.target)}</span><span>${Math.min(100,Math.round(mine/Math.max(ch.target,1)*100))}%</span></div><div class="social-bar"><i style="width:${Math.min(100,Math.max(0,mine/ch.target*100))}%"></i></div><h3 style="margin-top:17px">Classificação do grupo</h3>${rankingHtml(ch)}<p class="social-footnote">O placar contabiliza somente treinos compartilhados com este grupo.</p></div>`;}
+function rankingHtml(ch){return challengeRows(ch).map((r,pos)=>`<div class="social-leader"><span class="social-rank">${pos+1}</span><strong style="flex:1">${sx(nameOf(r.id))}</strong><span>${fmt(r.value)} ${challengeUnit(ch)}</span></div>`).join('');}
+function challengeCard(ch){const mine=challengeRows(ch).find(r=>r.id===ui.user?.uid)?.value||0;
+ return `<div class="card social-card"><div class="social-card-header"><span class="plan-type-icon">${i('target')}</span><div class="social-card-title"><strong>${sx(ch.title)}</strong><small>${day(ch.start)} até ${day(ch.end)}</small></div><span class="social-bubble">${ch.metric==='sessions'?'Frequência':ch.metric==='distance'?'Distância':'Tempo'}</span></div><p>Sua meta: <strong>${fmt(ch.target)} ${ch.metric==='distance'?'km':ch.metric==='minutes'?'minutos':'treinos'}</strong></p><div class="social-statline"><span>Seu progresso: <strong>${fmt(mine)}</strong> de ${fmt(ch.target)}</span><span>${Math.min(100,Math.round(mine/Math.max(ch.target,1)*100))}%</span></div><div class="social-bar"><i style="width:${Math.min(100,Math.max(0,mine/ch.target*100))}%"></i></div><h3 style="margin-top:17px">Classificação do grupo</h3>${rankingHtml(ch)}<div class="social-actions"><button class="btn primary" data-social="open-challenge" data-id="${sx(ch.id)}" data-group="${sx(ui.group.id)}">🏆 Abrir placar completo</button></div><p class="social-footnote">Contam os treinos compartilhados e os resumos enviados por participantes que ativaram a pontuação automática.</p></div>`;}
 function groupHtml(){const g=ui.group;if(!g)return groupsHtml();return `<div class="social-stack"><div class="social-actions" style="margin:0"><button class="btn" data-social="back-groups">${i('chevronleft')} Meus grupos</button><button class="btn" data-social="copy-group" data-id="${sx(g.id)}">${i('copy')} Copiar convite</button></div>
  <div class="card social-card"><div class="social-card-header">${avatar(g.title)}<div class="social-card-title"><strong style="font-size:18px">${sx(g.title)}</strong><small>${g.memberIds?.length||1} participantes</small></div></div><p>${sx(g.description||'Uma equipe para se motivar.')}</p><p class="social-footnote">O convite é um código de acesso: compartilhe apenas com quem deseja no grupo.</p></div>
- <div class="social-grid"><div class="social-stack"><div class="section-row" style="margin:5px 0 0"><h2 class="section-title">Desafios do grupo</h2></div>${ui.challenges.length?ui.challenges.map(challengeCard).join(''):emptyHtml('Nenhum desafio ainda.','Crie um desafio para motivar o grupo.')}
+ <div class="social-grid"><div class="social-stack"><div class="section-row" style="margin:5px 0 0"><h2 class="section-title">Desafios do grupo</h2><button class="subtle-link" data-social="nav" data-page="challenges">Arena 🏆</button></div>${ui.challenges.length?ui.challenges.map(challengeCard).join(''):emptyHtml('Nenhum desafio ainda.','Crie um desafio para motivar o grupo.')}
  <div class="section-row" style="margin:14px 0 0"><h2 class="section-title">Treinos compartilhados</h2></div>${ui.groupFeed.length?ui.groupFeed.map(a=>activityCard(a,g.id)).join(''):emptyHtml('Nenhum treino compartilhado.','Compartilhe um treino concluído para aparecer no grupo.')}</div>
- <div class="social-stack"><div class="card social-card"><h3>Novo desafio</h3><form class="social-form" id="social-create-challenge"><div><label>Título</label><input name="title" maxlength="60" required placeholder="Ex.: 50 km no mês" /></div><div><label>O que será contado?</label><select name="metric"><option value="sessions">Treinos concluídos</option><option value="distance">Quilômetros de corrida</option><option value="minutes">Minutos treinados</option></select></div><div><label>Meta por participante</label><input type="number" name="target" min="1" step="0.1" max="10000" value="10" required /></div><div class="social-split"><div><label>Início</label><input name="start" type="date" value="${futureDate(0)}" required /></div><div><label>Fim</label><input name="end" type="date" value="${futureDate(30)}" required /></div></div><button class="btn primary" type="submit">${i('plus')} Criar desafio</button></form></div>
- <div class="card social-card"><h3>Participantes</h3>${(g.memberIds||[]).map(id=>`<div class="social-leader">${avatar(nameOf(id))}<strong>${sx(nameOf(id))}</strong>${id===g.ownerId?'<span class="social-bubble">Criador</span>':''}</div>`).join('')}</div>${g.ownerId===ui.user.uid?'':`<button class="btn danger full" data-social="leave-group" data-id="${sx(g.id)}">Sair deste grupo</button>`}</div></div></div>`;}
+ <div class="social-stack"><div class="card social-card"><h3>Novo desafio</h3><form class="social-form" id="social-create-challenge"><div><label>Título</label><input name="title" maxlength="60" required placeholder="Ex.: 50 km no mês" /></div><div><label>O que será contado?</label><select name="metric"><option value="sessions">Treinos concluídos</option><option value="distance">Quilômetros de corrida</option><option value="minutes">Minutos treinados</option></select></div><div><label>Meta por participante</label><input type="number" name="target" min="1" step="0.1" max="10000" value="10" required /></div><div class="social-split"><div><label>Início</label><input name="start" type="date" value="${futureDate(0)}" required /></div><div><label>Fim</label><input name="end" type="date" value="${futureDate(30)}" required /></div></div><label class="arena-check"><input type="checkbox" name="autoScore" checked /><span>Contabilizar automaticamente meus novos treinos concluídos neste grupo.</span></label><button class="btn primary" type="submit">${i('plus')} Criar desafio</button></form></div>
+ <div class="card social-card"><h3>Pontuação automática</h3><p>Ao ativar, somente o nome, a data e o resumo dos seus novos treinos concluídos são visíveis a este grupo. Cargas e anotações continuam privadas.</p><div class="social-actions"><button class="btn ${ui.memberSettings[g.id]?.autoScore?'danger':'primary'}" data-social="toggle-autoscore" data-id="${sx(g.id)}">${ui.memberSettings[g.id]?.autoScore?'Desativar novos registros':'Ativar pontuação automática'}</button></div></div><div class="card social-card"><h3>Participantes</h3>${(g.memberIds||[]).map(id=>`<div class="social-leader">${avatar(nameOf(id))}<strong>${sx(nameOf(id))}</strong>${id===g.ownerId?'<span class="social-bubble">Criador</span>':''}</div>`).join('')}</div>${g.ownerId===ui.user.uid?'':`<button class="btn danger full" data-social="leave-group" data-id="${sx(g.id)}">Sair deste grupo</button>`}</div></div></div>`;}
 function futureDate(n){const d=new Date();d.setDate(d.getDate()+n);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+function challengeUnit(ch){return ch.metric==='distance'?'km':ch.metric==='minutes'?'min':'treinos';}
+function challengeEntries(){const unique=new Map();for(const a of [...ui.groupFeed,...ui.groupSessions]){
+ const k=a.ownerId+'_'+(a.workoutId||a.id?.slice((a.ownerId||'').length+1)||a.id);
+ if(!unique.has(k))unique.set(k,a);
+}return [...unique.values()];}
+function challengeRows(ch){const members=ui.group?.memberIds||[];const entries=challengeEntries();return members.map(id=>{
+ const matched=entries.filter(a=>a.ownerId===id&&challengeValue(ch,a)>0);
+ const value=matched.reduce((t,a)=>t+challengeValue(ch,a),0);
+ const latest=matched.sort((a,b)=>sn(b.completedAt||b.createdAt)-sn(a.completedAt||a.createdAt))[0];
+ return {id,value,count:matched.length,latest};
+}).sort((a,b)=>b.value-a.value||b.count-a.count||nameOf(a.id).localeCompare(nameOf(b.id)));}
+function arenaStatus(ch){const now=futureDate(0);return now<ch.start?'Em breve':now>ch.end?'Encerrado':'Em andamento';}
+function arenaPodium(rows,ch){if(rows.length===0)return '';
+ const places=[rows[1],rows[0],rows[2]],units=challengeUnit(ch);
+ return `<div class="arena-podium">${places.map((r,i)=>r?`<div class="arena-podium-item ${i===1?'first':i===0?'second':''}"><span class="arena-podium-avatar">${i===1?'👑':sx(initials(nameOf(r.id)))}</span><span class="arena-podium-name">${sx(nameOf(r.id))}</span><span class="arena-podium-score">${fmt(r.value)} ${units}</span><span class="arena-podium-step">${i===1?'🥇':i===0?'🥈':'🥉'}</span></div>`:'<div></div>').join('')}</div>`;}
+function arenaRankList(ch){const rows=challengeRows(ch),best=Math.max(1,...rows.map(r=>r.value)),unit=challengeUnit(ch),today=futureDate(0);
+ return `<div class="card social-card"><h3>Classificação completa</h3><p>Todos os participantes aparecem no placar, inclusive quem ainda não treinou.</p>${arenaPodium(rows,ch)}${rows.map((r,j)=>{
+ const progress=Math.min(100,Math.max(0,Math.round(r.value/best*100))),status=r.latest?.date===today?'Treinou hoje ✅':r.latest?`Último treino: ${day(r.latest.date)}`:'Ainda sem treino';
+ return `<div class="arena-leader"><div class="arena-leader-head"><span class="social-rank">${j+1}</span>${avatar(nameOf(r.id))}<span class="arena-leader-name"><strong>${sx(nameOf(r.id))}${r.id===ui.user.uid?' · você':''}</strong><small>${sx(status)} · ${r.count} ${r.count===1?'sessão':'sessões'}</small></span><span class="arena-leader-score">${fmt(r.value)} <small style="font-size:10px;color:var(--muted)">${unit}</small></span></div><div class="arena-leader-track"><div class="arena-leader-fill" style="width:${progress}%"></div></div></div>`;
+ }).join('')}</div>`;}
+function arenaActivity(ch){const list=challengeEntries().filter(a=>challengeValue(ch,a)>0).sort((a,b)=>sn(b.completedAt||b.createdAt)-sn(a.completedAt||a.createdAt)).slice(0,30);
+ return `<div class="card social-card"><h3>Atividade da competição</h3><p>Os últimos treinos realizados pelos participantes.</p>${list.length?list.map(a=>`<div class="arena-activity"><div class="arena-activity-icon">${a.type==='run'?'🏃':'💪'}</div><div><strong>${sx(nameOf(a.ownerId))} · ${sx(a.title)}</strong><small>${day(a.date)} · ${a.type==='run'?'Corrida':'Musculação'}${a.distance?' · '+fmt(a.distance)+' km':''}${a.duration?' · '+fmt(a.duration,0)+' min':''}</small></div></div>`).join(''):'<p class="arena-legend">O primeiro treino concluído depois da entrada dos participantes aparecerá aqui.</p>'}</div>`;}
+function challengeDetailHtml(){const ch=ui.challenges.find(x=>x.id===ui.challengeFocusId),g=ui.group;
+ if(!g)return `<div class="social-blank">Abra um desafio para acompanhar o placar.</div>`;
+ if(!ch)return `<div class="card social-card"><h3>Carregando desafio...</h3><p>Aguarde a sincronização dos dados.</p></div>`;
+ const rows=challengeRows(ch),mine=rows.find(r=>r.id===ui.user.uid)?.value||0,leader=rows[0]?.value||0;
+ const dayMs=86400000,today=new Date(futureDate(0)+'T12:00:00'),until=new Date(ch.end+'T12:00:00'),left=Math.max(0,Math.round((until-today)/dayMs));
+ return `<div class="arena-stack"><div class="social-actions" style="margin:0"><button class="btn" data-social="back-challenges">${i('chevronleft')} Todos os desafios</button><button class="btn" data-social="copy-group" data-id="${sx(g.id)}">${i('copy')} Convidar pessoas</button></div>
+ <div class="arena-hero"><div class="eyebrow">🏆 ${sx(arenaStatus(ch))} · ${sx(g.title)}</div><h2>${sx(ch.title)}</h2><p>${day(ch.start)} a ${day(ch.end)} · ${g.memberIds.length} ${g.memberIds.length===1?'competidor':'competidores'} · Meta de ${fmt(ch.target)} ${challengeUnit(ch)} por participante</p></div>
+ <div class="arena-stat-grid"><div class="arena-stat"><b>${fmt(mine)}</b><small>Minha pontuação (${challengeUnit(ch)})</small></div><div class="arena-stat"><b>${fmt(leader)}</b><small>Líder (${challengeUnit(ch)})</small></div><div class="arena-stat"><b>${arenaStatus(ch)==='Encerrado'?'🏁':left+'d'}</b><small>${arenaStatus(ch)==='Encerrado'?'Desafio finalizado':'Até o fim'}</small></div></div>
+ <div class="arena-grid"><div class="arena-stack">${arenaRankList(ch)}${arenaActivity(ch)}</div><div class="arena-stack"><div class="card social-card"><h3>Minha evolução</h3><p>${fmt(mine)} de ${fmt(ch.target)} ${challengeUnit(ch)} para alcançar a meta pessoal.</p><div class="social-statline"><strong>${Math.min(100,Math.round(mine/ch.target*100))}% concluído</strong><strong>${fmt(Math.max(0,ch.target-mine))} faltando</strong></div><div class="social-bar" style="height:11px"><i style="width:${Math.min(100,mine/ch.target*100)}%"></i></div><div class="social-actions"><button class="btn primary" data-social="go-today">Registrar um treino</button><button class="btn soft" data-social="share-group" data-id="${sx(g.id)}">📸 Publicar treino ou foto</button></div></div>
+ <div class="arena-invite"><strong>Convide a galera 🔗</strong><p>O grupo aceita 2 ou mais atletas. Envie o convite para seus amigos entrarem com a própria conta.</p><button class="btn" data-social="copy-group" data-id="${sx(g.id)}">${i('copy')} Copiar convite</button></div>${ui.friends.filter(f=>!(g.memberIds||[]).includes(f.id)).length?`<div class="card social-card"><h3>Convidar amigos adicionados</h3><p>O convite chega na aba Desafios do seu amigo, que escolhe se quer participar.</p>${ui.friends.filter(f=>!(g.memberIds||[]).includes(f.id)).map(f=>`<div class="social-leader">${avatar(nameOf(f.id))}<strong style="flex:1">${sx(nameOf(f.id))}</strong><button class="btn soft" data-social="invite-friend" data-user="${sx(f.id)}" data-group="${sx(g.id)}">Convidar</button></div>`).join('')}</div>`:''}
+ <div class="card social-card"><h3>Competidores (${g.memberIds.length})</h3>${g.memberIds.map(id=>`<div class="social-leader">${avatar(nameOf(id))}<strong style="flex:1">${sx(nameOf(id))}</strong><span class="social-chip">${id===g.ownerId?'Criador':'Participante'}</span></div>`).join('')}</div>
+ <div class="card social-card"><h3>Como funciona?</h3><p>Quando você ativa a pontuação automática, seus novos treinos concluídos contam para os desafios deste grupo. Só o resumo fica visível; notas e cargas continuam privadas. Também é possível compartilhar uma publicação com foto no grupo.</p><div class="social-actions"><button class="btn ${ui.memberSettings[g.id]?.autoScore?'soft':'primary'}" data-social="toggle-autoscore" data-id="${sx(g.id)}">${ui.memberSettings[g.id]?.autoScore?'✅ Pontuação automática ligada':'Ativar pontuação automática'}</button></div><p class="social-footnote">Sem registro de treino em andamento: o status “treinou hoje” só aparece quando a conclusão é salva.</p></div></div></div></div>`;}
+function challengeListHtml(){const list=ui.challengeOverview.slice().sort((a,b)=>sn(b.challenge.createdAt)-sn(a.challenge.createdAt));
+ return `<div class="arena-hero"><div class="eyebrow">COMPETIÇÃO ENTRE AMIGOS</div><h2>Sua arena de desafios 🏆</h2><p>Crie uma disputa de treinos, corrida ou minutos de exercício. Convide seus amigos e acompanhe quem está liderando.</p></div>
+ ${ui.invitations.length?`<div class="card social-card" style="margin-bottom:15px"><h3>📩 Convites para competir (${ui.invitations.length})</h3><p>Seus amigos te chamaram para estas competições.</p>${ui.invitations.map(inv=>`<div class="social-leader">${avatar(nameOf(inv.fromId))}<div style="flex:1;min-width:0"><strong style="display:block;font-size:12px">${sx(inv.groupTitle)}</strong><span class="micro">Convite de ${sx(nameOf(inv.fromId))}</span></div><button class="btn primary" data-social="accept-invite" data-id="${sx(inv.groupId)}">Aceitar</button></div>`).join('')}</div>`:''}<div class="arena-grid"><div class="arena-stack"><div class="section-row" style="margin:0"><h2 class="section-title">Meus desafios</h2><button class="subtle-link" data-social="refresh">Atualizar ↻</button></div>
+ ${list.length?list.map(({group:g,challenge:ch})=>`<button class="arena-challenge-card" data-social="open-challenge" data-id="${sx(ch.id)}" data-group="${sx(g.id)}"><span class="social-bubble">${sx(arenaStatus(ch))}</span><h3>🏆 ${sx(ch.title)}</h3><p>${sx(g.title)} · ${g.memberIds.length} participantes · ${day(ch.start)} — ${day(ch.end)}</p><div class="social-statline"><span>Meta: <strong>${fmt(ch.target)} ${challengeUnit(ch)}</strong></span><span>Ver placar →</span></div></button>`).join(''):emptyHtml('Ainda não há desafios.','Crie o primeiro desafio e convide seu amigo. Assim que entrarem, o placar aparecerá aqui.')}
+ </div><div class="arena-stack"><div class="card social-card"><h3>🏆 Criar uma competição</h3><p>Crie um desafio privado e envie o código para os amigos. Vale para 2 ou mais pessoas.</p>
+ <form class="social-form" id="social-quick-challenge" style="margin-top:15px"><div><label>Nome do desafio</label><input required name="title" maxlength="48" placeholder="Ex.: Quem treina mais em dezembro?" /></div><div><label>Tipo de placar</label><select name="metric"><option value="sessions">Número de treinos concluídos</option><option value="distance">Quilômetros de corrida</option><option value="minutes">Minutos treinados</option></select></div><div><label>Meta por atleta</label><input name="target" type="number" min="1" max="10000" step="0.1" value="12" required /></div><div class="social-split"><div><label>Início</label><input name="start" type="date" value="${futureDate(0)}" required /></div><div><label>Fim</label><input name="end" type="date" value="${futureDate(30)}" required /></div></div><label class="arena-check"><input name="autoScore" type="checkbox" required checked /><span>Concordo em enviar automaticamente <strong>resumos dos meus novos treinos concluídos</strong> aos participantes deste desafio. Sem notas pessoais ou cargas.</span></label><button class="btn primary" type="submit">Criar e gerar convite</button></form></div>
+ <div class="card social-card"><h3>Entrar em um desafio</h3><p>Cole o código que seu amigo compartilhou.</p><form class="social-form" id="social-join-challenge" style="margin-top:11px"><div><label>Código do desafio</label><input required name="code" maxlength="50" placeholder="Cole o código aqui" /></div><label class="arena-check"><input type="checkbox" name="autoScore" required checked /><span>Concordo em compartilhar o resumo dos novos treinos concluídos com os participantes.</span></label><button class="btn" type="submit">Entrar na competição</button></form></div>
+ ${ui.friends.length?`<div class="card social-card"><h3>Amigos que você segue</h3><p>Convide-os enviando o código do desafio após criá-lo.</p>${ui.friends.slice(0,12).map(f=>`<div class="social-leader">${avatar(nameOf(f.id))}<strong>${sx(nameOf(f.id))}</strong></div>`).join('')}</div>`:''}
+ </div></div>`;}
 function profileHtml(){return `<div class="social-grid"><div class="social-stack"><div class="card social-card"><div class="social-card-header">${accountAvatar()}<div class="social-card-title"><strong>${sx(ui.profile?.name||'Atleta')}</strong><small>${sx(ui.user?.email||'')}</small></div></div><form id="social-profile-form" class="social-form"><div><label>Nome exibido</label><input required name="name" maxlength="44" value="${sx(ui.profile?.name||'')}" /></div><button class="btn soft" type="submit">Salvar meu nome</button></form></div><div class="card social-card"><h3>Seu código de atleta</h3><p>Passe este código para alguém seguir suas atividades compartilhadas.</p><div class="social-code">${sx(ui.profile?.code||'—')}</div><button class="btn" data-social="copy-profile">${i('copy')} Copiar código</button></div></div>
  <div class="social-stack"><div class="card social-card"><h3>Privacidade</h3><p>Planos, cargas, notas e treinos ficam privados. Quando você escolhe compartilhar, apenas os dados exibidos na confirmação são publicados para a audiência selecionada.</p><p>Na comunidade, qualquer pessoa com uma conta pode ver a publicação. Nos grupos, apenas integrantes podem ler os registros.</p></div>
  <div class="card social-card"><h3>Sincronização</h3><p>Ao entrar em sua conta, treinos e hábitos pessoais são sincronizados na nuvem e entre aparelhos conectados com este mesmo login.</p><p class="social-footnote">${sx(ui.syncLabel||'Sincronização ativada.')}</p><div class="social-actions"><button class="btn" data-social="sync-now">${i('upload')} Sincronizar agora</button></div></div>
  <button class="btn danger full" data-social="logout">Sair da conta</button></div></div>`;}
 function shareHtml(){const all=window.PulsoLocal?.get?.().workouts||[];const done=all.filter(w=>w.status==='done').sort((a,b)=>(b.result?.completedAt||b.date).localeCompare(a.result?.completedAt||a.date)).slice(0,75);
  return `<div class="card social-card" style="margin-bottom:16px"><h3>Compartilhar um treino concluído</h3><p>Escolha o treino e, se quiser, adicione uma legenda e uma foto. Nada é publicado automaticamente.</p>
- ${done.length?`<form class="social-form" id="social-share-form" style="margin-top:16px"><div><label>Treino realizado</label><select required name="workout">${done.map(w=>`<option value="${sx(w.id)}" ${ui.shareSelected===w.id?'selected':''}>${sx(day(w.date))} · ${sx(w.title)}</option>`).join('')}</select></div><div><label>Compartilhar com</label><select required name="audience"><option value="public">Comunidade (todos com login)</option>${ui.groups.map(g=>`<option value="group:${sx(g.id)}">Grupo: ${sx(g.title)}</option>`).join('')}</select></div><div><label>Legenda (opcional)</label><input name="caption" maxlength="280" placeholder="Ex.: Hoje o treino rendeu! 💪" /></div><div><label>Foto do treino (opcional)</label><input id="social-photo-file" name="photo" type="file" accept="image/*" /><img id="social-photo-preview" class="social-photo-preview" alt="Prévia da foto escolhida" /><p class="social-footnote">A foto será compactada automaticamente e salva junto à publicação. Não precisa ativar Firebase Storage.</p></div><div><label>Duração real da sessão (min) · opcional</label><input type="number" name="minutes" min="0" max="1440" step="1" placeholder="Para pontuar em desafios por tempo" /></div><p class="social-footnote">Compartilha o treino, o resumo, a legenda e a foto escolhida. Observações pessoais continuam privadas.</p><button class="btn primary" type="submit" ${ui.busy?'disabled':''}>${i('check')} Publicar treino</button></form>`:emptyHtml('Sem treinos concluídos.','Marque um treino como realizado na aba Hoje antes de compartilhar.')}
+ ${done.length?`<form class="social-form" id="social-share-form" style="margin-top:16px"><div><label>Treino realizado</label><select required name="workout">${done.map(w=>`<option value="${sx(w.id)}" ${ui.shareSelected===w.id?'selected':''}>${sx(day(w.date))} · ${sx(w.title)}</option>`).join('')}</select></div><div><label>Compartilhar com</label><select required name="audience"><option value="public" ${ui.shareAudience==='public'||!ui.shareAudience?'selected':''}>Comunidade (todos com login)</option>${ui.groups.map(g=>`<option value="group:${sx(g.id)}" ${ui.shareAudience==='group:'+g.id?'selected':''}>Grupo: ${sx(g.title)}</option>`).join('')}</select></div><div><label>Legenda (opcional)</label><input name="caption" maxlength="280" placeholder="Ex.: Hoje o treino rendeu! 💪" /></div><div><label>Foto do treino (opcional)</label><input id="social-photo-file" name="photo" type="file" accept="image/*" /><img id="social-photo-preview" class="social-photo-preview" alt="Prévia da foto escolhida" /><p class="social-footnote">A foto será compactada automaticamente e salva junto à publicação. Não precisa ativar Firebase Storage.</p></div><div><label>Duração real da sessão (min) · opcional</label><input type="number" name="minutes" min="0" max="1440" step="1" placeholder="Para pontuar em desafios por tempo" /></div><p class="social-footnote">Compartilha o treino, o resumo, a legenda e a foto escolhida. Observações pessoais continuam privadas.</p><button class="btn primary" type="submit" ${ui.busy?'disabled':''}>${i('check')} Publicar treino</button></form>`:emptyHtml('Sem treinos concluídos.','Marque um treino como realizado na aba Hoje antes de compartilhar.')}
  <div class="social-actions"><button class="btn" data-social="share-close">Cancelar</button></div></div>`;}
 function mount(){renderAccountUi();const root=socialRoot();if(!root)return;
  if(!configured||!ui.user){root.innerHTML=authHtml();return;}
  if(!ui.ready){root.innerHTML=`<div class="card social-card"><h3>Preparando sua comunidade...</h3><p>Carregando seus dados de conta.</p></div>`;return;}
- root.innerHTML=topHtml()+(ui.page==='share'?shareHtml():ui.page==='following'?feedHtml(true):ui.page==='groups'?groupsHtml():ui.page==='group'?groupHtml():ui.page==='profile'?profileHtml():feedHtml(false));
+ root.innerHTML=topHtml()+(ui.page==='share'?shareHtml():ui.page==='following'?feedHtml(true):ui.page==='groups'?groupsHtml():ui.page==='group'?groupHtml():ui.page==='challenges'?challengeListHtml():ui.page==='challenge'?challengeDetailHtml():ui.page==='profile'?profileHtml():feedHtml(false));
 }
 window.PulsoSocial = {mount,renderAccountUi,showShare(id=''){ui.shareSelected=id;ui.page='share';window.PulsoLocal?.navigate?.('social');mount();},scheduleSync(){if(!ui.user||!ui.ready||paused)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>syncLocal(false),700);}};
 async function profileEnsure(user){const ref=fire.doc(db,'profiles',user.uid),snap=await fire.getDoc(ref);if(snap.exists())return {id:user.uid,...snap.data()};
@@ -1336,7 +1395,8 @@ async function profileEnsure(user){const ref=fire.doc(db,'profiles',user.uid),sn
  await fire.setDoc(ref,profile);return {id:user.uid,...profile};}
 async function loadPeople(ids=[]){for(const uid of [...new Set(ids.filter(Boolean))]){if(ui.people[uid])continue;try{const r=await fire.getDoc(fire.doc(db,'profiles',uid));if(r.exists())ui.people[uid]=r.data();}catch(e){console.warn('Perfil indisponível:',e);}}}
 async function loadFollows(){const res=await fire.getDocs(fire.collection(db,'follows',ui.user.uid,'users'));ui.friends=res.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.friends.map(f=>f.id));}
-async function loadGroups(){const r=await fire.getDocs(fire.collection(db,'memberships',ui.user.uid,'groups'));const list=[];
+async function loadGroups(){const r=await fire.getDocs(fire.collection(db,'memberships',ui.user.uid,'groups'));const list=[];ui.memberSettings={};
+ for(const d of r.docs){ui.memberSettings[d.id]=d.data();}
  for(const d of r.docs){try{const g=await fire.getDoc(fire.doc(db,'groups',d.id));if(g.exists()&&g.data().memberIds?.includes(ui.user.uid))list.push({id:g.id,...g.data()});}catch(e){console.warn('Grupo indisponível:',e);}}
  ui.groups=list;await loadPeople(list.flatMap(g=>g.memberIds||[]));}
 async function loadFeed(){const q=fire.query(fire.collection(db,'activities'),fire.orderBy('createdAt','desc'),fire.limit(60));const r=await fire.getDocs(q);ui.feed=r.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.feed.map(a=>a.ownerId));}
@@ -1344,27 +1404,69 @@ function startFeedStream(){if(unsubFeed)unsubFeed();const userId=ui.user?.uid;
  unsubFeed=fire.onSnapshot(fire.query(fire.collection(db,'activities'),fire.orderBy('createdAt','desc'),fire.limit(60)),async snap=>{
   if(!ui.user||ui.user.uid!==userId)return;ui.feed=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.feed.map(a=>a.ownerId));if(['feed','following'].includes(ui.page))mount();
  },e=>{ui.lastError='Erro ao atualizar mural: '+errorMessage(e);console.error(e);mount();});}
-async function loadGroup(gid){const g=ui.groups.find(a=>a.id===gid);if(!g){showToast('Você não participa deste grupo.');return;}
- ui.group=g;ui.page='group';mount();const [a,c]=await Promise.all([
-  fire.getDocs(fire.query(fire.collection(db,'groups',gid,'activities'),fire.orderBy('createdAt','desc'),fire.limit(400))),
-  fire.getDocs(fire.query(fire.collection(db,'groups',gid,'challenges'),fire.orderBy('createdAt','desc'),fire.limit(40)))
- ]);
- ui.groupFeed=a.docs.map(d=>({id:d.id,...d.data()}));ui.challenges=c.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(t=>t.ownerId));mount();
- if(unsubGroup)unsubGroup();const userId=ui.user?.uid;
+async function startInvitations(){if(unsubInvites)unsubInvites();const id=ui.user.uid;unsubInvites=fire.onSnapshot(fire.collection(db,'invites',id,'received'),async snap=>{if(ui.user?.uid!==id)return;ui.invitations=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.invitations.map(x=>x.fromId));if(ui.page==='challenges')mount();},e=>{console.warn('Falha ao consultar convites',e);});}
+async function loadChallengeOverview(){if(!ui.user)return;const items=await Promise.all(ui.groups.map(async g=>{
+ try{const snap=await fire.getDocs(fire.collection(db,'groups',g.id,'challenges'));return snap.docs.map(d=>({group:g,challenge:{id:d.id,...d.data()}}));}
+ catch(e){console.warn('Desafios indisponíveis:',e);return [];}
+}));ui.challengeOverview=items.flat();if(ui.page==='challenges')mount();}
+function stopGroupStreams(){for(const fn of [unsubGroup,unsubGroupChallenges,unsubGroupSessions,unsubGroupMeta])if(fn)fn();unsubGroup=unsubGroupChallenges=unsubGroupSessions=unsubGroupMeta=null;}
+async function loadGroup(gid,page='group',challengeId=''){
+ const g=ui.groups.find(a=>a.id===gid);if(!g){showToast('Você não participa deste desafio.');return;}
+ stopGroupStreams();ui.group=g;ui.page=page;ui.challengeFocusId=challengeId;ui.groupFeed=[];ui.groupSessions=[];ui.challenges=[];mount();
+ const userId=ui.user?.uid,active=()=>ui.user?.uid===userId&&ui.group?.id===gid;
+ const groupRef=fire.doc(db,'groups',gid);
+ unsubGroupMeta=fire.onSnapshot(groupRef,async snap=>{if(!active())return;
+  if(!snap.exists()){ui.lastError='Este grupo não existe mais.';mount();return;}
+  const value={id:gid,...snap.data()};ui.group=value;ui.groups=ui.groups.map(x=>x.id===gid?value:x);await loadPeople(value.memberIds||[]);if(active())mount();
+ },e=>{ui.lastError='Não foi possível atualizar participantes: '+errorMessage(e);mount();});
  unsubGroup=fire.onSnapshot(fire.query(fire.collection(db,'groups',gid,'activities'),fire.orderBy('createdAt','desc'),fire.limit(400)),async snap=>{
-  if(!ui.user||ui.user.uid!==userId||ui.group?.id!==gid)return;
-  ui.groupFeed=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(t=>t.ownerId));if(ui.page==='group')mount();
- },e=>{ui.lastError='Erro ao atualizar grupo: '+errorMessage(e);console.error(e);mount();});}
+  if(!active())return;ui.groupFeed=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupFeed.map(a=>a.ownerId));if(active())mount();
+ },e=>{ui.lastError='Erro ao atualizar grupo: '+errorMessage(e);mount();});
+ unsubGroupSessions=fire.onSnapshot(fire.query(fire.collection(db,'groups',gid,'challengeSessions'),fire.orderBy('createdAt','desc'),fire.limit(500)),async snap=>{
+  if(!active())return;ui.groupSessions=snap.docs.map(d=>({id:d.id,...d.data()}));await loadPeople(ui.groupSessions.map(a=>a.ownerId));if(active())mount();
+ },e=>{ui.lastError='Erro ao atualizar placar: '+errorMessage(e);mount();});
+ unsubGroupChallenges=fire.onSnapshot(fire.query(fire.collection(db,'groups',gid,'challenges'),fire.orderBy('createdAt','desc'),fire.limit(40)),snap=>{
+  if(!active())return;ui.challenges=snap.docs.map(d=>({id:d.id,...d.data()}));if(active())mount();
+ },e=>{ui.lastError='Erro ao atualizar desafios: '+errorMessage(e);mount();});
+}
+// Inscrição explícita: somente resumos de novos treinos feitos após o aceite entram no placar.
+async function syncChallengeWorkouts(){if(!ui.user||!ui.ready||paused)return;
+ const uid=ui.user.uid,workouts=window.PulsoLocal?.get?.().workouts||[];
+ const selectedGroups=ui.groups.filter(g=>ui.memberSettings[g.id]?.autoScore);
+ const sig=JSON.stringify([uid,selectedGroups.map(g=>[g.id,ui.memberSettings[g.id].consentAt]),workouts.filter(w=>w.status==='done').map(w=>[w.id,w.date,w.title,w.type,w.result?.completedAt,w.result?.run?.distance,w.result?.run?.duration,w.run?.distance,w.run?.duration])]);
+ if(sig===lastChallengeSignature)return;
+ let failed=false;
+ for(const g of ui.groups){const member=ui.memberSettings[g.id];if(!member?.autoScore)continue;
+  try{const q=await fire.getDocs(fire.collection(db,'groups',g.id,'challenges'));const challenges=q.docs.map(d=>d.data());if(!challenges.length)continue;
+   const sessionCol=fire.collection(db,'groups',g.id,'challengeSessions');
+   const existing=await fire.getDocs(fire.query(sessionCol,fire.where('ownerId','==',uid)));
+   const existingMap=new Map(existing.docs.map(d=>[d.data().workoutId,{id:d.id,ref:d.ref,data:d.data()}]));
+   for(const w of workouts){const previous=existingMap.get(String(w.id)),done=w.status==='done';
+    if(!done){if(previous)await fire.deleteDoc(previous.ref);continue;}
+    const completedAt=Date.parse(w.result?.completedAt||'');const consentAt=sn(member.consentAt||member.joinedAt);
+    const eligible=challenges.some(ch=>w.date>=ch.start&&w.date<=ch.end&&completedAt>=Math.max(sn(ch.createdAt),consentAt));
+    if(!eligible||!Number.isFinite(completedAt))continue;
+    const score={...serializeWorkout(w),workoutId:String(w.id).slice(0,80),completedAt,details:[]};delete score.details;
+    const data={ownerId:uid,workoutId:score.workoutId,title:score.title,date:score.date,type:score.type,distance:score.distance,duration:score.duration,completedAt,createdAt:previous?.data.createdAt||Date.now()};
+    if(previous){const old=previous.data;if(['title','date','type','distance','duration','completedAt'].every(k=>old[k]===data[k]))continue;
+      await fire.setDoc(previous.ref,data);}
+    else await fire.setDoc(fire.doc(sessionCol,uid+'_'+String(w.id).replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,80)),data);
+   }
+  }catch(e){failed=true;console.warn('Falha ao atualizar placar do grupo '+g.id,e);ui.syncLabel='Treinos salvos; placar pendente: '+errorMessage(e);}
+ }
+ if(!failed)lastChallengeSignature=sig;
+}
 async function syncLocal(force=false){if(!ui.user||(!ui.ready&&!force)||paused)return;
  const id=ui.user.uid,payload={...window.PulsoLocal.get(),updatedAt:Date.now(),version:4};
  ui.syncLabel='Sincronizando...';
  saveChain=saveChain.then(async()=>{
    await fire.setDoc(fire.doc(db,'accounts',id,'data','main'),payload);
    ui.syncLabel='Última sincronização: '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+   await syncChallengeWorkouts();
  }).catch(e=>{ui.syncLabel='Falha ao sincronizar: '+errorMessage(e);notifyError(e);});
  await saveChain;
 }
-async function initializeAccount(user){closeSocialSubscriptions();paused=true;ui.ready=false;ui.group=null;ui.page='feed';ui.accountOpen=false;ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.lastError='';
+async function initializeAccount(user){closeSocialSubscriptions();paused=true;lastChallengeSignature='';ui.ready=false;ui.group=null;ui.page='feed';ui.accountOpen=false;ui.user=user;ui.people={};ui.feed=[];ui.friends=[];ui.groups=[];ui.groupSessions=[];ui.memberSettings={};ui.challengeOverview=[];ui.invitations=[];ui.lastError='';
  window.PulsoLocal?.switchAccount(user.uid);mount();
  try{
   const [prof,remote]=await Promise.all([profileEnsure(user),fire.getDoc(fire.doc(db,'accounts',user.uid,'data','main'))]);
@@ -1391,8 +1493,8 @@ async function initializeAccount(user){closeSocialSubscriptions();paused=true;ui
   }
   localStorage.setItem('pulso_synced_'+user.uid,'1');
   ui.ready=true;paused=false;
-  await Promise.all([loadGroups(),loadFollows(),loadFeed()]);
-  startFeedStream();mount();await syncLocal(true);
+  await Promise.all([loadGroups(),loadFollows(),loadFeed()]);await loadChallengeOverview();
+  startFeedStream();await startInvitations();mount();await syncLocal(true);
  }catch(e){ui.ready=true;paused=false;notifyError(e);}
 }
 async function doAuth(form){if(!configured)return;const fd=new FormData(form);setBusy(true);
@@ -1416,14 +1518,15 @@ async function doFollow(form){const code=String(new FormData(form).get('code')||
  ui.people[p.id]=p.data();await loadFollows();showToast('Agora você segue '+p.data().name+'.');mount();}
 async function createGroup(form){const d=new FormData(form),name=String(d.get('name')||'').trim().slice(0,48);if(name.length<3)throw Error('O nome do grupo precisa ter pelo menos 3 caracteres.');
  const ref=fire.doc(fire.collection(db,'groups'));const g={ownerId:ui.user.uid,title:name,description:String(d.get('description')||'').trim().slice(0,120),memberIds:[ui.user.uid],createdAt:Date.now()};
- await fire.setDoc(ref,g);await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',ref.id),{joinedAt:Date.now()});await loadGroups();showToast('Grupo criado! Compartilhe o convite.');mount();}
+ await fire.setDoc(ref,g);await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',ref.id),{joinedAt:Date.now(),autoScore:false});await loadGroups();showToast('Grupo criado! Compartilhe o convite.');mount();}
 async function joinGroup(form){const code=String(new FormData(form).get('code')||'').trim();if(!/^[a-zA-Z0-9]{15,30}$/.test(code))throw Error('Código de grupo inválido.');
  const ref=fire.doc(db,'groups',code),s=await fire.getDoc(ref);if(!s.exists())throw Error('Grupo não encontrado.');const g=s.data();
  if(!g.memberIds?.includes(ui.user.uid)){
    if(g.memberIds.length>=100)throw Error('Este grupo atingiu o limite de 100 pessoas.');
    await fire.updateDoc(ref,{memberIds:fire.arrayUnion(ui.user.uid)});
  }
- await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',code),{joinedAt:Date.now()});await loadGroups();showToast('Você entrou no grupo!');mount();}
+ const consent=Boolean(new FormData(form).get('autoScore'));const prior=ui.memberSettings[code]||{};
+ await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',code),{joinedAt:prior.joinedAt||Date.now(),autoScore:consent||Boolean(prior.autoScore),...(consent?{consentAt:Date.now()}:{...(prior.consentAt?{consentAt:prior.consentAt}:{})})});await loadGroups();showToast('Você entrou no grupo!');mount();}
 async function leaveGroup(gid){const g=ui.groups.find(x=>x.id===gid);if(!g)return;
  if(g.ownerId===ui.user.uid && g.memberIds.length>1)throw Error('O criador só pode sair depois que os outros membros saírem.');
  if(g.ownerId===ui.user.uid)throw Error('O criador não pode sair. Se quiser, crie outro grupo.');
@@ -1456,29 +1559,76 @@ async function shareWorkout(form){const d=new FormData(form),id=String(d.get('wo
  if(aud==='public'){await fire.setDoc(fire.doc(db,'activities',docId),data);await loadFeed();ui.page='feed';}
  else if(aud.startsWith('group:')){const gid=aud.slice(6);if(!ui.groups.some(g=>g.id===gid))throw Error('Você não participa deste grupo.');await fire.setDoc(fire.doc(db,'groups',gid,'activities',docId),data);await loadGroup(gid);}
  else throw Error('Escolha onde compartilhar.');
- ui.shareSelected='';showToast('Treino publicado! Seu amigo já pode ver e comentar.');mount();}
+ ui.shareSelected='';ui.shareAudience='';showToast('Treino publicado! Seu amigo já pode ver e comentar.');mount();}
 async function createChallenge(form){if(!ui.group)throw Error('Abra um grupo primeiro.');const f=new FormData(form),start=String(f.get('start')),end=String(f.get('end'));
  if(!/^\d{4}-\d{2}-\d{2}$/.test(start)||!/^\d{4}-\d{2}-\d{2}$/.test(end)||start>end)throw Error('Confira as datas do desafio.');
  const ref=fire.doc(fire.collection(db,'groups',ui.group.id,'challenges'));
  const data={title:String(f.get('title')||'Desafio').trim().slice(0,60),metric:String(f.get('metric')||'sessions'),target:sn(f.get('target')),start,end,createdBy:ui.user.uid,createdAt:Date.now()};
  if(!data.title||!['sessions','distance','minutes'].includes(data.metric)||data.target<=0||data.target>10000)throw Error('Confira os dados do desafio.');
- await fire.setDoc(ref,data);await loadGroup(ui.group.id);showToast('Desafio criado!');}
+ await fire.setDoc(ref,data);if(f.get('autoScore'))await enableAutoScore(ui.group.id,true);await loadGroup(ui.group.id);await loadChallengeOverview();showToast('Desafio criado!');}
+async function enableAutoScore(gid,enabled){if(!ui.groups.some(g=>g.id===gid))throw Error('Você não participa deste grupo.');
+ const previous=ui.memberSettings[gid]||{};
+ const changes={joinedAt:previous.joinedAt||Date.now(),autoScore:Boolean(enabled),...(enabled?{consentAt:Date.now()}:(previous.consentAt?{consentAt:previous.consentAt}:{}))};
+ await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',gid),changes);
+ ui.memberSettings[gid]=changes;if(enabled)await syncChallengeWorkouts();mount();
+ showToast(enabled?'Seus próximos treinos vão contar no placar.':'Envio automático desativado.');
+}
+function challengeFields(f){const d=new FormData(f),start=String(d.get('start')||''),end=String(d.get('end')||''),metric=String(d.get('metric')||'sessions'),target=sn(d.get('target'));
+ const title=String(d.get('title')||'').trim().slice(0,48);
+ if(!title||title.length<3)throw Error('Dê um nome de pelo menos 3 caracteres ao desafio.');
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(start)||!/^\d{4}-\d{2}-\d{2}$/.test(end)||start>end)throw Error('Confira o início e o fim do desafio.');
+ if(!['sessions','distance','minutes'].includes(metric)||target<=0||target>10000)throw Error('Confira a meta e o tipo de pontuação.');
+ if(!d.get('autoScore'))throw Error('Para criar a competição, autorize o envio do resumo dos novos treinos.');
+ return {title,metric,target,start,end};}
+async function quickChallenge(form){const fields=challengeFields(form),now=Date.now();
+ const ref=fire.doc(fire.collection(db,'groups'));
+ const group={ownerId:ui.user.uid,title:fields.title,description:'Competição do Pulso entre amigos',memberIds:[ui.user.uid],createdAt:now};
+ await fire.setDoc(ref,group);
+ await fire.setDoc(fire.doc(db,'memberships',ui.user.uid,'groups',ref.id),{joinedAt:now,autoScore:true,consentAt:now});
+ const ch=fire.doc(fire.collection(db,'groups',ref.id,'challenges'));
+ await fire.setDoc(ch,{...fields,createdBy:ui.user.uid,createdAt:now});
+ await loadGroups();await loadChallengeOverview();await loadGroup(ref.id,'challenge',ch.id);
+ showToast('Desafio criado! Agora copie o convite e envie para seus amigos.');}
+async function joinChallenge(form){const d=new FormData(form);if(!d.get('autoScore'))throw Error('Confirme o aceite para participar da pontuação.');
+ await joinGroup(form);const gid=String(d.get('code')||'').trim();await loadChallengeOverview();
+ const challenges=ui.challengeOverview.filter(e=>e.group.id===gid);
+ if(!challenges.length){showToast('Você entrou no grupo. Peça ao criador para iniciar o desafio.');return;}
+ await loadGroup(gid,'challenge',challenges[0].challenge.id);showToast('Você entrou na competição!');}
+async function inviteFriend(targetUid,gid){if(!ui.friends.some(f=>f.id===targetUid))throw Error('Adicione este atleta primeiro para convidá-lo.');
+ const g=ui.groups.find(x=>x.id===gid);if(!g)throw Error('Grupo não encontrado.');
+ if(g.memberIds.includes(targetUid))throw Error('Este atleta já participa.');
+ await fire.setDoc(fire.doc(db,'invites',targetUid,'received',gid),{groupId:gid,groupTitle:g.title,fromId:ui.user.uid,createdAt:Date.now()});
+ showToast('Convite enviado para '+nameOf(targetUid)+'!');}
+async function acceptInvite(gid){const invite=ui.invitations.find(x=>x.groupId===gid);if(!invite)throw Error('Este convite não está mais disponível.');
+ if(!confirm('Ao participar, o grupo verá apenas o resumo dos seus NOVOS treinos concluídos (data, tipo, título, distância e duração). Aceitar o convite?'))return;
+ const form=document.createElement('form');form.innerHTML='<input name="code"><input name="autoScore" type="checkbox" checked>';form.elements.code.value=gid;
+ await joinGroup(form);await fire.deleteDoc(fire.doc(db,'invites',ui.user.uid,'received',gid));
+ await loadChallengeOverview();const matches=ui.challengeOverview.filter(x=>x.group.id===gid);
+ if(matches.length){await loadGroup(gid,'challenge',matches[0].challenge.id);}else{await loadGroup(gid,'group');}
+ showToast('Você entrou no desafio! Seus próximos treinos vão pontuar.');}
 async function onClick(b){const a=b.dataset.social;try{
  if(a==='google'){doGoogleLogin();}
  else if(a==='auth-view'){ui.authMode=b.dataset.mode;mount();}
  else if(a==='forgot'){const email=prompt('Qual e-mail você usa no Pulso?');if(email){await fire.sendPasswordResetEmail(auth,email.trim());showToast('E-mail de redefinição enviado.');}}
  else if(a==='logout'){if(confirm('Sair desta conta? Seus dados salvos permanecerão na nuvem.'))await fire.signOut(auth);}
- else if(a==='nav'){ui.page=b.dataset.page;ui.group=null;mount();}
- else if(a==='share-open'){ui.shareSelected='';ui.page='share';mount();}
+ else if(a==='nav'){ui.page=b.dataset.page;ui.group=null;stopGroupStreams();mount();if(ui.page==='challenges')await loadChallengeOverview();}
+ else if(a==='share-open'){ui.shareSelected='';ui.shareAudience='';ui.page='share';mount();}
+ else if(a==='share-group'){ui.shareSelected='';ui.shareAudience='group:'+b.dataset.id;ui.page='share';mount();}
  else if(a==='share-close'){ui.page='feed';mount();}
- else if(a==='refresh'){await Promise.all([loadFeed(),loadGroups(),loadFollows()]);if(ui.group)await loadGroup(ui.group.id);mount();showToast('Atualizado.');}
+ else if(a==='refresh'){await Promise.all([loadFeed(),loadGroups(),loadFollows()]);await loadChallengeOverview();if(ui.group)await loadGroup(ui.group.id,ui.page,ui.challengeFocusId);mount();showToast('Atualizado.');}
  else if(a==='toggle-comments')await toggleComments(b.dataset.id,b.dataset.group||'');
  else if(a==='delete-comment'){if(confirm('Apagar este comentário?'))await deleteComment(b.dataset.id,b.dataset.group||'',b.dataset.comment);}
  else if(a==='unfollow'){await fire.deleteDoc(fire.doc(db,'follows',ui.user.uid,'users',b.dataset.id));await loadFollows();mount();}
  else if(a==='open-group')await loadGroup(b.dataset.id);
+ else if(a==='invite-friend')await inviteFriend(b.dataset.user,b.dataset.group);
+ else if(a==='accept-invite')await acceptInvite(b.dataset.id);
+ else if(a==='open-challenge')await loadGroup(b.dataset.group,'challenge',b.dataset.id);
+ else if(a==='back-challenges'){stopGroupStreams();ui.group=null;ui.page='challenges';await loadChallengeOverview();mount();}
+ else if(a==='toggle-autoscore'){const gid=b.dataset.id;const current=!!ui.memberSettings[gid]?.autoScore;if(!current||confirm('Parar de enviar novos treinos para este grupo? Os resultados anteriores permanecem no placar.'))await enableAutoScore(gid,!current);}
+ else if(a==='go-today'){window.PulsoLocal?.navigate?.('today');}
  else if(a==='back-groups'){ui.group=null;ui.page='groups';mount();}
  else if(a==='copy-profile'){await navigator.clipboard.writeText(ui.profile.code);showToast('Código copiado.');}
- else if(a==='copy-group'){await navigator.clipboard.writeText(b.dataset.id);showToast('Convite copiado.');}
+ else if(a==='copy-group'){await navigator.clipboard.writeText(b.dataset.id);showToast('Código do convite copiado. Envie aos seus amigos!');}
  else if(a==='sync-now'){await syncLocal(true);showToast('Treinos sincronizados.');mount();}
  else if(a==='remove-activity'){
   if(!confirm('Remover esta publicação? O treino pessoal continuará salvo.'))return;
@@ -1510,7 +1660,7 @@ document.addEventListener('submit',async event=>{const form=event.target;
  if(!form.id?.startsWith('social-'))return;event.preventDefault();
  if(ui.busy)return;const method={
   'social-auth-form':doAuth,'social-follow-form':doFollow,'social-create-group':createGroup,'social-join-group':joinGroup,
-  'social-share-form':shareWorkout,'social-create-challenge':createChallenge,
+  'social-share-form':shareWorkout,'social-create-challenge':createChallenge,'social-quick-challenge':quickChallenge,'social-join-challenge':joinChallenge,
   'social-profile-form':async f=>{const name=String(new FormData(f).get('name')||'').trim();if(name.length<2)throw Error('Digite um nome maior.');await fire.updateDoc(fire.doc(db,'profiles',ui.user.uid),{name});ui.profile.name=name;ui.people[ui.user.uid].name=name;await fire.updateProfile(ui.user,{displayName:name});mount();showToast('Perfil atualizado.');}
  }[form.id];if(!method)return;
  setBusy(true);try{await method(form);}catch(e){notifyError(e);}finally{setBusy(false);}
@@ -1524,7 +1674,7 @@ if(configured){
   ]);
   fire={...authMod,...fsMod};const app=appMod.initializeApp(FIREBASE_CONFIG);auth=authMod.getAuth(app);db=fsMod.getFirestore(app);
   unsubAuth=authMod.onAuthStateChanged(auth,user=>{
-   if(user){initializeAccount(user);}else{closeSocialSubscriptions();paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;ui.accountOpen=false;window.PulsoLocal?.switchAccount(null);mount();}
+   if(user){initializeAccount(user);}else{closeSocialSubscriptions();paused=true;clearTimeout(saveTimer);ui.user=null;ui.ready=false;ui.profile=null;ui.page='feed';ui.groups=[];ui.friends=[];ui.feed=[];ui.group=null;ui.groupSessions=[];ui.memberSettings={};ui.challengeOverview=[];ui.invitations=[];ui.accountOpen=false;window.PulsoLocal?.switchAccount(null);mount();}
   },notifyError);
  }catch(e){notifyError(e);}
 }
